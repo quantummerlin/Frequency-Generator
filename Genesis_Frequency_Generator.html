@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Genesis Frequency Generator">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#6B46C1">
+    <title>🌟 Genesis 1:1 Frequency Generator - Trinity System</title>
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIkdlbmVzaXMgRnJlcXVlbmN5IEdlbmVyYXRvciIsCiAgInNob3J0X25hbWUiOiAiR2VuZXNpcyIsCiAgInN0YXJ0X3VybCI6ICIuLyIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiIzAwMDAwMCIsCiAgInRoZW1lX2NvbG9yIjogIiM2QjQ2QzEiLAogICJkZXNjcmlwdGlvbiI6ICJCaWJsaWNhbCA0MzdIelwgKyA3M0h6IFRyaW5pdHkgRnJlcXVlbmN5IFN5c3RlbSBiYXNlZCBvbiBHZW5lc2lzIDE6MSIsCiAgIm9yaWVudGF0aW9uIjogInBvcnRyYWl0IiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sLCUzQ3N2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxOTInIGhlaWdodD0nMTkyJyUzRSUzQ3JlY3Qgd2lkdGg9JzE5MicgaGVpZ2h0PScxOTInIGZpbGw9JyUyMzZCNDZDMScvJTNFJTNDdGV4dCB4PSUyNTUwJTI1IHk9JyUyNTUwJTI1JyBmb250LXNpemU9Jzc2JyBmaWxsPSUyM0ZGRkZGRiclM0UlM0N0ZXh0JTIweCUzRCUyNTUwJTI1JTIweSUzRCUyNTc2JTI1JyUyMGZvbnQtc2l6ZSUzRCUyNzIwJTI3JTIwZmlsbCUzRCUyM0ZGRkZGRiclM0VHCUzQy90ZXh0JTNFJTNDL3N2ZyUzRSIsCiAgICAgICJzaXplcyI6ICIxOTJ4MTkyIiwKICAgICAgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCIKICAgIH0KICBdCn0=">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #1a0033 0%, #2d1b69 50%, #6B46C1 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding: 10px;
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(139, 92, 246, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(168, 85, 247, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 60%, rgba(196, 181, 253, 0.2) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @media (min-width: 768px) {
+            body {
+                padding: 20px;
+            }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(26, 0, 51, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(139, 92, 246, 0.2);
+            animation: slideUp 0.5s ease-out;
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .hebrew-header {
+            font-size: 24px;
+            color: #c4b5fd;
+            margin-bottom: 10px;
+            letter-spacing: 3px;
+            text-shadow: 0 2px 10px rgba(139, 92, 246, 0.5);
+        }
+
+        .main-title {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #c4b5fd 0%, #fbbf24 50%, #c4b5fd 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(251, 191, 36, 0.5);
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: #a78bfa;
+            margin-bottom: 5px;
+            line-height: 1.4;
+        }
+
+        .gematria {
+            font-size: 14px;
+            color: #fbbf24;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 5px rgba(251, 191, 36, 0.3);
+        }
+
+        .trinity-base {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            border-radius: 16px;
+            padding: 15px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .trinity-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #c4b5fd;
+            margin-bottom: 10px;
+        }
+
+        .trinity-frequencies {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .trinity-freq {
+            text-align: center;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .trinity-freq .hz {
+            font-size: 20px;
+            font-weight: 700;
+            color: #fbbf24;
+            text-shadow: 0 2px 5px rgba(251, 191, 36, 0.3);
+        }
+
+        .trinity-freq .label {
+            font-size: 12px;
+            color: #a78bfa;
+            margin-top: 2px;
+        }
+
+        .trinity-arrow {
+            color: #c4b5fd;
+            font-size: 18px;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(139, 92, 246, 0.1);
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #c4b5fd;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-title::before {
+            content: '🌟';
+            font-size: 16px;
+        }
+
+        .controls {
+            display: grid;
+            gap: 15px;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #a78bfa;
+        }
+
+        input[type="number"],
+        input[type="range"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        input[type="number"]:focus,
+        select:focus {
+            outline: none;
+            border-color: #fbbf24;
+            box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
+        }
+
+        input[type="range"] {
+            padding: 5px;
+            height: 40px;
+        }
+
+        .range-value {
+            text-align: center;
+            font-size: 14px;
+            color: #fbbf24;
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        .button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .button-primary {
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+        }
+
+        .button-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+        }
+
+        .button-primary:active {
+            transform: translateY(0);
+        }
+
+        .button-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #a78bfa;
+            border: 2px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .button-secondary:hover {
+            background: rgba(139, 92, 246, 0.2);
+            border-color: #a78bfa;
+        }
+
+        .button-danger {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            color: #fff;
+        }
+
+        .button-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .recipes {
+            display: grid;
+            gap: 10px;
+            max-height: 300px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        .recipes::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .recipes::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+
+        .recipes::-webkit-scrollbar-thumb {
+            background: rgba(139, 92, 246, 0.3);
+            border-radius: 3px;
+        }
+
+        .recipe-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 12px;
+            padding: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .recipe-item:hover {
+            background: rgba(139, 92, 246, 0.1);
+            border-color: #a78bfa;
+            transform: translateY(-1px);
+        }
+
+        .recipe-item.active {
+            background: rgba(139, 92, 246, 0.2);
+            border-color: #fbbf24;
+            box-shadow: 0 0 10px rgba(251, 191, 36, 0.2);
+        }
+
+        .recipe-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #c4b5fd;
+            margin-bottom: 5px;
+        }
+
+        .recipe-freqs {
+            font-size: 13px;
+            color: #a78bfa;
+            margin-bottom: 3px;
+        }
+
+        .recipe-desc {
+            font-size: 12px;
+            color: #94a3b8;
+        }
+
+        .status {
+            text-align: center;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .status.playing {
+            background: rgba(34, 197, 94, 0.1);
+            color: #22c55e;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .status.stopped {
+            background: rgba(148, 163, 184, 0.1);
+            color: #94a3b8;
+            border: 1px solid rgba(148, 163, 184, 0.3);
+        }
+
+        .visualizer {
+            height: 120px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .visualizer-content {
+            text-align: center;
+            color: #c4b5fd;
+            font-size: 14px;
+        }
+
+        .sacred-geometry {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border: 2px solid rgba(251, 191, 36, 0.3);
+            border-radius: 50%;
+            animation: rotate 20s linear infinite;
+        }
+
+        .sacred-geometry::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            border-radius: 50%;
+            transform: rotate(45deg);
+        }
+
+        .sacred-geometry::after {
+            content: '';
+            position: absolute;
+            width: 70.71%;
+            height: 70.71%;
+            background: rgba(251, 191, 36, 0.05);
+            left: 14.64%;
+            top: 14.64%;
+            transform: rotate(45deg);
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+                border-radius: 20px;
+            }
+            
+            .main-title {
+                font-size: 24px;
+            }
+            
+            .button-group {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="hebrew-header">בְּרֵאשִׁית בָּרָא אֱלֹהִים</div>
+            <h1 class="main-title">Genesis 1:1 Frequency Generator</h1>
+            <div class="subtitle">Biblical Trinity Frequency System</div>
+            <div class="gematria">2701 = 37 × 73 • Sacred Mathematical Pattern</div>
+        </div>
+
+        <div class="trinity-base">
+            <div class="trinity-title">Trinity Foundation Frequencies</div>
+            <div class="trinity-frequencies">
+                <div class="trinity-freq">
+                    <div class="hz">37 Hz</div>
+                    <div class="label">Form/Matter</div>
+                </div>
+                <div class="trinity-arrow">+</div>
+                <div class="trinity-freq">
+                    <div class="hz">73 Hz</div>
+                    <div class="label">Spirit/Divine</div>
+                </div>
+                <div class="trinity-arrow">=</div>
+                <div class="trinity-freq">
+                    <div class="hz">36 Hz</div>
+                    <div class="label">Beat Pattern</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="visualizer">
+            <div class="sacred-geometry"></div>
+            <div class="visualizer-content">
+                <div>✨ Sacred Geometry Visualizer ✨</div>
+                <div style="font-size: 12px; margin-top: 5px;">37 ↔ 73 Mirror Pattern Active</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Trinity Frequency Recipes</div>
+            <div class="recipes" id="recipes">
+                <!-- Recipes will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Frequency Controls</div>
+            <div class="controls">
+                <div class="control-group">
+                    <label for="freq1">Frequency 1 (Hz)</label>
+                    <input type="number" id="freq1" min="0.1" max="100000" step="0.1" value="37">
+                </div>
+                
+                <div class="control-group">
+                    <label for="freq2">Frequency 2 (Hz)</label>
+                    <input type="number" id="freq2" min="0.1" max="100000" step="0.1" value="73">
+                </div>
+                
+                <div class="control-group">
+                    <label for="freq3">Frequency 3 (Hz)</label>
+                    <input type="number" id="freq3" min="0.1" max="100000" step="0.1" value="0">
+                </div>
+                
+                <div class="control-group">
+                    <label for="volume">Master Volume</label>
+                    <input type="range" id="volume" min="0" max="100" value="50">
+                    <div class="range-value" id="volumeValue">50%</div>
+                </div>
+                
+                <div class="control-group">
+                    <label for="duration">Duration (seconds)</label>
+                    <input type="number" id="duration" min="10" max="3600" value="300">
+                </div>
+
+                <div class="button-group">
+                    <button class="button button-primary" id="playBtn">▶ PLAY</button>
+                    <button class="button button-danger" id="stopBtn">■ STOP</button>
+                    <button class="button button-secondary" id="exportBtn">⬇ EXPORT WAV</button>
+                    <button class="button button-secondary" id="resetBtn">↺ RESET</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="status stopped" id="status">
+            □ Ready to Generate Genesis Frequencies
+        </div>
+    </div>
+
+    <script>
+        // Trinity Frequency Recipes Database
+        const trinityRecipes = [
+            {
+                name: "Genesis Creation",
+                frequencies: [37, 73],
+                description: "Original creation pattern - form meets spirit"
+            },
+            {
+                name: "Divine Abundance",
+                frequencies: [37, 73, 888],
+                description: "Amplify manifestation with divine numerology"
+            },
+            {
+                name: "Sacred Healing",
+                frequencies: [37, 73, 432],
+                description: "Universal healing with Trinity foundation"
+            },
+            {
+                name: "Angel Numbers",
+                frequencies: [37, 73, 111],
+                description: "Connect with angelic frequencies (111 = 37×3)"
+            },
+            {
+                name: "Gateway Portal",
+                frequencies: [37, 73, 777],
+                description: "Open spiritual gateways (777 = 37×21)"
+            },
+            {
+                name: "Sacred Union",
+                frequencies: [37, 73, 144],
+                description: "Harmonize divine masculine/feminine"
+            },
+            {
+                name: "Christ Consciousness",
+                frequencies: [37, 73, 333],
+                description: "Higher consciousness activation (333 = 37×9)"
+            },
+            {
+                name: "Miracle Frequency",
+                frequencies: [37, 73, 999],
+                description: "Divine miracle manifestation"
+            },
+            {
+                name: "Solomon's Wisdom",
+                frequencies: [37, 73, 528],
+                description: "Ancient wisdom + love frequency"
+            },
+            {
+                name: "Merkaba Activation",
+                frequencies: [37, 73, 963],
+                description: "Light body activation with Trinity"
+            },
+            {
+                name: "Master Number 11",
+                frequencies: [37, 73, 11],
+                description: "Spiritual awakening master number"
+            },
+            {
+                name: "Master Number 22",
+                frequencies: [37, 73, 22],
+                description: "Master builder frequency"
+            },
+            {
+                name: "Master Number 33",
+                frequencies: [37, 73, 33],
+                description: "Master teacher vibration"
+            },
+            {
+                name: "Sacred Geometry",
+                frequencies: [37, 73, 174],
+                description: "Activate geometric patterns in consciousness"
+            },
+            {
+                name: "Quantum Healing",
+                frequencies: [37, 73, 741],
+                description: "Cellular regeneration + cleansing"
+            },
+            {
+                name: "Divine Timing",
+                frequencies: [37, 73, 123],
+                description: "Align with divine synchronicity"
+            },
+            {
+                name: "Holy Trinity",
+                frequencies: [37, 73, 147],
+                description: "Father, Son, Holy Spirit harmony"
+            },
+            {
+                name: "Ark of Covenant",
+                frequencies: [37, 73, 252],
+                description: "Sacred container of divine presence"
+            },
+            {
+                name: "Tree of Life",
+                frequencies: [37, 73, 231],
+                description: "Kabbalistic life force activation"
+            },
+            {
+                name: "Temple Frequency",
+                frequencies: [37, 73, 369],
+                description: "Sacred space creation and protection"
+            }
+        ];
+
+        class FrequencyGenerator {
+            constructor() {
+                this.audioContext = null;
+                this.oscillators = [];
+                this.gainNodes = [];
+                this.isPlaying = false;
+                this.selectedRecipe = null;
+                
+                this.initializeElements();
+                this.loadRecipes();
+                this.attachEventListeners();
+            }
+
+            initializeElements() {
+                this.elements = {
+                    freq1: document.getElementById('freq1'),
+                    freq2: document.getElementById('freq2'),
+                    freq3: document.getElementById('freq3'),
+                    volume: document.getElementById('volume'),
+                    volumeValue: document.getElementById('volumeValue'),
+                    duration: document.getElementById('duration'),
+                    playBtn: document.getElementById('playBtn'),
+                    stopBtn: document.getElementById('stopBtn'),
+                    exportBtn: document.getElementById('exportBtn'),
+                    resetBtn: document.getElementById('resetBtn'),
+                    status: document.getElementById('status'),
+                    recipes: document.getElementById('recipes')
+                };
+            }
+
+            loadRecipes() {
+                this.elements.recipes.innerHTML = '';
+                
+                trinityRecipes.forEach((recipe, index) => {
+                    const recipeElement = document.createElement('div');
+                    recipeElement.className = 'recipe-item';
+                    recipeElement.innerHTML = `
+                        <div class="recipe-name">${recipe.name}</div>
+                        <div class="recipe-freqs">🎵 ${recipe.frequencies.join(' Hz + ')} Hz</div>
+                        <div class="recipe-desc">${recipe.description}</div>
+                    `;
+                    
+                    recipeElement.addEventListener('click', () => this.selectRecipe(index));
+                    this.elements.recipes.appendChild(recipeElement);
+                });
+            }
+
+            selectRecipe(index) {
+                // Remove previous selection
+                document.querySelectorAll('.recipe-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Add selection to clicked recipe
+                document.querySelectorAll('.recipe-item')[index].classList.add('active');
+                
+                // Load recipe frequencies
+                const recipe = trinityRecipes[index];
+                this.elements.freq1.value = recipe.frequencies[0] || 37;
+                this.elements.freq2.value = recipe.frequencies[1] || 73;
+                this.elements.freq3.value = recipe.frequencies[2] || 0;
+                
+                this.selectedRecipe = recipe;
+                this.updateStatus(`✨ Selected: ${recipe.name}`);
+            }
+
+            attachEventListeners() {
+                this.elements.playBtn.addEventListener('click', () => this.play());
+                this.elements.stopBtn.addEventListener('click', () => this.stop());
+                this.elements.exportBtn.addEventListener('click', () => this.export());
+                this.elements.resetBtn.addEventListener('click', () => this.reset());
+                
+                this.elements.volume.addEventListener('input', (e) => {
+                    this.elements.volumeValue.textContent = `${e.target.value}%`;
+                    this.updateVolume();
+                });
+                
+                // Auto-select first recipe
+                setTimeout(() => this.selectRecipe(0), 100);
+            }
+
+            async play() {
+                if (this.isPlaying) {
+                    this.stop();
+                    return;
+                }
+                
+                try {
+                    // Initialize audio context
+                    if (!this.audioContext) {
+                        this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    }
+                    
+                    // Resume if suspended
+                    if (this.audioContext.state === 'suspended') {
+                        await this.audioContext.resume();
+                    }
+                    
+                    // Get frequencies
+                    const frequencies = [
+                        parseFloat(this.elements.freq1.value),
+                        parseFloat(this.elements.freq2.value),
+                        parseFloat(this.elements.freq3.value)
+                    ].filter(freq => freq > 0);
+                    
+                    if (frequencies.length === 0) {
+                        this.updateStatus('⚠️ Please enter at least one frequency');
+                        return;
+                    }
+                    
+                    // Create oscillators and gain nodes
+                    frequencies.forEach(freq => {
+                        const oscillator = this.audioContext.createOscillator();
+                        const gainNode = this.audioContext.createGain();
+                        
+                        oscillator.type = 'sine';
+                        oscillator.frequency.setValueAtTime(freq, this.audioContext.currentTime);
+                        
+                        const volume = parseFloat(this.elements.volume.value) / 100;
+                        gainNode.gain.setValueAtTime(volume, this.audioContext.currentTime);
+                        
+                        oscillator.connect(gainNode);
+                        gainNode.connect(this.audioContext.destination);
+                        
+                        oscillator.start();
+                        
+                        this.oscillators.push(oscillator);
+                        this.gainNodes.push(gainNode);
+                    });
+                    
+                    this.isPlaying = true;
+                    this.elements.playBtn.textContent = '⏸ PAUSE';
+                    this.updateStatus(`▶ Playing ${frequencies.join(' Hz + ')} Hz`);
+                    
+                    // Auto-stop after duration
+                    const duration = parseInt(this.elements.duration.value) * 1000;
+                    setTimeout(() => {
+                        if (this.isPlaying) {
+                            this.stop();
+                        }
+                    }, duration);
+                    
+                } catch (error) {
+                    console.error('Playback error:', error);
+                    this.updateStatus('❌ Playback error - please try again');
+                }
+            }
+
+            stop() {
+                this.oscillators.forEach(osc => {
+                    try {
+                        osc.stop();
+                        osc.disconnect();
+                    } catch (e) {}
+                });
+                
+                this.gainNodes.forEach(gain => {
+                    try {
+                        gain.disconnect();
+                    } catch (e) {}
+                });
+                
+                this.oscillators = [];
+                this.gainNodes = [];
+                this.isPlaying = false;
+                
+                this.elements.playBtn.textContent = '▶ PLAY';
+                this.updateStatus('□ Stopped - Ready to Generate');
+            }
+
+            updateVolume() {
+                if (this.isPlaying) {
+                    const volume = parseFloat(this.elements.volume.value) / 100;
+                    this.gainNodes.forEach(gainNode => {
+                        gainNode.gain.setValueAtTime(volume, this.audioContext.currentTime);
+                    });
+                }
+            }
+
+            export() {
+                // Create downloadable WAV file with current frequencies
+                const frequencies = [
+                    parseFloat(this.elements.freq1.value),
+                    parseFloat(this.elements.freq2.value),
+                    parseFloat(this.elements.freq3.value)
+                ].filter(freq => freq > 0);
+                
+                if (frequencies.length === 0) {
+                    this.updateStatus('⚠️ Please enter frequencies first');
+                    return;
+                }
+                
+                // Generate WAV file (simplified for demo)
+                const sampleRate = 44100;
+                const duration = parseInt(this.elements.duration.value);
+                const numSamples = sampleRate * duration;
+                
+                // Create WAV buffer
+                const buffer = new ArrayBuffer(44 + numSamples * 2);
+                const view = new DataView(buffer);
+                
+                // WAV header
+                const writeString = (offset, string) => {
+                    for (let i = 0; i < string.length; i++) {
+                        view.setUint8(offset + i, string.charCodeAt(i));
+                    }
+                };
+                
+                writeString(0, 'RIFF');
+                view.setUint32(4, 36 + numSamples * 2, true);
+                writeString(8, 'WAVE');
+                writeString(12, 'fmt ');
+                view.setUint32(16, 16, true);
+                view.setUint16(20, 1, true);
+                view.setUint16(22, 1, true);
+                view.setUint32(24, sampleRate, true);
+                view.setUint32(28, sampleRate * 2, true);
+                view.setUint16(32, 2, true);
+                view.setUint16(34, 16, true);
+                writeString(36, 'data');
+                view.setUint32(40, numSamples * 2, true);
+                
+                // Generate sine wave data
+                const volume = parseFloat(this.elements.volume.value) / 100;
+                let offset = 44;
+                
+                for (let i = 0; i < numSamples; i++) {
+                    let sample = 0;
+                    const time = i / sampleRate;
+                    
+                    frequencies.forEach(freq => {
+                        sample += Math.sin(2 * Math.PI * freq * time) / frequencies.length;
+                    });
+                    
+                    sample = sample * volume * 0.8; // Scale to avoid clipping
+                    const intSample = Math.floor(sample * 32767);
+                    view.setInt16(offset, intSample, true);
+                    offset += 2;
+                }
+                
+                // Download the WAV file
+                const blob = new Blob([buffer], { type: 'audio/wav' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `genesis_${frequencies.join('_')}_hz.wav`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                
+                this.updateStatus(`⬇ Exported: ${frequencies.join(' + ')} Hz`);
+            }
+
+            reset() {
+                this.stop();
+                
+                // Reset to Trinity defaults
+                this.elements.freq1.value = 37;
+                this.elements.freq2.value = 73;
+                this.elements.freq3.value = 0;
+                this.elements.volume.value = 50;
+                this.elements.volumeValue.textContent = '50%';
+                this.elements.duration.value = 300;
+                
+                // Clear recipe selection
+                document.querySelectorAll('.recipe-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                this.selectedRecipe = null;
+                this.updateStatus('↺ Reset to Trinity Foundation');
+            }
+
+            updateStatus(message) {
+                this.elements.status.textContent = message;
+                this.elements.status.className = this.isPlaying ? 'status playing' : 'status stopped';
+            }
+        }
+
+        // Initialize generator when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            window.generator = new FrequencyGenerator();
+        });
+    </script>
+</body>
+</html>

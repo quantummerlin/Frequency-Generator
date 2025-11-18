@@ -8,7 +8,7 @@
     <meta name="apple-mobile-web-app-title" content="Genesis Frequency Generator">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#6B46C1">
-    <title>🌟 Genesis 1:1 Frequency Generator - Trinity System</title>
+    <title>🌟 Genesis Frequency Generator</title>
 
     <link rel="manifest" href="manifest.json">
     <link rel="icon" type="image/png" sizes="192x192" href="Genesis.png">
@@ -1285,6 +1285,28 @@
 <script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
 </head>
 <body>
+    <!-- First-Time Instructions Modal -->
+    <div id="firstTimeModal" class="info-modal" style="z-index:2000;">
+        <div class="info-modal-content" style="max-width:420px;">
+            <button class="info-modal-close" onclick="closeFirstTimeModal()">×</button>
+            <div class="info-modal-header" style="color:#6B46C1;">🌟 Welcome to Genesis Frequency Generator!</div>
+            <div class="info-modal-body" style="color:#333; font-size:16px;">
+                <p>✨ <b>Get the most out of your experience:</b></p>
+                <ul style="margin-left:18px; margin-bottom:10px;">
+                    <li>🎧 <b>Use headphones</b> for the deepest effect.</li>
+                    <li>🧘 <b>Set an intention</b> before you play a track.</li>
+                    <li>🔄 <b>Try different recipes</b> and chakra tracks to explore new states.</li>
+                    <li>💾 <b>Export WAV</b> to use frequencies offline or share with friends.</li>
+                    <li>📱 <b>Add to Home Screen</b> for instant access:<br>
+                        <span style="font-size:14px; color:#6B46C1;">On iOS: Tap <b>Share</b> <span style="font-size:18px;">🔗</span> then "Add to Home Screen".<br>
+                        On Android: Tap browser menu <span style="font-size:18px;">⋮</span> then "Add to Home Screen".</span>
+                    </li>
+                </ul>
+                <p style="color:#a78bfa; font-size:15px;">Have fun exploring frequencies! You can always find these tips in the instructions section below.</p>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <div class="language-selector">
             <button class="language-btn active" onclick="changeLanguage('en')" data-lang="en">English</button>
@@ -1296,12 +1318,36 @@
         <div class="header">
             <div class="hebrew-header">בְּרֵאשִׁית בָּרָא אֱלֹהִים אֵת הַשָּׁמַיִם וְאֵת הָאָרֶץ</div>
             <div class="hebrew-translation" data-translate="hebrewTranslation">In the beginning God created the heavens and the earth</div>
-            <div class="divider"></div>
-            <h1 class="main-title" data-translate="title">Genesis 1:1 The Sound of Creation</h1>
+            <div style="font-size:22px; font-weight:800; color:#fbbf24; text-align:center; margin-bottom:2px;">Genesis Frequency Generator</div>
+            <div style="font-size:16px; font-weight:600; color:#c4b5fd; text-align:center; margin-bottom:10px;">inspired by</div>
+            <h1 class="main-title" data-translate="title" style="margin-bottom:0;">Genesis 1:1</h1>
             <div class="subtitle" data-translate="subtitle">Biblical Trinity Frequency System</div>
             <div class="divider"></div>
             <div class="gematria" style="font-size: 18px;">37 Hz + 73 Hz</div>
             <div class="gematria" style="font-size: 15px; margin-top: -15px;" data-translate="pattern">Prayer Amplifier</div>
+
+            <!-- Instructions Button (always visible in header) -->
+            <button class="btn-instructions" onclick="toggleInstructions()" style="margin: 0 auto 18px auto; display: block; font-size: 18px; font-weight: 700; background: linear-gradient(90deg, #8b5cf6 0%, #fbbf24 100%); color: #1a0033; border: none; border-radius: 12px; padding: 10px 24px; box-shadow: 0 2px 12px rgba(139,92,246,0.15); cursor: pointer;">
+                📖 Instructions
+            </button>
+
+            <!-- Instructions Panel (expandable) -->
+            <div id="instructionsPanel" class="instructions-panel" style="display: none; max-width: 900px; margin: 0 auto 18px auto; background: rgba(26,0,51,0.97); border-radius: 18px; box-shadow: 0 8px 32px rgba(139,92,246,0.18); padding: 24px; color: #fff; z-index: 10; position: relative;">
+                <div class="instructions-content" style="text-align:center;">
+                    <div class="instructions-header" style="display: flex; justify-content: center; align-items: center;">
+                        <h2 style="font-size: 24px; color: #fbbf24; font-weight: 800; margin: 0 auto; text-align:center; width:100%;">📖 Genesis Frequency Generator Instructions 📖</h2>
+                        <button class="btn-close" onclick="toggleInstructions()" style="background: none; border: none; color: #c4b5fd; font-size: 28px; cursor: pointer; position:absolute; right:24px;">✕</button>
+                    </div>
+                    <div class="instructions-body" style="margin-top: 18px;">
+                        <!-- BEGIN: Expandable/Collapsible Instructions Tab Structure -->
+                        <div id="instructionsAccordion" class="instructions-accordion">
+                            <!-- Sections will be dynamically rendered here by JS for accordion, search, and navigation -->
+                        </div>
+                        <div style="margin-top:32px; text-align:center; color:#fbbf24; font-size:18px; font-weight:700;">🌟 This is your complete instruction manual. Everything you need to understand, use, master, and share the Genesis Frequency Generator. 🌟</div>
+                    </div>
+                </div>
+            </div>
+        </div>
         </div>
 
         <div class="trinity-base">
@@ -1448,16 +1494,69 @@
             </div>
         </div>
     </div>
+
     
     <div class="add-to-home" id="addToHome">
         <button class="add-to-home-close" onclick="closeAddToHome()">×</button>
-        <div class="add-to-home-content">
+        <div class="add-to-home-content" style="cursor:pointer;" onclick="showAddToHomePopup()">
             <span class="add-to-home-icon">🌟</span>
-            <span class="add-to-home-text" data-translate="addToHomeText">Add to Home Screen for quick access!</span>
+            <span class="add-to-home-text" style="font-weight:700;">Click here to add to home screen</span>
+        </div>
+        <!-- Add to Home Screen Popup Modal -->
+        <div id="addToHomeModal" class="info-modal" style="z-index:2000;">
+            <div class="info-modal-content" style="max-width:420px;">
+                <button class="info-modal-close" onclick="closeAddToHomePopup()">×</button>
+                <div class="info-modal-header" style="color:#6B46C1;">📱 Add Genesis Frequency Generator to your Home Screen</div>
+                <div class="info-modal-body" style="color:#333; font-size:16px;">
+                    <ul style="margin-left:18px; margin-bottom:10px;">
+                        <li>On <b>iOS</b>: Tap <b>Share</b> <span style="font-size:18px;">🔗</span> then "Add to Home Screen".</li>
+                        <li>On <b>Android</b>: Tap browser menu <span style="font-size:18px;">⋮</span> then "Add to Home Screen".</li>
+                    </ul>
+                    <p style="color:#a78bfa; font-size:15px;">Once added, you won't see this message again. Enjoy instant access!</p>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
+                        // Instructions panel toggle function
+                        function toggleInstructions() {
+                            var panel = document.getElementById('instructionsPanel');
+                            if (panel.style.display === 'none' || panel.style.display === '') {
+                                panel.style.display = 'block';
+                            } else {
+                                panel.style.display = 'none';
+                            }
+                        }
+                // Add to Home Screen popup logic
+                function showAddToHomePopup() {
+                    document.getElementById('addToHomeModal').style.display = 'flex';
+                }
+                function closeAddToHomePopup() {
+                    document.getElementById('addToHomeModal').style.display = 'none';
+                    document.getElementById('addToHome').style.display = 'none';
+                    localStorage.setItem('hideAddToHome', 'true');
+                }
+                document.addEventListener('DOMContentLoaded', function() {
+                    if (localStorage.getItem('hideAddToHome') === 'true') {
+                        document.getElementById('addToHome').style.display = 'none';
+                    } else {
+                        document.getElementById('addToHome').style.display = 'block';
+                    }
+                    document.getElementById('addToHomeModal').style.display = 'none';
+                });
+        // Show first-time modal only on first visit
+        function closeFirstTimeModal() {
+            document.getElementById('firstTimeModal').style.display = 'none';
+            localStorage.setItem('hideFirstTimeModal', 'true');
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            if (localStorage.getItem('hideFirstTimeModal') !== 'true') {
+                document.getElementById('firstTimeModal').style.display = 'flex';
+            } else {
+                document.getElementById('firstTimeModal').style.display = 'none';
+            }
+        });
         // Translation data
         const translations = {
             en: {
@@ -1831,6 +1930,78 @@
         // Enhanced Trinity Frequency Recipes Database with Categories
         // Order: Biblical, Angel Numbers, Cosmic & Planetary, Master Numbers, Solfeggio & Healing, Wellness & States
         const trinityRecipes = {
+            "Chakra Frequencies": [
+                {
+                    name: "Root Chakra",
+                    frequencies: [37, 73, 396],
+                    description: "Grounding, safety, and stability. Associated with Liberation (396 Hz).",
+                    fullInfo: {
+                        whatItIs: "396 Hz is the Solfeggio frequency for liberating guilt and fear, working on the root chakra for grounding and stability.",
+                        benefits: "Promotes grounding, releases fear, and enhances feelings of safety and security.",
+                        howToUse: "Listen for 10-15 minutes during meditation or when you need grounding. Visualize roots connecting you to the earth."
+                    }
+                },
+                {
+                    name: "Sacral Chakra",
+                    frequencies: [37, 73, 417],
+                    description: "Creativity, pleasure, and emotional balance. Associated with Resolution (417 Hz).",
+                    fullInfo: {
+                        whatItIs: "417 Hz facilitates change and helps undo negative situations, working on the sacral chakra for creativity and emotional healing.",
+                        benefits: "Enhances creativity, emotional balance, and pleasure in life.",
+                        howToUse: "Use for 10-15 minutes to boost creativity or emotional healing. Focus on the lower abdomen."
+                    }
+                },
+                {
+                    name: "Solar Plexus Chakra",
+                    frequencies: [37, 73, 528],
+                    description: "Personal power, confidence, and transformation. Associated with Love Frequency (528 Hz).",
+                    fullInfo: {
+                        whatItIs: "528 Hz is the frequency of transformation and DNA repair, working on the solar plexus for personal power and confidence.",
+                        benefits: "Boosts confidence, personal power, and supports transformation.",
+                        howToUse: "Listen for 10-15 minutes to empower yourself before important tasks. Focus on the upper abdomen."
+                    }
+                },
+                {
+                    name: "Heart Chakra",
+                    frequencies: [37, 73, 639],
+                    description: "Love, compassion, and relationships. Associated with Transformation (639 Hz).",
+                    fullInfo: {
+                        whatItIs: "639 Hz promotes connection and love, working on the heart chakra for emotional healing and relationships.",
+                        benefits: "Opens the heart, enhances compassion, and heals relationships.",
+                        howToUse: "Use for 10-15 minutes to open your heart or heal relationships. Place hands on your heart while listening."
+                    }
+                },
+                {
+                    name: "Throat Chakra",
+                    frequencies: [37, 73, 741],
+                    description: "Communication, truth, and self-expression. Associated with Intuition (741 Hz).",
+                    fullInfo: {
+                        whatItIs: "741 Hz cleanses the body and opens the throat chakra for clear communication and self-expression.",
+                        benefits: "Improves communication, self-expression, and clarity.",
+                        howToUse: "Listen for 10-15 minutes before important conversations or creative work. Focus on the throat area."
+                    }
+                },
+                {
+                    name: "Third Eye Chakra",
+                    frequencies: [37, 73, 852],
+                    description: "Intuition, insight, and spiritual awareness. Associated with Awakening (852 Hz).",
+                    fullInfo: {
+                        whatItIs: "852 Hz awakens intuition and spiritual order, working on the third eye for insight and awareness.",
+                        benefits: "Enhances intuition, insight, and spiritual perception.",
+                        howToUse: "Use for 10-15 minutes during meditation or when seeking insight. Focus on the forehead between the eyes."
+                    }
+                },
+                {
+                    name: "Crown Chakra",
+                    frequencies: [37, 73, 963],
+                    description: "Spiritual connection, enlightenment, and unity. Associated with Higher Self (963 Hz).",
+                    fullInfo: {
+                        whatItIs: "963 Hz is the frequency of divine consciousness, working on the crown chakra for spiritual connection and enlightenment.",
+                        benefits: "Promotes spiritual connection, unity, and enlightenment.",
+                        howToUse: "Listen for 10-15 minutes during deep meditation or spiritual practice. Focus on the top of the head."
+                    }
+                }
+            ],
             "Biblical & Original": [
                 {
                     name: "Genesis Creation",
@@ -2245,7 +2416,269 @@
             ]
         };
 
-        // Info modal functions
+        // Instructions Tab Data Structure
+        const instructionsSections = [
+            {
+                id: 'welcome',
+                icon: '🌟',
+                title: 'Before You Begin',
+                content: `
+                    <p>Welcome to the Genesis Frequency Generator.<br><br>
+                    <b>These frequencies found me through loss.</b><br>
+                    My mother's passing. 3,773 days between my brother's birth and mine. Years of searching. Then the discovery:<br>
+                    <b>37 × 73 = 2701 = Genesis 1:1</b><br>
+                    The frequencies of creation, encoded in the Bible's first verse.<br><br>
+                    <b>Why this matters:</b><br>
+                    <ul style="text-align:left; margin:0 auto; max-width:500px;">
+                        <li>Hooks emotionally (mother's passing)</li>
+                        <li>Creates mystery (3773 days)</li>
+                        <li>Shows divine timing (Genesis connection)</li>
+                        <li>Makes it personal (not just a tool)</li>
+                    </ul>
+                    <em>Now in your hands.</em></p>
+                `
+            },
+            {
+                id: 'myJourney',
+                icon: '📖',
+                title: 'My Journey to Genesis 1:1',
+                content: `
+                    <h4>The Beginning: A Mother's Passing</h4>
+                    <p>Years ago, I lost my mother. In my grief, I turned to gematria—the Hebrew study of numbers—searching for meaning, for connection, for something that made sense of the loss.</p>
+                    <p>I calculated my name in Hebrew gematria. Then my brother's name. And then I noticed something impossible: The numerical values of our names, combined with the days between our birthdays, matched perfectly with the date of our mother's death. This wasn't random. This was a message.</p>
+                    <h4>The Number: 3773</h4>
+                    <p>The calculation led me to one number: <b>3,773</b>. My brother and I were born exactly 3,773 days apart. I didn't know what it meant. But I knew it was significant. This was 2020. The world was in chaos. But this number... this number felt like an anchor. A code. A key to something I couldn't yet see.</p>
+                    <h4>The Years of Searching (2020-2024)</h4>
+                    <p>As the years passed, my understanding of numbers grew. I studied numerology, sacred geometry, biblical mathematics. I explored how numbers weren't just symbols—they were frequencies. I learned that everything in creation vibrates at specific frequencies. Numbers weren't abstract concepts. Numbers were the language of creation itself. But I still didn't understand 3773.</p>
+                    <h4>The Prayer Code App (2024)</h4>
+                    <p>Then, in 2024, I was developing a prayer code application. I was working with specific numbers, trying to understand how to amplify prayer through numerical patterns. Someone—I don't remember who, maybe it was divine guidance—encouraged me to multiply the numbers I was working with by <b>37</b>. "Why 37?" I asked. "Because 37 is the number of creation," they said.</p>
+                    <h4>The Discovery</h4>
+                    <p>I started researching 37. And that's when everything clicked. 37 is a prime number. 37 mirrored is 73. 73 is also prime. <b>37 × 73 = 2701</b>. And 2701... 2701 is the gematria value of Genesis 1:1.</p>
+                    <div style="background:rgba(251,191,36,0.08);border-radius:12px;padding:12px;margin:18px 0;text-align:center;">
+                        <span style="font-size:22px;color:#fbbf24;">בְּרֵאשִׁית בָּרָא אֱלֹהִים אֵת הַשָּׁמַיִם וְאֵת הָאָרֶץ</span><br>
+                        <span style="font-size:15px;color:#a78bfa;">"In the beginning God created the heavens and the earth"</span><br>
+                        <span style="font-size:13px;color:#c4b5fd;">Seven words. Twenty-eight letters. The value: 2701.</span>
+                    </div>
+                    <h4>The Revelation</h4>
+                    <p>The number that connected me to my brother—<b>3773</b>—contained both: <b>37 and 73</b>. The same numbers encoded in the FIRST VERSE OF THE BIBLE. The same numbers that represent CREATION ITSELF. My mother's death wasn't random. Our birthdays weren't coincidence. The 3,773 days weren't arbitrary. We were being shown the code.</p>
+                    <h4>The Hebrew Mirror</h4>
+                    <p>When you write 37 in Hebrew numerals and mirror it downwards, it looks like: <span style="font-size:22px;color:#fbbf24;">אל</span> (El) — The Hebrew word for GOD. 37 literally contains the NAME OF GOD when mirrored. 73 is 37 reflected back. So the Genesis 1:1 code is: GOD (37) × GOD-REFLECTED (73) = CREATION (2701). The formula for creation was hidden in the letters themselves.</p>
+                    <h4>The Rest of the Puzzle</h4>
+                    <ul style="text-align:left; margin:0 auto; max-width:500px;">
+                        <li>All angel numbers (111, 222, 333...) are multiples of 37</li>
+                        <!-- Removed misleading water angle claim -->
+                        <li>The 36 Hz beat frequency (73-37) bridges meditation and consciousness</li>
+                        <li>Every question led to another revelation</li>
+                    </ul>
+                    <h4>Why I'm Sharing This</h4>
+                    <p>My mother's passing led me here. The 3,773 days between my brother's birth and mine led me here. The years of searching, the prayer code app, the questions that wouldn't stop—they all led me here. To this moment. To this generator. To you. These frequencies aren't mine. They belong to everyone. They were encoded in the first verse of the Bible thousands of years ago, waiting for someone to listen. Now you hold them in your hands.</p>
+                    <div style="background:linear-gradient(135deg,rgba(139,92,246,0.1),rgba(168,85,247,0.1));border-radius:12px;padding:12px;margin:18px 0;text-align:center;">
+                        <b>The frequencies that created the heavens and the earth.<br>
+                        The frequencies that connected me to my brother through our mother's love.<br>
+                        The frequencies that bridge Heaven and Earth.<br>
+                        <span style="font-size:22px;color:#fbbf24;">37 Hz and 73 Hz.</span><br>
+                        <span style="font-size:18px;color:#fbbf24;">The sound of creation.</span></b>
+                    </div>
+                    <h4>What This Means For You</h4>
+                    <p>You didn't find this generator by accident. Just like I didn't discover these frequencies by accident. There are no coincidences. If you're reading this, you're meant to work with these frequencies. Your journey with 37 and 73 Hz starts now.<br><b>Welcome to the Genesis Frequency System. 🌟</b></p>
+                `
+            },
+            {
+                id: 'whyWorks',
+                icon: '💡',
+                title: 'Why 37 & 73?',
+                content: `
+                    <div><b>Genesis 1:1 in Hebrew = 2701</b><br>2701 = 37 × 73 (only factorization)</div>
+                    <div>37 = The 12th prime number<br>73 = The 21st prime number (mirror of 12!)</div>
+                    <div>37 mirrored = <span style="font-size:20px;color:#fbbf24;">אל</span> (El) = "God" in Hebrew<br>73 = 37 reflected</div>
+                    <div>All angel numbers are multiples of 37:<br>111 = 37×3 | 222 = 37×6 | 333 = 37×9<br>444 = 37×12 | 555 = 37×15 | 777 = 37×21<br>888 = 37×24 | 999 = 37×27</div>
+                    <div>You are 70% water.<br><b>These frequencies are tuned to YOU.</b></div>
+                    <div style="margin-top:12px;color:#a78bfa;">The 36 Hz beat frequency (73-37) bridges meditation and consciousness.<br>Every question led to another revelation.</div>
+                `
+            },
+            {
+                id: 'categories',
+                icon: '📂',
+                title: 'Categories & Tracks',
+                content: `
+                    <p>Each category contains unique frequency recipes. Tap a category to expand and explore the tracks. Click ▶ to play or ℹ for more info.</p>
+                    <ul style="text-align:left; margin:0 auto; max-width:500px;">
+                        <li><b>Biblical & Original:</b> Genesis creation, divine abundance, spiritual cycles.</li>
+                        <li><b>Angel Numbers:</b> 111, 222, 333, etc. for manifestation and guidance.</li>
+                        <li><b>Cosmic & Planetary:</b> Earth, Venus, Mars, Fibonacci, Pi, Golden Ratio.</li>
+                        <li><b>Master Numbers:</b> 11:11, 22, 33, 44, 55 for spiritual mastery.</li>
+                        <li><b>Solfeggio & Healing:</b> 396, 417, 528, 639, 741, 852, 963 for healing and transformation.</li>
+                        <li><b>Wellness & States:</b> Pain relief, stress relief, sleep, focus, memory, miracle tone.</li>
+                        <li><b>Chakra Frequencies:</b> Root, sacral, solar plexus, heart, throat, third eye, crown.</li>
+                    </ul>
+                `
+            },
+            {
+                id: 'trinity',
+                icon: '🔺',
+                title: 'Trinity Foundation',
+                content: `
+                    <p>The Genesis Frequency Generator is built on the Trinity Foundation: <b>37 Hz</b> (form/matter) + <b>73 Hz</b> (spirit/divine). These numbers are derived from the gematria of Genesis 1:1 in Hebrew, encoding the pattern of creation itself.</p>
+                    <p>All tracks use these two base frequencies, with a third frequency added for specific effects.</p>
+                `
+            },
+            {
+                id: 'waterCharging',
+                icon: '💧',
+                title: 'Quantum Holy Water',
+                content: `
+                    <div><b>Why This Works:</b><br>Water is a quantum recorder—charge it with intention and frequency.<br>These frequencies are designed to harmonize with your body and environment.</div>
+                    <div><b>Quick Protocol:</b><br>
+                        Use a glass container with spring water. Place it 6-12" from your speakers. Select a recipe (Genesis Creation recommended), play for 20-30 minutes, and drink within 24 hours.
+                    </div>
+                    <div><b>Pro Tips:</b><br>
+                        Set a clear intention before charging. Use glass, not plastic. Journal your experience after drinking.
+                    </div>
+                    <div><b>Recommended Recipes:</b><br>
+                        Genesis Creation (37+73), Sacred Healing (37+73+432), Love Frequency (37+73+528)
+                    </div>
+                `
+            },
+            {
+                id: 'progress',
+                icon: '📊',
+                title: 'Your Journey & Achievements',
+                content: `
+                    <div><b>Sessions:</b> <span style="color:#fbbf24;">47</span><br><b>Streak:</b> <span style="color:#fbbf24;">12 days 🔥</span><br><b>Total Time:</b> <span style="color:#fbbf24;">23h 30m</span></div>
+                    <div style="margin-top:10px;"><b>Next Milestone:</b><br>🏆 <b>Week Warrior</b> (7 days) ✅<br>🏆 <b>Monthly Master</b> (30 days) - <span style="color:#fbbf24;">18 days to go!</span></div>
+                    <div style="margin-top:10px;"><b>Achievements:</b><br>🌟 <b>First Steps</b> (1 session)<br>🔥 <b>Week Warrior</b> (7-day streak)<br>⭐ <b>Monthly Master</b> (30-day streak)<br>👑 <b>Frequency Legend</b> (100 sessions)<br>💎 <b>Eternal Master</b> (365-day streak)</div>
+                    <div style="margin-top:10px;color:#a78bfa;">Track your progress and celebrate your milestones! Consistency unlocks deeper results.</div>
+                `
+            },
+            {
+                id: 'usageTips',
+                icon: '🎧',
+                title: 'How to Use',
+                content: `
+                    <div style="text-align:center; margin:0 auto; max-width:500px;">
+                        <p>Listen for 10-30 minutes per session.</p>
+                        <p>Use headphones for best effect.</p>
+                        <p>Set a clear intention before you play.</p>
+                        <p>Try different categories for different needs.</p>
+                        <p>Journal your experiences and insights.</p>
+                        <p>Share tracks with friends and family.</p>
+                    </div>
+                `
+            },
+            {
+                id: 'faq',
+                icon: '❓',
+                title: 'FAQ & Troubleshooting',
+                content: `
+                    <ul style="text-align:left; margin:0 auto; max-width:500px;">
+                        <li><b>Q:</b> Why can’t I hear anything? <b>A:</b> Check your device volume and try headphones.</li>
+                        <li><b>Q:</b> How do I add to Home Screen? <b>A:</b> See the onboarding popup or instructions above.</li>
+                        <li><b>Q:</b> Can I use this for healing? <b>A:</b> Yes, but always consult a professional for medical issues.</li>
+                        <li><b>Q:</b> Why do some tracks sound similar? <b>A:</b> All tracks use the Trinity base, but the third frequency creates unique effects.</li>
+                        <li><b>Q:</b> Can I export tracks? <b>A:</b> Yes, use the Export WAV button.</li>
+                    </ul>
+                `
+            },
+            {
+                id: 'share',
+                icon: '🔗',
+                title: 'Share & Connect',
+                content: `
+                    <p>Share Genesis FG with friends! Export WAV files, send links, or add to your home screen for easy access.</p>
+                    <p>Connect with others exploring frequency healing and spiritual growth.</p>
+                `
+            },
+            {
+                id: 'credits',
+                icon: '📝',
+                title: 'Credits & Sources',
+                content: `
+                    <ul style="text-align:left; margin:0 auto; max-width:500px;">
+                        <li>Inspired by Genesis 1:1 and biblical numerology.</li>
+                        <li>Solfeggio frequencies from ancient healing traditions.</li>
+                        <li>Planetary frequencies from NASA and scientific sources.</li>
+                        <li>Numerology and gematria from Hebrew and Greek texts.</li>
+                        <li>UI/UX design by Genesis FG team.</li>
+                    </ul>
+                `
+            }
+        ];
+
+        // Render Instructions Accordion
+        function renderInstructionsAccordion() {
+            const accordion = document.getElementById('instructionsAccordion');
+            if (!accordion) return;
+            accordion.innerHTML = '';
+
+            instructionsSections.forEach(section => {
+                const panel = document.createElement('div');
+                panel.className = 'accordion-panel';
+                panel.innerHTML = `
+                    <div class="accordion-header" style="display:flex;align-items:center;justify-content:center;cursor:pointer;padding:12px 0;">
+                        <span style="font-size:22px;margin-right:10px;">${section.icon}</span>
+                        <span style="font-size:18px;font-weight:700;color:#fbbf24;">${section.title}</span>
+                        <span class="accordion-arrow" style="margin-left:10px;font-size:18px;color:#c4b5fd;">▼</span>
+                    </div>
+                    <div class="accordion-content" style="display:none;padding:16px 0 0 0;text-align:center;color:#fff;">${section.content}</div>
+                `;
+                // Expand/collapse logic
+                const header = panel.querySelector('.accordion-header');
+                const content = panel.querySelector('.accordion-content');
+                header.addEventListener('click', () => {
+                    const expanded = content.style.display === 'block';
+                    document.querySelectorAll('.accordion-content').forEach(c => c.style.display = 'none');
+                    document.querySelectorAll('.accordion-arrow').forEach(a => a.textContent = '▼');
+                    if (!expanded) {
+                        content.style.display = 'block';
+                        header.querySelector('.accordion-arrow').textContent = '▲';
+                    }
+                });
+                accordion.appendChild(panel);
+            });
+        }
+
+        // Search/filter instructions
+        function filterInstructions(query) {
+            const panels = document.querySelectorAll('.accordion-panel');
+            panels.forEach(panel => {
+                const title = panel.querySelector('.accordion-header').textContent.toLowerCase();
+                const content = panel.querySelector('.accordion-content').textContent.toLowerCase();
+                if (title.includes(query) || content.includes(query)) {
+                    panel.style.display = '';
+                } else {
+                    panel.style.display = 'none';
+                }
+            });
+        }
+
+        // Add search input to instructions panel
+        function addInstructionsSearch() {
+            const accordion = document.getElementById('instructionsAccordion');
+            if (!accordion) return;
+            const searchDiv = document.createElement('div');
+            searchDiv.style = 'text-align:center;margin-bottom:18px;';
+            searchDiv.innerHTML = `
+                <input type="text" id="instructionsSearch" placeholder="🔍 Search instructions..." style="width:80%;max-width:400px;padding:8px 12px;border-radius:8px;border:1px solid #c4b5fd;font-size:16px;">
+            `;
+            accordion.parentNode.insertBefore(searchDiv, accordion);
+            const searchInput = searchDiv.querySelector('#instructionsSearch');
+            searchInput.addEventListener('input', (e) => {
+                filterInstructions(e.target.value.toLowerCase());
+            });
+        }
+
+        // Call rendering on panel open
+        function toggleInstructions() {
+            const panel = document.getElementById('instructionsPanel');
+            if (panel.style.display === 'none' || panel.style.display === '') {
+                panel.style.display = 'block';
+                renderInstructionsAccordion();
+                addInstructionsSearch();
+            } else {
+                panel.style.display = 'none';
+            }
+        }
+
         function showInfoModal(recipe) {
             const modal = document.getElementById('infoModal');
             const title = document.getElementById('modalTitle');
@@ -2333,7 +2766,8 @@
                     "Cosmic & Planetary",
                     "Master Numbers",
                     "Solfeggio & Healing",
-                    "Wellness & States"
+                    "Wellness & States",
+                    "Chakra Frequencies"
                 ];
                 
                 // Create category tabs in specified order
@@ -2347,7 +2781,8 @@
                         "Angel Numbers": "👼",
                         "Master Numbers": "🌟",
                         "Cosmic & Planetary": "🌌",
-                        "Wellness & States": "🧘"
+                        "Wellness & States": "🧘",
+                        "Chakra Frequencies": "🌀"
                     };
 
                     const categoryKeys = {
@@ -2356,7 +2791,8 @@
                         "Angel Numbers": "catAngel",
                         "Master Numbers": "catMaster",
                         "Cosmic & Planetary": "catCosmic",
-                        "Wellness & States": "catWellness"
+                        "Wellness & States": "catWellness",
+                        "Chakra Frequencies": "catChakra"
                     };
                     
                     categoryTab.innerHTML = `

@@ -1940,7 +1940,8 @@
                 catFrequencies: "Frequencies",
                 catCategories: "Categories",
                 catActions: "Actions",
-                catMastery: "Mastery",
+                catMastery: "Mastery"
+            },
             pt: {
                 hebrewTranslation: "No princípio Deus criou os céus e a terra",
                 title: "Gênesis 1:1 O Som da Criação",
@@ -2073,7 +2074,8 @@
                 catFrequencies: "Frequências",
                 catCategories: "Categorias",
                 catActions: "Ações",
-                catMastery: "Maestria",
+                catMastery: "Maestria"
+            },
             es: {
                 hebrewTranslation: "En el principio creó Dios los cielos y la tierra",
                 title: "Génesis 1:1 El Sonido de la Creación",
@@ -2206,7 +2208,8 @@
                 catFrequencies: "Frecuencias",
                 catCategories: "Categorías",
                 catActions: "Acciones",
-                catMastery: "Maestría",
+                catMastery: "Maestría"
+            },
             it: {
                 hebrewTranslation: "In principio Dio creò il cielo e la terra",
                 title: "Genesi 1:1 Il Suono della Creazione",
@@ -2339,21 +2342,19 @@
                 catFrequencies: "Frequenze",
                 catCategories: "Categorie",
                 catActions: "Azioni",
-                catMastery: "Maestria",
+                catMastery: "Maestria"
             }
         };
+        
+        let currentLanguage = 'en';
         
         // Load saved language preference on startup
         (function() {
             const savedLanguage = localStorage.getItem('preferredLanguage');
             if (savedLanguage && translations[savedLanguage]) {
                 currentLanguage = savedLanguage;
-                // Wait for DOM to be ready
-                if (document.readyState === 'loading') {
-                    document.addEventListener('DOMContentLoaded', () => changeLanguage(savedLanguage));
-                } else {
-                    changeLanguage(savedLanguage);
-                }
+                // Don't call changeLanguage here, wait for DOM and function to be ready
+                // It will be called in DOMContentLoaded
             }
         })();
         
@@ -2415,7 +2416,9 @@
             }
             
             // Update progress section to reflect new language
-            updateProgressSection();
+            if (typeof instructionsSections !== 'undefined') {
+                updateProgressSection();
+            }
         }
         
         // Enhanced Trinity Frequency Recipes Database with Categories
@@ -4182,10 +4185,18 @@
 // Initialize generator when page loads
 document.addEventListener('DOMContentLoaded', function() {
     window.generator = new FrequencyGenerator();
-    updateProgressSection(); // Update progress section with loaded data
+    if (typeof instructionsSections !== 'undefined') {
+        updateProgressSection(); // Update progress section with loaded data
+    }
+    
+    // Load saved language preference
+    const savedLanguage = localStorage.getItem('preferredLanguage');
+    if (savedLanguage && translations[savedLanguage]) {
+        changeLanguage(savedLanguage);
+    }
 
     // Register Service Worker for PWA functionality
-    if ('serviceWorker' in navigator) {
+    if ('serviceWorker' in navigator && (location.protocol === 'http:' || location.protocol === 'https:')) {
         navigator.serviceWorker.register('/sw.js')
             .then(registration => {
                 console.log('Service Worker registered:', registration);

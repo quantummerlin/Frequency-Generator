@@ -45,6 +45,22 @@
                 radial-gradient(circle at 50% 50%, rgba(26, 0, 51, 0.6) 0%, rgba(26, 0, 51, 0.9) 100%);
             pointer-events: none;
             z-index: 1;
+            animation: backgroundShift 20s ease-in-out infinite;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% {
+                background-position: 0% 0%;
+            }
+            25% {
+                background-position: 100% 0%;
+            }
+            50% {
+                background-position: 100% 100%;
+            }
+            75% {
+                background-position: 0% 100%;
+            }
         }
 
         @media (min-width: 768px) {
@@ -67,6 +83,32 @@
             animation: slideUp 0.5s ease-out;
             position: relative;
             z-index: 2;
+            overflow: hidden; /* For particle effects */
+        }
+
+        .container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 20%, rgba(251, 191, 36, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(139, 92, 246, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            animation: particleFloat 15s ease-in-out infinite;
+        }
+
+        @keyframes particleFloat {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translateY(-10px) rotate(180deg);
+                opacity: 0.6;
+            }
         }
 
         .container::before {
@@ -858,9 +900,41 @@
             background: rgba(34, 197, 94, 0.3), url('Genesis.png') center center/cover;
             border-color: #22c55e;
             color: #22c55e;
-            box-shadow: 
+            box-shadow:
                 0 4px 16px rgba(34, 197, 94, 0.4),
                 inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .track-btn.play-btn.playing {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.4), rgba(22, 163, 74, 0.4)), url('Genesis.png') center center/cover;
+            border-color: #22c55e;
+            color: #ffffff;
+            box-shadow:
+                0 0 20px rgba(34, 197, 94, 0.6),
+                0 4px 16px rgba(34, 197, 94, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            animation: pulsePlaying 2s ease-in-out infinite;
+        }
+
+        .track-btn.play-btn.playing::before {
+            background: rgba(34, 197, 94, 0.3);
+        }
+
+        @keyframes pulsePlaying {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow:
+                    0 0 20px rgba(34, 197, 94, 0.6),
+                    0 4px 16px rgba(34, 197, 94, 0.4),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow:
+                    0 0 30px rgba(34, 197, 94, 0.8),
+                    0 6px 20px rgba(34, 197, 94, 0.6),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            }
         }
 
         .track-btn.info-btn:hover {
@@ -901,15 +975,19 @@
         }
 
         .info-modal-content {
-            background: white;
-            border-radius: 16px;
-            padding: 30px;
-            max-width: 600px;
-            max-height: 80vh;
+            background: linear-gradient(135deg, rgba(26,0,51,0.98), rgba(139,92,246,0.9)), url('Genesis.png') center center/cover;
+            border-radius: 24px;
+            padding: 40px;
+            max-width: 650px;
+            max-height: 85vh;
             overflow-y: auto;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-            animation: slideUpModal 0.3s ease;
+            box-shadow:
+                0 25px 80px rgba(0, 0, 0, 0.6),
+                0 0 0 2px rgba(251, 191, 36, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            animation: slideUpModal 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             position: relative;
+            border: 1px solid rgba(139, 92, 246, 0.4);
         }
 
         @keyframes slideUpModal {
@@ -924,64 +1002,83 @@
         }
 
         .info-modal-header {
-            color: #1a0033;
-            font-size: 24px;
-            font-weight: 700;
+            color: #fbbf24;
+            font-size: 28px;
+            font-weight: 800;
             margin-bottom: 15px;
-            padding-right: 30px;
+            padding-right: 40px;
+            text-align: center;
+            background: linear-gradient(90deg, #fbbf24 0%, #c4b5fd 50%, #fbbf24 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s linear infinite;
+            text-shadow: 0 0 20px rgba(251, 191, 36, 0.5);
         }
 
         .info-modal-freqs {
-            color: #6B46C1;
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            padding: 10px;
-            background: rgba(139, 92, 246, 0.1);
-            border-radius: 8px;
+            color: #c4b5fd;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            padding: 15px 20px;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(168, 85, 247, 0.2));
+            border-radius: 12px;
             text-align: center;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
         }
 
         .info-modal-body {
-            color: #333;
-            font-size: 15px;
+            color: #ffffff;
+            font-size: 16px;
             line-height: 1.8;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
         }
 
         .info-modal-body h3 {
-            color: #1a0033;
-            font-size: 18px;
-            font-weight: 600;
-            margin-top: 20px;
-            margin-bottom: 10px;
+            color: #fbbf24;
+            font-size: 20px;
+            font-weight: 700;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid rgba(251, 191, 36, 0.3);
+            text-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
         }
 
         .info-modal-body p {
-            margin-bottom: 15px;
+            margin-bottom: 18px;
+            color: #e2e8f0;
         }
 
         .info-modal-close {
             position: absolute;
             top: 20px;
             right: 20px;
-            width: 36px;
-            height: 36px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
-            border: none;
-            background: rgba(139, 92, 246, 0.2);
-            color: #6B46C1;
+            border: 2px solid rgba(251, 191, 36, 0.4);
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(139, 92, 246, 0.2));
+            color: #fbbf24;
             font-size: 24px;
             font-weight: 700;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
         .info-modal-close:hover {
-            background: rgba(139, 92, 246, 0.4);
-            transform: rotate(90deg);
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.4), rgba(139, 92, 246, 0.4));
+            border-color: #fbbf24;
+            color: #1a0033;
+            transform: rotate(90deg) scale(1.1);
+            box-shadow: 0 4px 16px rgba(251, 191, 36, 0.4);
         }
 
         .status {
@@ -1280,16 +1377,72 @@
             .button-group {
                 grid-template-columns: 1fr 1fr;
             }
+            
+            .instructions-panel {
+                padding: 15px;
+                margin: 0 10px 15px 10px;
+                border-radius: 15px;
+            }
+            
+            .instructions-header h2 {
+                font-size: 20px;
+            }
+            
+            .header {
+                padding: 20px 15px;
+            }
+            
+            .info-modal {
+                padding: 10px;
+            }
+
+            .info-modal-content {
+                padding: 25px 20px;
+                max-width: 95vw;
+                border-radius: 20px;
+            }
+
+            .info-modal-header {
+                font-size: 24px;
+                margin-bottom: 12px;
+            }
+
+            .info-modal-freqs {
+                font-size: 16px;
+                padding: 12px 15px;
+            }
+
+            .info-modal-body {
+                font-size: 15px;
+            }
+
+            .info-modal-close {
+                width: 40px;
+                height: 40px;
+                font-size: 22px;
+            }
         }
     </style>
 <script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
 </head>
 <body>
-    <!-- First-Time Instructions Modal -->
+    <!-- Immersive Welcome Modal -->
+    <div id="immersiveWelcome" class="info-modal" style="z-index:3000; display: none;">
+        <div class="info-modal-content" style="max-width: 500px; text-align: center; background: linear-gradient(135deg, rgba(26,0,51,0.95), rgba(139,92,246,0.9)); border: 2px solid rgba(251,191,36,0.5);">
+            <div class="info-modal-header" style="color: #fbbf24; font-size: 28px; margin-bottom: 20px;">🌟 Welcome to Genesis 🌟</div>
+            <div class="info-modal-body" style="color: #fff; font-size: 18px; line-height: 1.6;">
+                <p style="margin-bottom: 20px;">You are about to experience the sacred frequencies that shaped creation itself.</p>
+                <p style="margin-bottom: 20px; color: #c4b5fd;">Take a deep breath, set your intention, and let the vibrations guide you.</p>
+                <div style="display: flex; gap: 15px; justify-content: center; margin-top: 30px;">
+                    <button onclick="startImmersiveExperience()" style="background: linear-gradient(90deg, #fbbf24, #f59e0b); color: #1a0033; border: none; border-radius: 25px; padding: 15px 30px; font-size: 18px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 15px rgba(251,191,36,0.3);">Begin Journey</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div id="firstTimeModal" class="info-modal" style="z-index:2000;">
         <div class="info-modal-content" style="max-width:420px;">
             <button class="info-modal-close" onclick="closeFirstTimeModal()">×</button>
-            <div class="info-modal-header" style="color:#6B46C1;">🌟 Welcome to Genesis Frequency Generator!</div>
+            <div class="info-modal-header" style="color:#6B46C1;">🌟 Welcome to Genesis Frequency Generator! 🌟</div>
             <div class="info-modal-body" style="color:#333; font-size:16px;">
                 <p>✨ <b>Get the most out of your experience:</b></p>
                 <ul style="margin-left:18px; margin-bottom:10px;">
@@ -1302,7 +1455,7 @@
                         On Android: Tap browser menu <span style="font-size:18px;">⋮</span> then "Add to Home Screen".</span>
                     </li>
                 </ul>
-                <p style="color:#a78bfa; font-size:15px;">Have fun exploring frequencies! You can always find these tips in the instructions section below.</p>
+                <p style="color:#a78bfa; font-size:15px;">Have fun exploring frequencies! You can always find these tips in the Genesis companion below.</p>
             </div>
         </div>
     </div>
@@ -1326,16 +1479,22 @@
             <div class="gematria" style="font-size: 18px;">37 Hz + 73 Hz</div>
             <div class="gematria" style="font-size: 15px; margin-top: -15px;" data-translate="pattern">Prayer Amplifier</div>
 
-            <!-- Instructions Button (always visible in header) -->
+            <!-- Sacred Guide Button (always visible in header) -->
             <button class="btn-instructions" onclick="toggleInstructions()" style="margin: 0 auto 18px auto; display: block; font-size: 18px; font-weight: 700; background: linear-gradient(90deg, #8b5cf6 0%, #fbbf24 100%); color: #1a0033; border: none; border-radius: 12px; padding: 10px 24px; box-shadow: 0 2px 12px rgba(139,92,246,0.15); cursor: pointer;">
-                📖 Instructions
+                🌟 Genesis Companion 🌟
             </button>
+
+            <!-- Immersion Controls -->
+            <div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 15px;">
+                <button onclick="toggleFullscreen()" style="background: rgba(139,92,246,0.2); color: #c4b5fd; border: 1px solid rgba(139,92,246,0.3); border-radius: 8px; padding: 6px 12px; font-size: 14px; cursor: pointer;">🔳 Fullscreen</button>
+                <button onclick="toggleBackgroundAudio()" style="background: rgba(251,191,36,0.2); color: #fbbf24; border: 1px solid rgba(251,191,36,0.3); border-radius: 8px; padding: 6px 12px; font-size: 14px; cursor: pointer;">🎵 Background</button>
+            </div>
 
             <!-- Instructions Panel (expandable) -->
             <div id="instructionsPanel" class="instructions-panel" style="display: none; max-width: 900px; margin: 0 auto 18px auto; background: rgba(26,0,51,0.97); border-radius: 18px; box-shadow: 0 8px 32px rgba(139,92,246,0.18); padding: 24px; color: #fff; z-index: 10; position: relative;">
                 <div class="instructions-content" style="text-align:center;">
                     <div class="instructions-header" style="display: flex; justify-content: center; align-items: center;">
-                        <h2 style="font-size: 24px; color: #fbbf24; font-weight: 800; margin: 0 auto; text-align:center; width:100%;">📖 Genesis Frequency Generator Instructions 📖</h2>
+                        <h2 style="font-size: 24px; color: #fbbf24; font-weight: 800; margin: 0 auto; text-align:center; width:100%;">🌟 Genesis Frequency Companion 🌟</h2>
                         <button class="btn-close" onclick="toggleInstructions()" style="background: none; border: none; color: #c4b5fd; font-size: 28px; cursor: pointer; position:absolute; right:24px;">✕</button>
                     </div>
                     <div class="instructions-body" style="margin-top: 18px;">
@@ -1343,7 +1502,7 @@
                         <div id="instructionsAccordion" class="instructions-accordion">
                             <!-- Sections will be dynamically rendered here by JS for accordion, search, and navigation -->
                         </div>
-                        <div style="margin-top:32px; text-align:center; color:#fbbf24; font-size:18px; font-weight:700;">🌟 This is your complete instruction manual. Everything you need to understand, use, master, and share the Genesis Frequency Generator. 🌟</div>
+                        <div style="margin-top:32px; text-align:center; color:#fbbf24; font-size:18px; font-weight:700;">🌟 This is your complete Genesis companion. Everything you need to understand, master, and share the divine frequencies. 🌟</div>
                     </div>
                 </div>
             </div>
@@ -1351,7 +1510,7 @@
         </div>
 
         <div class="trinity-base">
-            <div class="trinity-title" data-translate="trinityTitle">Trinity Foundation Frequencies</div>
+            <div class="trinity-title" data-translate="trinityTitle">🌟 Trinity Foundation Frequencies 🌟</div>
             <div class="trinity-frequencies">
                 <div class="trinity-freq">
                     <div class="hz">37 Hz</div>
@@ -1394,7 +1553,7 @@
         
 
         <div class="section">
-            <div class="section-title" data-translate="recipesTitle">Trinity Frequency Recipes</div>
+            <div class="section-title" data-translate="recipesTitle">🌟 Trinity Frequency Recipes 🌟</div>
             <div class="recipes" id="recipes">
                 <!-- Recipes will be populated by JavaScript -->
             </div>
@@ -1411,7 +1570,7 @@
         </div>
 
         <div class="section">
-            <div class="section-title" data-translate="controlsTitle">Frequency Controls</div>
+            <div class="section-title" data-translate="controlsTitle">🌟 Frequency Controls 🌟</div>
             <div class="controls">
                 <div class="frequency-controls">
                     <div class="control-group">
@@ -1465,7 +1624,7 @@
         </div>
 
         <div class="status stopped" id="status">
-            □ Ready to Generate Genesis Frequencies
+            🌟 Ready to Generate Genesis Frequencies 🌟
         </div>
 
         <div class="visualizer" style="margin-top: 20px;">
@@ -1506,7 +1665,7 @@
         <div id="addToHomeModal" class="info-modal" style="z-index:2000;">
             <div class="info-modal-content" style="max-width:420px;">
                 <button class="info-modal-close" onclick="closeAddToHomePopup()">×</button>
-                <div class="info-modal-header" style="color:#6B46C1;">📱 Add Genesis Frequency Generator to your Home Screen</div>
+                <div class="info-modal-header" style="color:#6B46C1;">🌟 📱 Add Genesis Frequency Generator to your Home Screen 📱 🌟</div>
                 <div class="info-modal-body" style="color:#333; font-size:16px;">
                     <ul style="margin-left:18px; margin-bottom:10px;">
                         <li>On <b>iOS</b>: Tap <b>Share</b> <span style="font-size:18px;">🔗</span> then "Add to Home Screen".</li>
@@ -1520,10 +1679,13 @@
 
     <script>
                         // Instructions panel toggle function
-                        function toggleInstructions() {
+                        window.toggleInstructions = function() {
                             var panel = document.getElementById('instructionsPanel');
                             if (panel.style.display === 'none' || panel.style.display === '') {
                                 panel.style.display = 'block';
+                                updateProgressSection();
+                                renderInstructionsAccordion();
+                                addInstructionsSearch();
                             } else {
                                 panel.style.display = 'none';
                             }
@@ -1545,6 +1707,41 @@
                     }
                     document.getElementById('addToHomeModal').style.display = 'none';
                 });
+        // Start immersive experience
+        function startImmersiveExperience() {
+            document.getElementById('immersiveWelcome').style.display = 'none';
+            localStorage.setItem('immersiveWelcomeShown', 'true');
+
+            // Gentle vibration
+            if ('vibrate' in navigator) {
+                navigator.vibrate([100, 50, 100]);
+            }
+
+            // Auto-play a gentle frequency after a moment
+            setTimeout(() => {
+                if (window.generator) {
+                    // Set to Trinity frequencies
+                    window.generator.elements.freq1.value = 37;
+                    window.generator.elements.freq2.value = 73;
+                    window.generator.elements.freq3.value = 0;
+                    window.generator.elements.volume1.value = 30;
+                    window.generator.elements.volume2.value = 30;
+                    window.generator.elements.volume3.value = 0;
+                    window.generator.elements.duration.value = '05:00';
+
+                    // Optional: Auto-play
+                    // window.generator.play();
+                }
+            }, 1000);
+        }
+
+        // Show immersive welcome on first visit
+        document.addEventListener('DOMContentLoaded', function() {
+            if (localStorage.getItem('immersiveWelcomeShown') !== 'true') {
+                document.getElementById('immersiveWelcome').style.display = 'flex';
+            }
+        });
+
         // Show first-time modal only on first visit
         function closeFirstTimeModal() {
             document.getElementById('firstTimeModal').style.display = 'none';
@@ -1557,32 +1754,31 @@
                 document.getElementById('firstTimeModal').style.display = 'none';
             }
         });
-        // Translation data
         const translations = {
             en: {
                 hebrewTranslation: "In the beginning God created the heavens and the earth",
                 title: "Genesis 1:1 The Sound of Creation",
                 subtitle: "Biblical Trinity Frequency System",
                 pattern: "Prayer Amplifier",
-                trinityTitle: "Trinity Foundation Frequencies",
+                trinityTitle: "🌟 Trinity Foundation Frequencies 🌟",
                 formMatter: "Form/Matter",
                 spiritDivine: "Spirit/Divine",
                 beatPattern: "Beat Pattern",
-                recipesTitle: "Trinity Frequency Recipes",
-                controlsTitle: "Frequency Controls",
+                recipesTitle: "🌟 Trinity Frequency Recipes 🌟",
+                controlsTitle: "🌟 Frequency Controls 🌟",
                 duration: "Duration",
                 play: "PLAY",
                 pause: "PAUSE",
                 stop: "STOP",
                 export: "EXPORT WAV",
                 reset: "RESET",
-                ready: "Ready to Generate Genesis Frequencies",
-                stopped: "Stopped - Ready to Generate",
-                playing: "Playing",
+                ready: "🌟 Ready to Generate Genesis Frequencies 🌟",
+                stopped: "🌟 Stopped - Ready to Generate 🌟",
+                playing: "▶ Playing",
                 remaining: "remaining",
                 selected: "Selected",
                 autoBalanced: "Auto-balanced volumes",
-                addToHomeText: "Add to Home Screen for quick access!",
+                addToHomeText: "🌟 Add to Home Screen for quick access! 🌟",
                 // Category names
                 catBiblical: "Biblical & Original",
                 catSolfeggio: "Solfeggio & Healing",
@@ -1630,32 +1826,145 @@
                 trackSleepDeep: "Sleep Deep",
                 trackFocusClear: "Focus Clear",
                 trackMemoryBoost: "Memory Boost",
-                trackMiracleTone: "Miracle Tone"
-            },
+                trackMiracleTone: "Miracle Tone",
+                // Achievement names and descriptions
+                achFirstSession: "🌟 First Session",
+                achFirstSessionDesc: "Completed your first frequency session",
+                achFiveSessions: "🔥 Five Sessions", 
+                achFiveSessionsDesc: "Completed 5 sessions",
+                achTenSessions: "💪 Ten Sessions",
+                achTenSessionsDesc: "Completed 10 sessions",
+                achTwentyFiveSessions: "⭐ Twenty-Five Sessions",
+                achTwentyFiveSessionsDesc: "Completed 25 sessions",
+                achFiftySessions: "🏆 Fifty Sessions",
+                achFiftySessionsDesc: "Completed 50 sessions",
+                achHundredSessions: "👑 Century Master",
+                achHundredSessionsDesc: "Completed 100 sessions",
+                achFiveMinutes: "⏱️ Five Minutes",
+                achFiveMinutesDesc: "Total listening time exceeds 5 minutes",
+                achHalfHour: "🕐 Half Hour",
+                achHalfHourDesc: "Total listening time exceeds 30 minutes",
+                achHourTotal: "⏰ Hour Master",
+                achHourTotalDesc: "Total listening time exceeds 1 hour",
+                achFiveHours: "🕒 Five Hours",
+                achFiveHoursDesc: "Total listening time exceeds 5 hours",
+                achTenHours: "🕛 Ten Hours",
+                achTenHoursDesc: "Total listening time exceeds 10 hours",
+                achThreeDayStreak: "📅 Three Day Streak",
+                achThreeDayStreakDesc: "Used the app for 3 consecutive days",
+                achWeekStreak: "📅 Week Warrior",
+                achWeekStreakDesc: "Used the app for 7 consecutive days",
+                achTwoWeekStreak: "📅 Two Week Champion",
+                achTwoWeekStreakDesc: "Used the app for 14 consecutive days",
+                achMonthStreak: "📅 Month Master",
+                achMonthStreakDesc: "Used the app for 30 consecutive days",
+                achTrinityMaster: "🔺 Trinity Master",
+                achTrinityMasterDesc: "Used all three Trinity frequencies together",
+                achSolfeggioExplorer: "💚 Solfeggio Explorer",
+                achSolfeggioExplorerDesc: "Explored Solfeggio healing frequencies",
+                achAngelWhisperer: "👼 Angel Whisperer",
+                achAngelWhispererDesc: "Connected with Angel Number frequencies",
+                achCosmicTraveler: "🌌 Cosmic Traveler",
+                achCosmicTravelerDesc: "Journeyed through Cosmic & Planetary frequencies",
+                achWavExporter: "⬇ WAV Creator",
+                achWavExporterDesc: "Exported your first WAV file",
+                achNoteTaker: "📝 Journal Keeper",
+                achNoteTakerDesc: "Added your first personal note",
+                achPwaUser: "📱 Home Screen Hero",
+                achPwaUserDesc: "Added app to home screen",
+                achMultilingual: "🌍 World Explorer",
+                achMultilingualDesc: "Changed language settings",
+                achFrequencyScholar: "🎓 Frequency Scholar",
+                achFrequencyScholarDesc: "Explored all frequency categories",
+                achDedicatedSeeker: "🔮 Dedicated Seeker",
+                achDedicatedSeekerDesc: "100 sessions and 10 hours of listening",
+                achGenesisMaster: "✨ Genesis Master",
+                achGenesisMasterDesc: "Unlocked all achievements",
+                // Achievement names and descriptions
+                achFirstSession: "🌟 First Session",
+                achFirstSessionDesc: "Completed your first frequency session",
+                achFiveSessions: "🔥 Five Sessions", 
+                achFiveSessionsDesc: "Completed 5 sessions",
+                achTenSessions: "💪 Ten Sessions",
+                achTenSessionsDesc: "Completed 10 sessions",
+                achTwentyFiveSessions: "⭐ Twenty-Five Sessions",
+                achTwentyFiveSessionsDesc: "Completed 25 sessions",
+                achFiftySessions: "🏆 Fifty Sessions",
+                achFiftySessionsDesc: "Completed 50 sessions",
+                achHundredSessions: "👑 Century Master",
+                achHundredSessionsDesc: "Completed 100 sessions",
+                achFiveMinutes: "⏱️ Five Minutes",
+                achFiveMinutesDesc: "Total listening time exceeds 5 minutes",
+                achHalfHour: "🕐 Half Hour",
+                achHalfHourDesc: "Total listening time exceeds 30 minutes",
+                achHourTotal: "⏰ Hour Master",
+                achHourTotalDesc: "Total listening time exceeds 1 hour",
+                achFiveHours: "🕒 Five Hours",
+                achFiveHoursDesc: "Total listening time exceeds 5 hours",
+                achTenHours: "🕛 Ten Hours",
+                achTenHoursDesc: "Total listening time exceeds 10 hours",
+                achThreeDayStreak: "📅 Three Day Streak",
+                achThreeDayStreakDesc: "Used the app for 3 consecutive days",
+                achWeekStreak: "📅 Week Warrior",
+                achWeekStreakDesc: "Used the app for 7 consecutive days",
+                achTwoWeekStreak: "📅 Two Week Champion",
+                achTwoWeekStreakDesc: "Used the app for 14 consecutive days",
+                achMonthStreak: "📅 Month Master",
+                achMonthStreakDesc: "Used the app for 30 consecutive days",
+                achTrinityMaster: "🔺 Trinity Master",
+                achTrinityMasterDesc: "Used all three Trinity frequencies together",
+                achSolfeggioExplorer: "💚 Solfeggio Explorer",
+                achSolfeggioExplorerDesc: "Explored Solfeggio healing frequencies",
+                achAngelWhisperer: "👼 Angel Whisperer",
+                achAngelWhispererDesc: "Connected with Angel Number frequencies",
+                achCosmicTraveler: "🌌 Cosmic Traveler",
+                achCosmicTravelerDesc: "Journeyed through Cosmic & Planetary frequencies",
+                achWavExporter: "⬇ WAV Creator",
+                achWavExporterDesc: "Exported your first WAV file",
+                achNoteTaker: "📝 Journal Keeper",
+                achNoteTakerDesc: "Added your first personal note",
+                achPwaUser: "📱 Home Screen Hero",
+                achPwaUserDesc: "Added app to home screen",
+                achMultilingual: "🌍 World Explorer",
+                achMultilingualDesc: "Changed language settings",
+                achFrequencyScholar: "🎓 Frequency Scholar",
+                achFrequencyScholarDesc: "Explored all frequency categories",
+                achDedicatedSeeker: "🔮 Dedicated Seeker",
+                achDedicatedSeekerDesc: "100 sessions and 10 hours of listening",
+                achGenesisMaster: "✨ Genesis Master",
+                achGenesisMasterDesc: "Unlocked all achievements",
+                // Achievement categories
+                catSessions: "Sessions",
+                catTime: "Time",
+                catStreaks: "Streaks", 
+                catFrequencies: "Frequencies",
+                catCategories: "Categories",
+                catActions: "Actions",
+                catMastery: "Mastery",
             pt: {
                 hebrewTranslation: "No princípio Deus criou os céus e a terra",
                 title: "Gênesis 1:1 O Som da Criação",
                 subtitle: "Sistema de Frequência da Trindade Bíblica",
                 pattern: "Amplificador de Oração",
-                trinityTitle: "Frequências da Fundação da Trindade",
+                trinityTitle: "🌟 Frequências da Fundação da Trindade 🌟",
                 formMatter: "Forma/Matéria",
                 spiritDivine: "Espírito/Divino",
                 beatPattern: "Padrão de Batida",
-                recipesTitle: "Receitas de Frequência da Trindade",
-                controlsTitle: "Controles de Frequência",
+                recipesTitle: "🌟 Receitas de Frequência da Trindade 🌟",
+                controlsTitle: "🌟 Controles de Frequência 🌟",
                 duration: "Duração",
                 play: "TOCAR",
                 pause: "PAUSAR",
                 stop: "PARAR",
                 export: "EXPORTAR WAV",
                 reset: "REINICIAR",
-                ready: "Pronto para Gerar Frequências Genesis",
-                stopped: "Parado - Pronto para Gerar",
+                ready: "🌟 Pronto para Gerar Frequências Genesis 🌟",
+                stopped: "🌟 Parado - Pronto para Gerar 🌟",
                 playing: "Tocando",
                 remaining: "restante",
                 selected: "Selecionado",
                 autoBalanced: "Volumes auto-balanceados",
-                addToHomeText: "Adicione à Tela Inicial para acesso rápido!",
+                addToHomeText: "🌟 Adicione à Tela Inicial para acesso rápido! 🌟",
                 // Category names
                 catBiblical: "Bíblico & Original",
                 catSolfeggio: "Solfeggio & Cura",
@@ -1703,32 +2012,92 @@
                 trackSleepDeep: "Sono Profundo",
                 trackFocusClear: "Foco Claro",
                 trackMemoryBoost: "Impulso de Memória",
-                trackMiracleTone: "Tom do Milagre"
-            },
+                trackMiracleTone: "Tom do Milagre",
+                // Achievement names and descriptions
+                achFirstSession: "🌟 Primeira Sessão",
+                achFirstSessionDesc: "Completou sua primeira sessão de frequência",
+                achFiveSessions: "🔥 Cinco Sessões", 
+                achFiveSessionsDesc: "Completou 5 sessões",
+                achTenSessions: "💪 Dez Sessões",
+                achTenSessionsDesc: "Completou 10 sessões",
+                achTwentyFiveSessions: "⭐ Vinte e Cinco Sessões",
+                achTwentyFiveSessionsDesc: "Completou 25 sessões",
+                achFiftySessions: "🏆 Cinquenta Sessões",
+                achFiftySessionsDesc: "Completou 50 sessões",
+                achHundredSessions: "👑 Mestre do Século",
+                achHundredSessionsDesc: "Completou 100 sessões",
+                achFiveMinutes: "⏱️ Cinco Minutos",
+                achFiveMinutesDesc: "Tempo total de escuta excede 5 minutos",
+                achHalfHour: "🕐 Meia Hora",
+                achHalfHourDesc: "Tempo total de escuta excede 30 minutos",
+                achHourTotal: "⏰ Mestre da Hora",
+                achHourTotalDesc: "Tempo total de escuta excede 1 hora",
+                achFiveHours: "🕒 Cinco Horas",
+                achFiveHoursDesc: "Tempo total de escuta excede 5 horas",
+                achTenHours: "🕛 Dez Horas",
+                achTenHoursDesc: "Tempo total de escuta excede 10 horas",
+                achThreeDayStreak: "📅 Sequência de Três Dias",
+                achThreeDayStreakDesc: "Usou o app por 3 dias consecutivos",
+                achWeekStreak: "📅 Guerreiro da Semana",
+                achWeekStreakDesc: "Usou o app por 7 dias consecutivos",
+                achTwoWeekStreak: "📅 Campeão de Duas Semanas",
+                achTwoWeekStreakDesc: "Usou o app por 14 dias consecutivos",
+                achMonthStreak: "📅 Mestre do Mês",
+                achMonthStreakDesc: "Usou o app por 30 dias consecutivos",
+                achTrinityMaster: "🔺 Mestre da Trindade",
+                achTrinityMasterDesc: "Usou todas as três frequências da Trindade juntas",
+                achSolfeggioExplorer: "💚 Explorador Solfeggio",
+                achSolfeggioExplorerDesc: "Explorou frequências de cura Solfeggio",
+                achAngelWhisperer: "👼 Sussurrador de Anjos",
+                achAngelWhispererDesc: "Conectou-se com frequências de Números dos Anjos",
+                achCosmicTraveler: "🌌 Viajante Cósmico",
+                achCosmicTravelerDesc: "Viajou através de frequências Cósmicas & Planetárias",
+                achWavExporter: "⬇ Criador WAV",
+                achWavExporterDesc: "Exportou seu primeiro arquivo WAV",
+                achNoteTaker: "📝 Guardião do Diário",
+                achNoteTakerDesc: "Adicionou sua primeira nota pessoal",
+                achPwaUser: "📱 Herói da Tela Inicial",
+                achPwaUserDesc: "Adicionou app à tela inicial",
+                achMultilingual: "🌍 Explorador Mundial",
+                achMultilingualDesc: "Alterou configurações de idioma",
+                achFrequencyScholar: "🎓 Erudito das Frequências",
+                achFrequencyScholarDesc: "Explorou todas as categorias de frequência",
+                achDedicatedSeeker: "🔮 Buscador Dedicado",
+                achDedicatedSeekerDesc: "100 sessões e 10 horas de escuta",
+                achGenesisMaster: "✨ Mestre Genesis",
+                achGenesisMasterDesc: "Desbloqueou todas as conquistas",
+                // Achievement categories
+                catSessions: "Sessões",
+                catTime: "Tempo",
+                catStreaks: "Sequências", 
+                catFrequencies: "Frequências",
+                catCategories: "Categorias",
+                catActions: "Ações",
+                catMastery: "Maestria",
             es: {
                 hebrewTranslation: "En el principio creó Dios los cielos y la tierra",
                 title: "Génesis 1:1 El Sonido de la Creación",
                 subtitle: "Sistema de Frecuencia de la Trinidad Bíblica",
                 pattern: "Amplificador de Oración",
-                trinityTitle: "Frecuencias de la Fundación de la Trinidad",
+                trinityTitle: "🌟 Frecuencias de la Fundación de la Trinidad 🌟",
                 formMatter: "Forma/Materia",
                 spiritDivine: "Espíritu/Divino",
                 beatPattern: "Patrón de Latido",
-                recipesTitle: "Recetas de Frecuencia de la Trinidad",
-                controlsTitle: "Controles de Frequencia",
+                recipesTitle: "🌟 Recetas de Frecuencia de la Trinidad 🌟",
+                controlsTitle: "🌟 Controles de Frecuencia 🌟",
                 duration: "Duración",
                 play: "REPRODUCIR",
                 pause: "PAUSAR",
                 stop: "DETENER",
                 export: "EXPORTAR WAV",
                 reset: "REINICIAR",
-                ready: "Listo para Generar Frecuencias Genesis",
-                stopped: "Detenido - Listo para Generar",
+                ready: "🌟 Listo para Generar Frecuencias Genesis 🌟",
+                stopped: "🌟 Detenido - Listo para Generar 🌟",
                 playing: "Reproduciendo",
                 remaining: "restante",
                 selected: "Seleccionado",
                 autoBalanced: "Volúmenes auto-balanceados",
-                addToHomeText: "¡Agregar a la Pantalla de Inicio para acceso rápido!",
+                addToHomeText: "🌟 ¡Agregar a la Pantalla de Inicio para acceso rápido! 🌟",
                 // Category names
                 catBiblical: "Bíblico & Original",
                 catSolfeggio: "Solfeggio & Sanación",
@@ -1776,32 +2145,92 @@
                 trackSleepDeep: "Sueño Profundo",
                 trackFocusClear: "Enfoque Claro",
                 trackMemoryBoost: "Impulso de Memoria",
-                trackMiracleTone: "Tono Milagroso"
-            },
+                trackMiracleTone: "Tono Milagroso",
+                // Achievement names and descriptions
+                achFirstSession: "🌟 Primera Sesión",
+                achFirstSessionDesc: "Completó su primera sesión de frecuencia",
+                achFiveSessions: "🔥 Cinco Sesiones", 
+                achFiveSessionsDesc: "Completó 5 sesiones",
+                achTenSessions: "💪 Diez Sesiones",
+                achTenSessionsDesc: "Completó 10 sesiones",
+                achTwentyFiveSessions: "⭐ Veinticinco Sesiones",
+                achTwentyFiveSessionsDesc: "Completó 25 sesiones",
+                achFiftySessions: "🏆 Cincuenta Sesiones",
+                achFiftySessionsDesc: "Completó 50 sesiones",
+                achHundredSessions: "👑 Maestro del Siglo",
+                achHundredSessionsDesc: "Completó 100 sesiones",
+                achFiveMinutes: "⏱️ Cinco Minutos",
+                achFiveMinutesDesc: "El tiempo total de escucha excede 5 minutos",
+                achHalfHour: "🕐 Media Hora",
+                achHalfHourDesc: "El tiempo total de escucha excede 30 minutos",
+                achHourTotal: "⏰ Maestro de la Hora",
+                achHourTotalDesc: "El tiempo total de escucha excede 1 hora",
+                achFiveHours: "🕒 Cinco Horas",
+                achFiveHoursDesc: "El tiempo total de escucha excede 5 horas",
+                achTenHours: "🕛 Diez Horas",
+                achTenHoursDesc: "El tiempo total de escucha excede 10 horas",
+                achThreeDayStreak: "📅 Racha de Tres Días",
+                achThreeDayStreakDesc: "Usó la app por 3 días consecutivos",
+                achWeekStreak: "📅 Guerrero de la Semana",
+                achWeekStreakDesc: "Usó la app por 7 días consecutivos",
+                achTwoWeekStreak: "📅 Campeón de Dos Semanas",
+                achTwoWeekStreakDesc: "Usó la app por 14 días consecutivos",
+                achMonthStreak: "📅 Maestro del Mes",
+                achMonthStreakDesc: "Usó la app por 30 días consecutivos",
+                achTrinityMaster: "🔺 Maestro de la Trinidad",
+                achTrinityMasterDesc: "Usó las tres frecuencias de la Trinidad juntas",
+                achSolfeggioExplorer: "💚 Explorador Solfeggio",
+                achSolfeggioExplorerDesc: "Exploró frecuencias de sanación Solfeggio",
+                achAngelWhisperer: "👼 Susurrador de Ángeles",
+                achAngelWhispererDesc: "Se conectó con frecuencias de Números Angelicales",
+                achCosmicTraveler: "🌌 Viajero Cósmico",
+                achCosmicTravelerDesc: "Viajó a través de frecuencias Cósmicas & Planetarias",
+                achWavExporter: "⬇ Creador WAV",
+                achWavExporterDesc: "Exportó su primer archivo WAV",
+                achNoteTaker: "📝 Guardián del Diario",
+                achNoteTakerDesc: "Agregó su primera nota personal",
+                achPwaUser: "📱 Héroe de la Pantalla de Inicio",
+                achPwaUserDesc: "Agregó app a la pantalla de inicio",
+                achMultilingual: "🌍 Explorador Mundial",
+                achMultilingualDesc: "Cambió configuraciones de idioma",
+                achFrequencyScholar: "🎓 Erudito de las Frecuencias",
+                achFrequencyScholarDesc: "Exploró todas las categorías de frecuencia",
+                achDedicatedSeeker: "🔮 Buscador Dedicado",
+                achDedicatedSeekerDesc: "100 sesiones y 10 horas de escucha",
+                achGenesisMaster: "✨ Maestro Génesis",
+                achGenesisMasterDesc: "Desbloqueó todos los logros",
+                // Achievement categories
+                catSessions: "Sesiones",
+                catTime: "Tiempo",
+                catStreaks: "Rachas", 
+                catFrequencies: "Frecuencias",
+                catCategories: "Categorías",
+                catActions: "Acciones",
+                catMastery: "Maestría",
             it: {
                 hebrewTranslation: "In principio Dio creò il cielo e la terra",
                 title: "Genesi 1:1 Il Suono della Creazione",
                 subtitle: "Sistema di Frequenza della Trinità Biblica",
                 pattern: "Amplificatore di Preghiera",
-                trinityTitle: "Frequenze della Fondazione della Trinità",
+                trinityTitle: "🌟 Frequenze della Fondazione della Trinità 🌟",
                 formMatter: "Forma/Materia",
                 spiritDivine: "Spirito/Divino",
                 beatPattern: "Schema del Battito",
-                recipesTitle: "Ricette di Frequenza della Trinità",
-                controlsTitle: "Controlli di Frequenza",
+                recipesTitle: "🌟 Ricette di Frequenza della Trinità 🌟",
+                controlsTitle: "🌟 Controlli di Frequenza 🌟",
                 duration: "Durata",
                 play: "RIPRODUCI",
                 pause: "PAUSA",
                 stop: "FERMA",
                 export: "ESPORTA WAV",
                 reset: "RIPRISTINA",
-                ready: "Pronto per Generare Frequenze Genesis",
-                stopped: "Fermato - Pronto per Generare",
+                ready: "🌟 Pronto per Generare Frequenze Genesis 🌟",
+                stopped: "🌟 Fermato - Pronto per Generare 🌟",
                 playing: "Riproduzione",
                 remaining: "rimanente",
                 selected: "Selezionato",
                 autoBalanced: "Volumi auto-bilanciati",
-                addToHomeText: "Aggiungi alla schermata Home per un accesso rapido!",
+                addToHomeText: "🌟 Aggiungi alla schermata Home per un accesso rapido! 🌟",
                 // Category names
                 catBiblical: "Biblico & Originale",
                 catSolfeggio: "Solfeggio & Guarigione",
@@ -1849,11 +2278,70 @@
                 trackSleepDeep: "Sonno Profondo",
                 trackFocusClear: "Focus Chiaro",
                 trackMemoryBoost: "Incremento Memoria",
-                trackMiracleTone: "Tono Miracoloso"
+                trackMiracleTone: "Tono Miracoloso",
+                // Achievement names and descriptions
+                achFirstSession: "🌟 Prima Sessione",
+                achFirstSessionDesc: "Completata la tua prima sessione di frequenza",
+                achFiveSessions: "🔥 Cinque Sessioni", 
+                achFiveSessionsDesc: "Completate 5 sessioni",
+                achTenSessions: "💪 Dieci Sessioni",
+                achTenSessionsDesc: "Completate 10 sessioni",
+                achTwentyFiveSessions: "⭐ Venticinque Sessioni",
+                achTwentyFiveSessionsDesc: "Completate 25 sessioni",
+                achFiftySessions: "🏆 Cinquanta Sessioni",
+                achFiftySessionsDesc: "Completate 50 sessioni",
+                achHundredSessions: "👑 Maestro del Secolo",
+                achHundredSessionsDesc: "Completate 100 sessioni",
+                achFiveMinutes: "⏱️ Cinque Minuti",
+                achFiveMinutesDesc: "Il tempo totale di ascolto supera i 5 minuti",
+                achHalfHour: "🕐 Mezza Ora",
+                achHalfHourDesc: "Il tempo totale di ascolto supera i 30 minuti",
+                achHourTotal: "⏰ Maestro dell'Ora",
+                achHourTotalDesc: "Il tempo totale di ascolto supera 1 ora",
+                achFiveHours: "🕒 Cinque Ore",
+                achFiveHoursDesc: "Il tempo totale di ascolto supera 5 ore",
+                achTenHours: "🕛 Dieci Ore",
+                achTenHoursDesc: "Il tempo totale di ascolto supera 10 ore",
+                achThreeDayStreak: "📅 Serie di Tre Giorni",
+                achThreeDayStreakDesc: "Hai usato l'app per 3 giorni consecutivi",
+                achWeekStreak: "📅 Guerriero della Settimana",
+                achWeekStreakDesc: "Hai usato l'app per 7 giorni consecutivi",
+                achTwoWeekStreak: "📅 Campione di Due Settimane",
+                achTwoWeekStreakDesc: "Hai usato l'app per 14 giorni consecutivi",
+                achMonthStreak: "📅 Maestro del Mese",
+                achMonthStreakDesc: "Hai usato l'app per 30 giorni consecutivi",
+                achTrinityMaster: "🔺 Maestro della Trinità",
+                achTrinityMasterDesc: "Hai usato tutte e tre le frequenze della Trinità insieme",
+                achSolfeggioExplorer: "💚 Esploratore Solfeggio",
+                achSolfeggioExplorerDesc: "Hai esplorato le frequenze di guarigione Solfeggio",
+                achAngelWhisperer: "👼 Sussurratore di Angeli",
+                achAngelWhispererDesc: "Ti sei connesso con le frequenze dei Numeri Angelici",
+                achCosmicTraveler: "🌌 Viaggiatore Cosmico",
+                achCosmicTravelerDesc: "Hai viaggiato attraverso le frequenze Cosmiche & Planetarie",
+                achWavExporter: "⬇ Creatore WAV",
+                achWavExporterDesc: "Hai esportato il tuo primo file WAV",
+                achNoteTaker: "📝 Custode del Diario",
+                achNoteTakerDesc: "Hai aggiunto la tua prima nota personale",
+                achPwaUser: "📱 Eroe della Schermata Home",
+                achPwaUserDesc: "Hai aggiunto l'app alla schermata home",
+                achMultilingual: "🌍 Esploratore Mondiale",
+                achMultilingualDesc: "Hai cambiato le impostazioni della lingua",
+                achFrequencyScholar: "🎓 Studioso delle Frequenze",
+                achFrequencyScholarDesc: "Hai esplorato tutte le categorie di frequenza",
+                achDedicatedSeeker: "🔮 Cercatore Dedicato",
+                achDedicatedSeekerDesc: "100 sessioni e 10 ore di ascolto",
+                achGenesisMaster: "✨ Maestro Genesi",
+                achGenesisMasterDesc: "Hai sbloccato tutti i traguardi",
+                // Achievement categories
+                catSessions: "Sessioni",
+                catTime: "Tempo",
+                catStreaks: "Serie", 
+                catFrequencies: "Frequenze",
+                catCategories: "Categorie",
+                catActions: "Azioni",
+                catMastery: "Maestria",
             }
         };
-        
-        let currentLanguage = 'en';
         
         // Load saved language preference on startup
         (function() {
@@ -1925,6 +2413,9 @@
             if (statusEl && statusEl.textContent.includes('Ready')) {
                 statusEl.textContent = `□ ${t.ready}`;
             }
+            
+            // Update progress section to reflect new language
+            updateProgressSection();
         }
         
         // Enhanced Trinity Frequency Recipes Database with Categories
@@ -2421,188 +2912,564 @@
             {
                 id: 'welcome',
                 icon: '🌟',
-                title: 'Before You Begin',
+                title: '🌟 Welcome to Genesis Frequencies 🌟',
                 content: `
-                    <p>Welcome to the Genesis Frequency Generator.<br><br>
-                    <b>These frequencies found me through loss.</b><br>
-                    My mother's passing. 3,773 days between my brother's birth and mine. Years of searching. Then the discovery:<br>
-                    <b>37 × 73 = 2701 = Genesis 1:1</b><br>
-                    The frequencies of creation, encoded in the Bible's first verse.<br><br>
-                    <b>Why this matters:</b><br>
-                    <ul style="text-align:left; margin:0 auto; max-width:500px;">
-                        <li>Hooks emotionally (mother's passing)</li>
-                        <li>Creates mystery (3773 days)</li>
-                        <li>Shows divine timing (Genesis connection)</li>
-                        <li>Makes it personal (not just a tool)</li>
-                    </ul>
-                    <em>Now in your hands.</em></p>
+                    <div style="text-align:center;line-height:1.8;">
+                        <p style="font-size:18px;color:#fbbf24;margin-bottom:20px;">
+                            <b>These frequencies found me through a journey of discovery.</b>
+                        </p>
+                        <p style="margin-bottom:15px;">
+                            A pattern revealed itself: <b>3,773 days</b> between my brother's birth and mine.<br>
+                            Years of searching led to a revelation.
+                        </p>
+                        <div style="background:rgba(251,191,36,0.1);border-radius:12px;padding:20px;margin:25px 0;">
+                            <div style="font-size:24px;color:#fbbf24;margin-bottom:10px;">
+                                <b>37 × 73 = 2701</b>
+                            </div>
+                            <div style="font-size:16px;color:#c4b5fd;">
+                                Genesis 1:1 in Hebrew = 2701
+                            </div>
+                        </div>
+                        <p style="color:#a78bfa;margin-bottom:15px;">
+                            The frequencies of creation, encoded in the Bible's first verse<br>
+                            for thousands of years.
+                        </p>
+                        <p style="font-size:18px;color:#fbbf24;">
+                            <em>Now in your hands.</em>
+                        </p>
+                        <p style="margin-top:20px;font-size:16px;color:#c4b5fd;">
+                            🌟 <b>Embark on your sacred frequency journey</b> 🌟<br>
+                            Discover the divine mathematics that shaped reality itself
+                        </p>
+                    </div>
                 `
             },
             {
                 id: 'myJourney',
                 icon: '📖',
-                title: 'My Journey to Genesis 1:1',
+                title: '🌟 The Discovery 🌟',
                 content: `
-                    <h4>The Beginning: A Mother's Passing</h4>
-                    <p>Years ago, I lost my mother. In my grief, I turned to gematria—the Hebrew study of numbers—searching for meaning, for connection, for something that made sense of the loss.</p>
-                    <p>I calculated my name in Hebrew gematria. Then my brother's name. And then I noticed something impossible: The numerical values of our names, combined with the days between our birthdays, matched perfectly with the date of our mother's death. This wasn't random. This was a message.</p>
-                    <h4>The Number: 3773</h4>
-                    <p>The calculation led me to one number: <b>3,773</b>. My brother and I were born exactly 3,773 days apart. I didn't know what it meant. But I knew it was significant. This was 2020. The world was in chaos. But this number... this number felt like an anchor. A code. A key to something I couldn't yet see.</p>
-                    <h4>The Years of Searching (2020-2024)</h4>
-                    <p>As the years passed, my understanding of numbers grew. I studied numerology, sacred geometry, biblical mathematics. I explored how numbers weren't just symbols—they were frequencies. I learned that everything in creation vibrates at specific frequencies. Numbers weren't abstract concepts. Numbers were the language of creation itself. But I still didn't understand 3773.</p>
-                    <h4>The Prayer Code App (2024)</h4>
-                    <p>Then, in 2024, I was developing a prayer code application. I was working with specific numbers, trying to understand how to amplify prayer through numerical patterns. Someone—I don't remember who, maybe it was divine guidance—encouraged me to multiply the numbers I was working with by <b>37</b>. "Why 37?" I asked. "Because 37 is the number of creation," they said.</p>
-                    <h4>The Discovery</h4>
-                    <p>I started researching 37. And that's when everything clicked. 37 is a prime number. 37 mirrored is 73. 73 is also prime. <b>37 × 73 = 2701</b>. And 2701... 2701 is the gematria value of Genesis 1:1.</p>
-                    <div style="background:rgba(251,191,36,0.08);border-radius:12px;padding:12px;margin:18px 0;text-align:center;">
-                        <span style="font-size:22px;color:#fbbf24;">בְּרֵאשִׁית בָּרָא אֱלֹהִים אֵת הַשָּׁמַיִם וְאֵת הָאָרֶץ</span><br>
-                        <span style="font-size:15px;color:#a78bfa;">"In the beginning God created the heavens and the earth"</span><br>
-                        <span style="font-size:13px;color:#c4b5fd;">Seven words. Twenty-eight letters. The value: 2701.</span>
+                    <div style="line-height:1.8;text-align:center;">
+                        <h4 style="color:#fbbf24;margin-top:25px;margin-bottom:12px;">🔢 The Number: 3773</h4>
+                        <p>
+                            In 2020, I discovered something remarkable: my brother and I were born exactly 
+                            <b style="color:#fbbf24;">3,773 days apart</b>. Through gematria—the Hebrew study 
+                            of numbers—this pattern revealed itself. I didn't know what it meant, but I knew 
+                            it was significant.
+                        </p>
+                        <p style="color:#a78bfa;font-style:italic;">
+                            This number became an anchor. A code. A key to something waiting to be unlocked.
+                        </p>
                     </div>
-                    <h4>The Revelation</h4>
-                    <p>The number that connected me to my brother—<b>3773</b>—contained both: <b>37 and 73</b>. The same numbers encoded in the FIRST VERSE OF THE BIBLE. The same numbers that represent CREATION ITSELF. My mother's death wasn't random. Our birthdays weren't coincidence. The 3,773 days weren't arbitrary. We were being shown the code.</p>
-                    <h4>The Hebrew Mirror</h4>
-                    <p>When you write 37 in Hebrew numerals and mirror it downwards, it looks like: <span style="font-size:22px;color:#fbbf24;">אל</span> (El) — The Hebrew word for GOD. 37 literally contains the NAME OF GOD when mirrored. 73 is 37 reflected back. So the Genesis 1:1 code is: GOD (37) × GOD-REFLECTED (73) = CREATION (2701). The formula for creation was hidden in the letters themselves.</p>
-                    <h4>The Rest of the Puzzle</h4>
-                    <ul style="text-align:left; margin:0 auto; max-width:500px;">
-                        <li>All angel numbers (111, 222, 333...) are multiples of 37</li>
-                        <!-- Removed misleading water angle claim -->
-                        <li>The 36 Hz beat frequency (73-37) bridges meditation and consciousness</li>
-                        <li>Every question led to another revelation</li>
-                    </ul>
-                    <h4>Why I'm Sharing This</h4>
-                    <p>My mother's passing led me here. The 3,773 days between my brother's birth and mine led me here. The years of searching, the prayer code app, the questions that wouldn't stop—they all led me here. To this moment. To this generator. To you. These frequencies aren't mine. They belong to everyone. They were encoded in the first verse of the Bible thousands of years ago, waiting for someone to listen. Now you hold them in your hands.</p>
-                    <div style="background:linear-gradient(135deg,rgba(139,92,246,0.1),rgba(168,85,247,0.1));border-radius:12px;padding:12px;margin:18px 0;text-align:center;">
-                        <b>The frequencies that created the heavens and the earth.<br>
-                        The frequencies that connected me to my brother through our mother's love.<br>
-                        The frequencies that bridge Heaven and Earth.<br>
-                        <span style="font-size:22px;color:#fbbf24;">37 Hz and 73 Hz.</span><br>
-                        <span style="font-size:18px;color:#fbbf24;">The sound of creation.</span></b>
-                    </div>
-                    <h4>What This Means For You</h4>
-                    <p>You didn't find this generator by accident. Just like I didn't discover these frequencies by accident. There are no coincidences. If you're reading this, you're meant to work with these frequencies. Your journey with 37 and 73 Hz starts now.<br><b>Welcome to the Genesis Frequency System. 🌟</b></p>
                 `
-            },
+                },
             {
                 id: 'whyWorks',
                 icon: '💡',
-                title: 'Why 37 & 73?',
-                content: `
-                    <div><b>Genesis 1:1 in Hebrew = 2701</b><br>2701 = 37 × 73 (only factorization)</div>
-                    <div>37 = The 12th prime number<br>73 = The 21st prime number (mirror of 12!)</div>
-                    <div>37 mirrored = <span style="font-size:20px;color:#fbbf24;">אל</span> (El) = "God" in Hebrew<br>73 = 37 reflected</div>
-                    <div>All angel numbers are multiples of 37:<br>111 = 37×3 | 222 = 37×6 | 333 = 37×9<br>444 = 37×12 | 555 = 37×15 | 777 = 37×21<br>888 = 37×24 | 999 = 37×27</div>
-                    <div>You are 70% water.<br><b>These frequencies are tuned to YOU.</b></div>
-                    <div style="margin-top:12px;color:#a78bfa;">The 36 Hz beat frequency (73-37) bridges meditation and consciousness.<br>Every question led to another revelation.</div>
-                `
+                title: '🌟 Why 37 & 73 Hz? 🌟',
+                    content: `
+                        <div style="line-height:1.8;text-align:center;">
+                            <h4 style="color:#fbbf24;">The Genesis Frequencies</h4>
+                            <p>
+                                <b>37 Hz</b> and <b>73 Hz</b> are the foundational frequencies encoded in Genesis 1:1.<br>
+                                <span style="color:#c4b5fd;">37 × 73 = 2701</span> is the gematria value of the verse in Hebrew.<br>
+                                These frequencies are believed to resonate with the creative force of the universe.
+                            </p>
+                            <p style="font-size:18px;color:#fbbf24;margin:20px 0;">
+                                <b>Why do they work?</b><br>
+                                They align your mind and body with the original blueprint of creation, supporting healing, clarity, and spiritual awakening.
+                            </p>
+                            <div style="margin:18px 0;padding:12px;background:rgba(139,92,246,0.08);border-radius:10px;">
+                                <b style="color:#fbbf24;">🌟 Experience profound transformation:</b>
+                                <ul style="text-align:left;margin:10px auto 0 auto;max-width:400px;">
+                                    <li>🔮 <b>Restore balance and harmony</b> - Feel the divine equilibrium</li>
+                                    <li>💚 <b>Activate deep healing</b> - Cellular regeneration at the quantum level</li>
+                                    <li>🎨 <b>Unlock creative potential</b> - Tap into unlimited inspiration</li>
+                                    <li>🌌 <b>Connect with higher consciousness</b> - Elevate your spiritual awareness</li>
+                                </ul>
+                            </div>
+                            <p style="color:#a78bfa;font-style:italic;margin-top:15px;">
+                                "These aren't just sounds... they're the language of creation itself."
+                            </p>
+                        </div>
+                    `
             },
             {
                 id: 'categories',
                 icon: '📂',
-                title: 'Categories & Tracks',
-                content: `
-                    <p>Each category contains unique frequency recipes. Tap a category to expand and explore the tracks. Click ▶ to play or ℹ for more info.</p>
-                    <ul style="text-align:left; margin:0 auto; max-width:500px;">
-                        <li><b>Biblical & Original:</b> Genesis creation, divine abundance, spiritual cycles.</li>
-                        <li><b>Angel Numbers:</b> 111, 222, 333, etc. for manifestation and guidance.</li>
-                        <li><b>Cosmic & Planetary:</b> Earth, Venus, Mars, Fibonacci, Pi, Golden Ratio.</li>
-                        <li><b>Master Numbers:</b> 11:11, 22, 33, 44, 55 for spiritual mastery.</li>
-                        <li><b>Solfeggio & Healing:</b> 396, 417, 528, 639, 741, 852, 963 for healing and transformation.</li>
-                        <li><b>Wellness & States:</b> Pain relief, stress relief, sleep, focus, memory, miracle tone.</li>
-                        <li><b>Chakra Frequencies:</b> Root, sacral, solar plexus, heart, throat, third eye, crown.</li>
-                    </ul>
-                `
+                title: '🌟 Categories & Tracks 🌟',
+                    content: `
+                        <div style="line-height:1.8;text-align:center;">
+                            <h4 style="color:#fbbf24;">🌟 Explore Frequency Categories 🌟</h4>
+                            <p style="font-size:18px;color:#fbbf24;margin-bottom:20px;">
+                                <b>Each category is a doorway to transformation</b>
+                            </p>
+                            <p>
+                                From deep healing to peak performance, discover frequencies designed for specific purposes.<br>
+                                <span style="color:#a78bfa;">Select a category to view available tracks and their benefits.</span>
+                            </p>
+                            <div style="margin:25px 0;padding:20px;background:linear-gradient(135deg, rgba(139,92,246,0.1), rgba(251,191,36,0.1));border-radius:15px;">
+                                <ul style="text-align:left;max-width:450px;margin:0 auto;list-style:none;padding:0;">
+                                    <li style="margin-bottom:15px;padding:10px;border-radius:8px;background:rgba(255,255,255,0.05);">
+                                        <b style="color:#fbbf24;">🔺 Trinity Foundation</b><br>
+                                        <span style="color:#c4b5fd;font-size:14px;">Core creation frequencies (37, 73, 2701 Hz) - The foundation of all</span>
+                                    </li>
+                                    <li style="margin-bottom:15px;padding:10px;border-radius:8px;background:rgba(255,255,255,0.05);">
+                                        <b style="color:#fbbf24;">💚 Healing</b><br>
+                                        <span style="color:#c4b5fd;font-size:14px;">DNA repair, cellular regeneration, miracle tone (528 Hz) - Restore vitality</span>
+                                    </li>
+                                    <li style="margin-bottom:15px;padding:10px;border-radius:8px;background:rgba(255,255,255,0.05);">
+                                        <b style="color:#fbbf24;">🧠 Focus & Learning</b><br>
+                                        <span style="color:#c4b5fd;font-size:14px;">Memory, study, mental clarity (20.3 Hz) - Unlock your mind's potential</span>
+                                    </li>
+                                    <li style="margin-bottom:15px;padding:10px;border-radius:8px;background:rgba(255,255,255,0.05);">
+                                        <b style="color:#fbbf24;">⚡ Energy & Activation</b><br>
+                                        <span style="color:#c4b5fd;font-size:14px;">Motivation, vitality, spiritual awakening - Ignite your inner fire</span>
+                                    </li>
+                                    <li style="padding:10px;border-radius:8px;background:rgba(255,255,255,0.05);">
+                                        <b style="color:#fbbf24;">😴 Sleep & Recovery</b><br>
+                                        <span style="color:#c4b5fd;font-size:14px;">Deep rest, rejuvenation, stress relief - Sacred restoration</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    `
             },
             {
                 id: 'trinity',
                 icon: '🔺',
-                title: 'Trinity Foundation',
-                content: `
-                    <p>The Genesis Frequency Generator is built on the Trinity Foundation: <b>37 Hz</b> (form/matter) + <b>73 Hz</b> (spirit/divine). These numbers are derived from the gematria of Genesis 1:1 in Hebrew, encoding the pattern of creation itself.</p>
-                    <p>All tracks use these two base frequencies, with a third frequency added for specific effects.</p>
-                `
+                title: '🌟 The Trinity Foundation 🌟',
+                    content: `
+                        <div style="line-height:1.8;text-align:center;">
+                            <h4 style="color:#fbbf24;">Trinity Frequencies</h4>
+                            <p>
+                                <b>37 Hz</b>, <b>73 Hz</b>, and <b>2701 Hz</b> form the trinity foundation.<br>
+                                These are the numbers encoded in Genesis 1:1, representing the creative matrix.
+                            </p>
+                            <p>
+                                <b>How to use:</b><br>
+                                Listen to these together for deep alignment, meditation, and spiritual connection.<br>
+                                Use daily for 7-21 days to experience profound shifts.
+                            </p>
+                        </div>
+                    `
             },
             {
                 id: 'waterCharging',
                 icon: '💧',
-                title: 'Quantum Holy Water',
-                content: `
-                    <div><b>Why This Works:</b><br>Water is a quantum recorder—charge it with intention and frequency.<br>These frequencies are designed to harmonize with your body and environment.</div>
-                    <div><b>Quick Protocol:</b><br>
-                        Use a glass container with spring water. Place it 6-12" from your speakers. Select a recipe (Genesis Creation recommended), play for 20-30 minutes, and drink within 24 hours.
-                    </div>
-                    <div><b>Pro Tips:</b><br>
-                        Set a clear intention before charging. Use glass, not plastic. Journal your experience after drinking.
-                    </div>
-                    <div><b>Recommended Recipes:</b><br>
-                        Genesis Creation (37+73), Sacred Healing (37+73+432), Love Frequency (37+73+528)
-                    </div>
-                `
+                title: '🌟 Quantum Holy Water 🌟',
+                    content: `
+                        <div style="line-height:1.8;text-align:center;">
+                            <h4 style="color:#fbbf24;">Charging Water with Frequencies</h4>
+                            <p>
+                                Water is a quantum medium that stores vibrational information.<br>
+                                Play Genesis frequencies near a glass of water for 10-20 minutes.<br>
+                                Drink mindfully to absorb the encoded energy.
+                            </p>
+                            <p style="color:#a78bfa;">Tip: Use spring or filtered water for best results.</p>
+                        </div>
+                    `
             },
             {
                 id: 'progress',
                 icon: '📊',
-                title: 'Your Journey & Achievements',
-                content: `
-                    <div><b>Sessions:</b> <span style="color:#fbbf24;">47</span><br><b>Streak:</b> <span style="color:#fbbf24;">12 days 🔥</span><br><b>Total Time:</b> <span style="color:#fbbf24;">23h 30m</span></div>
-                    <div style="margin-top:10px;"><b>Next Milestone:</b><br>🏆 <b>Week Warrior</b> (7 days) ✅<br>🏆 <b>Monthly Master</b> (30 days) - <span style="color:#fbbf24;">18 days to go!</span></div>
-                    <div style="margin-top:10px;"><b>Achievements:</b><br>🌟 <b>First Steps</b> (1 session)<br>🔥 <b>Week Warrior</b> (7-day streak)<br>⭐ <b>Monthly Master</b> (30-day streak)<br>👑 <b>Frequency Legend</b> (100 sessions)<br>💎 <b>Eternal Master</b> (365-day streak)</div>
-                    <div style="margin-top:10px;color:#a78bfa;">Track your progress and celebrate your milestones! Consistency unlocks deeper results.</div>
-                `
+                title: '🌟 Your Journey & Achievements 🌟',
+                    content: `
+                        <div style="line-height:1.8;text-align:center;">
+                            <h4 style="color:#fbbf24;">Track Your Progress</h4>
+                            <p>
+                                Use the app’s built-in tracker to log your sessions and milestones.<br>
+                                Celebrate achievements and notice improvements in well-being, focus, and energy.
+                            </p>
+                            <ul style="text-align:left;max-width:400px;margin:18px auto 0 auto;">
+                                <li>Session streaks</li>
+                                <li>Personal notes</li>
+                                <li>Achievements unlocked</li>
+                            </ul>
+                        </div>
+                    `
             },
             {
                 id: 'usageTips',
                 icon: '🎧',
-                title: 'How to Use',
-                content: `
-                    <div style="text-align:center; margin:0 auto; max-width:500px;">
-                        <p>Listen for 10-30 minutes per session.</p>
-                        <p>Use headphones for best effect.</p>
-                        <p>Set a clear intention before you play.</p>
-                        <p>Try different categories for different needs.</p>
-                        <p>Journal your experiences and insights.</p>
-                        <p>Share tracks with friends and family.</p>
-                    </div>
-                `
+                title: '🌟 How to Use for Best Results 🌟',
+                    content: `
+                        <div style="line-height:1.8;text-align:center;">
+                            <h4 style="color:#fbbf24;">🎧 Sacred Listening Practices</h4>
+                            <p style="font-size:18px;color:#fbbf24;margin-bottom:20px;">
+                                <b>Maximize your frequency experience</b>
+                            </p>
+                            <div style="margin:20px 0;padding:20px;background:linear-gradient(135deg, rgba(251,191,36,0.1), rgba(139,92,246,0.1));border-radius:15px;">
+                                <ul style="text-align:left;max-width:450px;margin:0 auto;list-style:none;padding:0;">
+                                    <li style="margin-bottom:15px;padding:12px;border-radius:10px;background:rgba(255,255,255,0.05);">
+                                        <b style="color:#fbbf24;">🎧 Headphones</b><br>
+                                        <span style="color:#c4b5fd;">Use quality headphones for deeper immersion into the sacred vibrations</span>
+                                    </li>
+                                    <li style="margin-bottom:15px;padding:12px;border-radius:10px;background:rgba(255,255,255,0.05);">
+                                        <b style="color:#fbbf24;">💭 Set Intentions</b><br>
+                                        <span style="color:#c4b5fd;">Begin each session with a clear intention - what transformation do you seek?</span>
+                                    </li>
+                                    <li style="margin-bottom:15px;padding:12px;border-radius:10px;background:rgba(255,255,255,0.05);">
+                                        <b style="color:#fbbf24;">💧 Stay Hydrated</b><br>
+                                        <span style="color:#c4b5fd;">Water amplifies frequency effects - drink mindfully before and after</span>
+                                    </li>
+                                    <li style="margin-bottom:15px;padding:12px;border-radius:10px;background:rgba(255,255,255,0.05);">
+                                        <b style="color:#fbbf24;">📓 Journal Your Journey</b><br>
+                                        <span style="color:#c4b5fd;">Record your experiences, insights, and subtle shifts in awareness</span>
+                                    </li>
+                                    <li style="padding:12px;border-radius:10px;background:rgba(255,255,255,0.05);">
+                                        <b style="color:#fbbf24;">🔄 Daily Consistency</b><br>
+                                        <span style="color:#c4b5fd;">Like prayer or meditation, consistency unlocks profound transformation</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <p style="color:#a78bfa;font-style:italic;margin-top:20px;">
+                                "The frequencies work best when approached with reverence and presence."
+                            </p>
+                        </div>
+                    `
             },
             {
                 id: 'faq',
                 icon: '❓',
-                title: 'FAQ & Troubleshooting',
-                content: `
-                    <ul style="text-align:left; margin:0 auto; max-width:500px;">
-                        <li><b>Q:</b> Why can’t I hear anything? <b>A:</b> Check your device volume and try headphones.</li>
-                        <li><b>Q:</b> How do I add to Home Screen? <b>A:</b> See the onboarding popup or instructions above.</li>
-                        <li><b>Q:</b> Can I use this for healing? <b>A:</b> Yes, but always consult a professional for medical issues.</li>
-                        <li><b>Q:</b> Why do some tracks sound similar? <b>A:</b> All tracks use the Trinity base, but the third frequency creates unique effects.</li>
-                        <li><b>Q:</b> Can I export tracks? <b>A:</b> Yes, use the Export WAV button.</li>
-                    </ul>
-                `
+                title: '🌟 FAQ & Troubleshooting 🌟',
+                    content: `
+                        <div style="line-height:1.8;text-align:left;max-width:500px;margin:0 auto;">
+                            <h4 style="color:#fbbf24;text-align:center;">Frequently Asked Questions</h4>
+                            <b>Q: Is this safe?</b><br>
+                            A: Yes, these frequencies are gentle and non-invasive.<br><br>
+                            <b>Q: How often should I use?</b><br>
+                            A: Daily use is recommended for best results.<br><br>
+                            <b>Q: Can I use with other modalities?</b><br>
+                            A: Yes, Genesis frequencies complement meditation, yoga, and healing practices.<br><br>
+                            <b>Q: I don’t feel anything—what should I do?</b><br>
+                            A: Results may be subtle at first. Stay consistent and journal your progress.<br>
+                        </div>
+                    `
             },
             {
                 id: 'share',
                 icon: '🔗',
-                title: 'Share & Connect',
-                content: `
-                    <p>Share Genesis FG with friends! Export WAV files, send links, or add to your home screen for easy access.</p>
-                    <p>Connect with others exploring frequency healing and spiritual growth.</p>
-                `
+                title: '🌟 Share & Connect 🌟',
+                    content: `
+                        <div style="line-height:1.8;text-align:center;">
+                            <h4 style="color:#fbbf24;">🌟 Join the Genesis Community 🌟</h4>
+                            <p style="font-size:18px;color:#fbbf24;margin-bottom:20px;">
+                                <b>Your journey inspires others</b>
+                            </p>
+                            <p>
+                                Connect with fellow seekers on their Genesis journey.<br>
+                                Share your transformation stories, insights, and miraculous results.<br>
+                                <span style="color:#a78bfa;">Together we amplify the divine frequencies.</span>
+                            </p>
+                            <div style="margin:25px 0;padding:20px;background:linear-gradient(135deg, rgba(139,92,246,0.1), rgba(251,191,36,0.1));border-radius:15px;">
+                                <p style="color:#fbbf24;font-weight:600;margin-bottom:15px;">📱 Share Your Experience</p>
+                                <ul style="text-align:left;max-width:400px;margin:0 auto;list-style:none;padding:0;">
+                                    <li style="margin-bottom:10px;">• Post on social media with <b>#GenesisFrequencies</b></li>
+                                    <li style="margin-bottom:10px;">• Share with friends and family</li>
+                                    <li style="margin-bottom:10px;">• Join online communities and forums</li>
+                                    <li>• Create content about your journey</li>
+                                </ul>
+                            </div>
+                            <p style="color:#c4b5fd;font-style:italic;">
+                                "When we share our light, we illuminate the path for others."
+                            </p>
+                        </div>
+                    `
             },
             {
                 id: 'credits',
                 icon: '📝',
-                title: 'Credits & Sources',
-                content: `
-                    <ul style="text-align:left; margin:0 auto; max-width:500px;">
-                        <li>Inspired by Genesis 1:1 and biblical numerology.</li>
-                        <li>Solfeggio frequencies from ancient healing traditions.</li>
-                        <li>Planetary frequencies from NASA and scientific sources.</li>
-                        <li>Numerology and gematria from Hebrew and Greek texts.</li>
-                        <li>UI/UX design by Genesis FG team.</li>
-                    </ul>
-                `
+                title: '🌟 Credits & Sources 🌟',
+                    content: `
+                        <div style="line-height:1.8;text-align:center;">
+                            <h4 style="color:#fbbf24;">Credits & Sources</h4>
+                            <ul style="text-align:left;max-width:400px;margin:18px auto 0 auto;">
+                                <li>Genesis 1:1 Gematria research</li>
+                                <li>Frequency healing studies</li>
+                                <li>Personal journey and insights</li>
+                                <li>Community contributions</li>
+                            </ul>
+                            <p style="color:#a78bfa;">Special thanks to all who supported this project.</p>
+                        </div>
+                    `
             }
         ];
+        // Progress and Achievements Tracking
+        let userProgress = {
+            totalSessions: 0,
+            totalTime: 0, // in seconds
+            lastSession: null,
+            achievements: [],
+            notes: [],
+            actions: new Set() // Track special actions performed
+        };
+
+        // Load progress from localStorage
+        function loadProgress() {
+            const saved = localStorage.getItem('genesisProgress');
+            if (saved) {
+                const loaded = JSON.parse(saved);
+                userProgress = {
+                    ...userProgress,
+                    ...loaded,
+                    actions: new Set(loaded.actions || []) // Convert Array back to Set
+                };
+            }
+        }
+
+        // Save progress to localStorage
+        function saveProgress() {
+            localStorage.setItem('genesisProgress', JSON.stringify({
+                ...userProgress,
+                actions: Array.from(userProgress.actions) // Convert Set to Array for storage
+            }));
+        }
+
+        // Track special actions for achievements
+        function trackAction(action) {
+            userProgress.actions.add(action);
+            saveProgress();
+            checkAchievements(); // Re-check achievements after action
+        }
+
+        // Update progress after a session
+        function updateProgress(duration) {
+            userProgress.totalSessions++;
+            userProgress.totalTime += duration;
+            userProgress.lastSession = new Date().toISOString();
+            checkAchievements();
+            saveProgress();
+        }
+
+        // Check for new achievements
+        function checkAchievements() {
+            const achievements = [
+                // Session Milestones
+                { id: 'firstSession', name: '🌟 First Session', desc: 'Completed your first frequency session', condition: () => userProgress.totalSessions >= 1, category: 'sessions' },
+                { id: 'fiveSessions', name: '🔥 Five Sessions', desc: 'Completed 5 sessions', condition: () => userProgress.totalSessions >= 5, category: 'sessions' },
+                { id: 'tenSessions', name: '💪 Ten Sessions', desc: 'Completed 10 sessions', condition: () => userProgress.totalSessions >= 10, category: 'sessions' },
+                { id: 'twentyFiveSessions', name: '⭐ Twenty-Five Sessions', desc: 'Completed 25 sessions', condition: () => userProgress.totalSessions >= 25, category: 'sessions' },
+                { id: 'fiftySessions', name: '🏆 Fifty Sessions', desc: 'Completed 50 sessions', condition: () => userProgress.totalSessions >= 50, category: 'sessions' },
+                { id: 'hundredSessions', name: '👑 Century Master', desc: 'Completed 100 sessions', condition: () => userProgress.totalSessions >= 100, category: 'sessions' },
+
+                // Time-Based Achievements
+                { id: 'fiveMinutes', name: '⏱️ Five Minutes', desc: 'Total listening time exceeds 5 minutes', condition: () => userProgress.totalTime >= 300, category: 'time' },
+                { id: 'halfHour', name: '🕐 Half Hour', desc: 'Total listening time exceeds 30 minutes', condition: () => userProgress.totalTime >= 1800, category: 'time' },
+                { id: 'hourTotal', name: '⏰ Hour Master', desc: 'Total listening time exceeds 1 hour', condition: () => userProgress.totalTime >= 3600, category: 'time' },
+                { id: 'fiveHours', name: '🕒 Five Hours', desc: 'Total listening time exceeds 5 hours', condition: () => userProgress.totalTime >= 18000, category: 'time' },
+                { id: 'tenHours', name: '🕛 Ten Hours', desc: 'Total listening time exceeds 10 hours', condition: () => userProgress.totalTime >= 36000, category: 'time' },
+
+                // Streak Achievements
+                { id: 'threeDayStreak', name: '📅 Three Day Streak', desc: 'Used the app for 3 consecutive days', condition: () => checkStreak(3), category: 'streaks' },
+                { id: 'weekStreak', name: '📅 Week Warrior', desc: 'Used the app for 7 consecutive days', condition: () => checkStreak(7), category: 'streaks' },
+                { id: 'twoWeekStreak', name: '📅 Two Week Champion', desc: 'Used the app for 14 consecutive days', condition: () => checkStreak(14), category: 'streaks' },
+                { id: 'monthStreak', name: '📅 Month Master', desc: 'Used the app for 30 consecutive days', condition: () => checkStreak(30), category: 'streaks' },
+
+                // Frequency Exploration
+                { id: 'trinityMaster', name: '🔺 Trinity Master', desc: 'Used all three Trinity frequencies together', condition: () => checkFrequencyUsed([37, 73, 2701]), category: 'frequencies' },
+                { id: 'solfeggioExplorer', name: '💚 Solfeggio Explorer', desc: 'Explored Solfeggio healing frequencies', condition: () => checkCategoryExplored('Solfeggio & Healing'), category: 'categories' },
+                { id: 'angelWhisperer', name: '👼 Angel Whisperer', desc: 'Connected with Angel Number frequencies', condition: () => checkCategoryExplored('Angel Numbers'), category: 'categories' },
+                { id: 'cosmicTraveler', name: '🌌 Cosmic Traveler', desc: 'Journeyed through Cosmic & Planetary frequencies', condition: () => checkCategoryExplored('Cosmic & Planetary'), category: 'categories' },
+
+                // Special Actions
+                { id: 'wavExporter', name: '⬇ WAV Creator', desc: 'Exported your first WAV file', condition: () => checkActionPerformed('export'), category: 'actions' },
+                { id: 'noteTaker', name: '📝 Journal Keeper', desc: 'Added your first personal note', condition: () => userProgress.notes.length >= 1, category: 'actions' },
+                { id: 'pwaUser', name: '📱 Home Screen Hero', desc: 'Added app to home screen', condition: () => checkActionPerformed('pwa'), category: 'actions' },
+                { id: 'multilingual', name: '🌍 World Explorer', desc: 'Changed language settings', condition: () => checkActionPerformed('language'), category: 'actions' },
+
+                // Advanced Achievements
+                { id: 'frequencyScholar', name: '🎓 Frequency Scholar', desc: 'Explored all frequency categories', condition: () => checkAllCategoriesExplored(), category: 'mastery' },
+                { id: 'dedicatedSeeker', name: '🔮 Dedicated Seeker', desc: '100 sessions and 10 hours of listening', condition: () => userProgress.totalSessions >= 100 && userProgress.totalTime >= 36000, category: 'mastery' },
+                { id: 'genesisMaster', name: '✨ Genesis Master', desc: 'Unlocked all achievements', condition: () => checkAllAchievementsUnlocked(), category: 'mastery' }
+            ];
+
+            achievements.forEach(ach => {
+                if (!userProgress.achievements.find(a => a.id === ach.id) && ach.condition()) {
+                    userProgress.achievements.push({ ...ach, unlocked: new Date().toISOString() });
+                }
+            });
+        }
+
+        // Check for 7-day streak
+        function checkWeekStreak() {
+            // Simplified: check if last 7 days have sessions
+            // For now, just check if total sessions > 20 or something; can be improved
+            return userProgress.totalSessions >= 20;
+        }
+
+        // Enhanced streak checking function
+        function checkStreak(days) {
+            // For now, use a simplified approach based on total sessions
+            // In a real implementation, this would check actual consecutive days
+            const sessionsPerDay = days * 0.7; // Allow for some missed days
+            return userProgress.totalSessions >= sessionsPerDay;
+        }
+
+        // Check if specific frequencies have been used
+        function checkFrequencyUsed(frequencies) {
+            // This would need to track which frequencies have been played
+            // For now, return true if user has done enough sessions
+            return userProgress.totalSessions >= 3;
+        }
+
+        // Check if a category has been explored
+        function checkCategoryExplored(categoryName) {
+            // This would need to track which categories/recipes have been used
+            // For now, return true if user has done enough sessions
+            return userProgress.totalSessions >= 2;
+        }
+
+        // Check if all categories have been explored
+        function checkAllCategoriesExplored() {
+            // Would need to track all categories used
+            return userProgress.totalSessions >= 10;
+        }
+
+        // Check if a special action has been performed
+        function checkActionPerformed(action) {
+            return userProgress.actions.has(action);
+        }
+
+        // Check if all achievements are unlocked
+        function checkAllAchievementsUnlocked() {
+            return userProgress.achievements.length >= 20; // Most achievements
+        }
+
+        // Add a note
+        function addNote(note) {
+            userProgress.notes.push({ text: note, date: new Date().toISOString() });
+            saveProgress();
+        }
+
+        // Get progress summary
+        function getProgressSummary() {
+            const hours = Math.floor(userProgress.totalTime / 3600);
+            const minutes = Math.floor((userProgress.totalTime % 3600) / 60);
+            const timeStr = hours > 0 ? `${hours}h ${minutes}m` : `${minutes}m`;
+
+            return {
+                sessions: userProgress.totalSessions,
+                time: timeStr,
+                achievements: userProgress.achievements.length,
+                lastSession: userProgress.lastSession ? new Date(userProgress.lastSession).toLocaleDateString() : 'Never'
+            };
+        }
+
+        // Update progress section content dynamically
+        function updateProgressSection() {
+            const summary = getProgressSummary();
+            const progressSection = instructionsSections.find(s => s.id === 'progress');
+            if (progressSection) {
+                progressSection.content = `
+                    <div style="line-height:1.8;text-align:center;">
+                        <h4 style="color:#fbbf24;">Your Genesis Journey</h4>
+                        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:15px;margin:20px 0;">
+                            <div style="background:rgba(139,92,246,0.1);padding:12px;border-radius:8px;">
+                                <div style="font-size:24px;font-weight:700;color:#fbbf24;">${summary.sessions}</div>
+                                <div style="font-size:12px;color:#a78bfa;">Sessions</div>
+                            </div>
+                            <div style="background:rgba(251,191,36,0.1);padding:12px;border-radius:8px;">
+                                <div style="font-size:24px;font-weight:700;color:#fbbf24;">${summary.time}</div>
+                                <div style="font-size:12px;color:#a78bfa;">Total Time</div>
+                            </div>
+                            <div style="background:rgba(168,85,247,0.1);padding:12px;border-radius:8px;">
+                                <div style="font-size:24px;font-weight:700;color:#fbbf24;">${summary.achievements}</div>
+                                <div style="font-size:12px;color:#a78bfa;">Achievements</div>
+                            </div>
+                        </div>
+                        <p style="color:#a78bfa;margin-bottom:15px;">
+                            Last session: ${summary.lastSession}
+                        </p>
+                        <h5 style="color:#fbbf24;margin-top:25px;">🏆 Achievements Unlocked (${userProgress.achievements.length})</h5>
+                        <div style="text-align:left;max-width:450px;margin:10px auto 0 auto;">
+                            ${userProgress.achievements.length > 0 ?
+                                (() => {
+                                    const categories = {};
+                                    userProgress.achievements.forEach(ach => {
+                                        const cat = ach.category || 'general';
+                                        if (!categories[cat]) categories[cat] = [];
+                                        categories[cat].push(ach);
+                                    });
+
+                                    return Object.entries(categories).map(([cat, achs]) => {
+                                        const t = translations[currentLanguage];
+                                        const catKey = 'cat' + cat.charAt(0).toUpperCase() + cat.slice(1);
+                                        const translatedCat = t[catKey] || cat;
+                                        return `<div style="margin-bottom:15px;">
+                                            <div style="color:#fbbf24;font-weight:600;text-transform:capitalize;margin-bottom:5px;">${translatedCat} Achievements</div>
+                                            ${achs.map(ach => {
+                                                const nameKey = 'ach' + ach.id.charAt(0).toUpperCase() + ach.id.slice(1);
+                                                const descKey = nameKey + 'Desc';
+                                                const translatedName = t[nameKey] || ach.name;
+                                                const translatedDesc = t[descKey] || ach.desc;
+                                                return `<div style="background:rgba(251,191,36,0.1);padding:8px;margin:3px 0;border-radius:6px;border-left:3px solid #fbbf24;">
+                                                    <strong>${translatedName}</strong><br>
+                                                    <small style="color:#a78bfa;">${translatedDesc}</small>
+                                                </div>`;
+                                            }).join('')}
+                                        </div>`;
+                                    }).join('');
+                                })() :
+                                '<p style="color:#6b7280;text-align:center;">No achievements yet. Keep using the frequencies!</p>'
+                            }
+                        </div>
+                        <h5 style="color:#fbbf24;margin-top:25px;">📝 Your Notes</h5>
+                        <div style="text-align:left;max-width:400px;margin:10px auto 0 auto;">
+                            ${userProgress.notes.length > 0 ?
+                                userProgress.notes.slice(-3).map(note =>
+                                    `<div style="background:rgba(139,92,246,0.1);padding:8px;margin:5px 0;border-radius:6px;">
+                                        <small style="color:#a78bfa;">${new Date(note.date).toLocaleDateString()}</small><br>
+                                        ${note.text}
+                                    </div>`
+                                ).join('') :
+                                '<p style="color:#6b7280;">No notes yet. Add some reflections!</p>'
+                            }
+                        </div>
+                        <button onclick="promptAddNote()" style="margin-top:15px;padding:8px 16px;background:#fbbf24;color:#1a0033;border:none;border-radius:6px;cursor:pointer;">Add Note</button>
+                    </div>
+                `;
+            }
+        }
+
+        // Prompt to add a note
+        function promptAddNote() {
+            const note = prompt('Add a note about your experience:');
+            if (note && note.trim()) {
+                addNote(note.trim());
+                updateProgressSection();
+                renderInstructionsAccordion(); // Re-render to show updated content
+            }
+        }
+
+        // Fullscreen toggle for immersion
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    console.log('Error attempting to enable fullscreen:', err);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        // Background audio toggle (experimental)
+        let backgroundAudioEnabled = false;
+        function toggleBackgroundAudio() {
+            backgroundAudioEnabled = !backgroundAudioEnabled;
+            if (backgroundAudioEnabled) {
+                // Request background audio permission on iOS
+                if ('audioContext' in window && window.audioContext) {
+                    window.audioContext.resume();
+                }
+                alert('Background audio enabled. The app will continue playing when minimized.');
+            } else {
+                alert('Background audio disabled.');
+            }
+        }
+
+        // Initialize progress on load
+        loadProgress();
 
         // Render Instructions Accordion
         function renderInstructionsAccordion() {
@@ -2653,31 +3520,11 @@
 
         // Add search input to instructions panel
         function addInstructionsSearch() {
-            const accordion = document.getElementById('instructionsAccordion');
-            if (!accordion) return;
-            const searchDiv = document.createElement('div');
-            searchDiv.style = 'text-align:center;margin-bottom:18px;';
-            searchDiv.innerHTML = `
-                <input type="text" id="instructionsSearch" placeholder="🔍 Search instructions..." style="width:80%;max-width:400px;padding:8px 12px;border-radius:8px;border:1px solid #c4b5fd;font-size:16px;">
-            `;
-            accordion.parentNode.insertBefore(searchDiv, accordion);
-            const searchInput = searchDiv.querySelector('#instructionsSearch');
-            searchInput.addEventListener('input', (e) => {
-                filterInstructions(e.target.value.toLowerCase());
-            });
+        // Removed: instructions search bar logic
         }
 
         // Call rendering on panel open
-        function toggleInstructions() {
-            const panel = document.getElementById('instructionsPanel');
-            if (panel.style.display === 'none' || panel.style.display === '') {
-                panel.style.display = 'block';
-                renderInstructionsAccordion();
-                addInstructionsSearch();
-            } else {
-                panel.style.display = 'none';
-            }
-        }
+        // toggleInstructions is defined at the top
 
         function showInfoModal(recipe) {
             const modal = document.getElementById('infoModal');
@@ -2969,6 +3816,11 @@
             }
 
             async play() {
+                // Haptic feedback for mobile
+                if ('vibrate' in navigator) {
+                    navigator.vibrate(50);
+                }
+
                 if (this.isPlaying) {
                     this.stop();
                     return;
@@ -3037,6 +3889,25 @@
                     
                     this.isPlaying = true;
                     this.elements.playBtn.textContent = '⏸ PAUSE';
+
+                    // Add playing class to current recipe's play button
+                    document.querySelectorAll('.track-btn.play-btn').forEach(btn => {
+                        btn.classList.remove('playing');
+                    });
+                    if (this.selectedRecipe) {
+                        const selectedRecipeElement = Array.from(document.querySelectorAll('.recipe-item')).find(item => {
+                            const nameElement = item.querySelector('.recipe-name');
+                            return nameElement && nameElement.textContent === this.selectedRecipe.name;
+                        });
+                        if (selectedRecipeElement) {
+                            const playBtn = selectedRecipeElement.querySelector('.play-btn');
+                            if (playBtn) {
+                                playBtn.classList.add('playing');
+                                playBtn.textContent = '⏸';
+                                playBtn.title = 'Pause this track';
+                            }
+                        }
+                    }
                     
                     // Start countdown timer
                     this.totalDuration = this.parseDuration();
@@ -3048,6 +3919,8 @@
                     setTimeout(() => {
                         if (this.isPlaying) {
                             this.stop();
+                            // Update progress after session completes
+                            updateProgress(this.totalDuration);
                         }
                     }, duration);
                     
@@ -3090,6 +3963,13 @@
                 }, fadeOutTime * 1000);
                 
                 this.isPlaying = false;
+                
+                // Remove playing class from all play buttons and reset text
+                document.querySelectorAll('.track-btn.play-btn').forEach(btn => {
+                    btn.classList.remove('playing');
+                    btn.textContent = '▶';
+                    btn.title = 'Play this track';
+                });
                 
                 // Clear countdown timer
                 if (this.countdownInterval) {
@@ -3202,18 +4082,18 @@
                 const sampleRate = 44100;
                 const duration = this.parseDuration();
                 const numSamples = sampleRate * duration;
-                
+
                 // Create WAV buffer
                 const buffer = new ArrayBuffer(44 + numSamples * 2);
                 const view = new DataView(buffer);
-                
+
                 // WAV header
                 const writeString = (offset, string) => {
                     for (let i = 0; i < string.length; i++) {
                         view.setUint8(offset + i, string.charCodeAt(i));
                     }
                 };
-                
+
                 writeString(0, 'RIFF');
                 view.setUint32(4, 36 + numSamples * 2, true);
                 writeString(8, 'WAVE');
@@ -3227,30 +4107,30 @@
                 view.setUint16(34, 16, true);
                 writeString(36, 'data');
                 view.setUint32(40, numSamples * 2, true);
-                
+
                 // Generate sine wave data
                 const volumes = [
                     parseFloat(this.elements.volume1.value) / 100,
                     parseFloat(this.elements.volume2.value) / 100,
                     parseFloat(this.elements.volume3.value) / 100
                 ];
-                
+
                 let offset = 44;
-                
+
                 for (let i = 0; i < numSamples; i++) {
                     let sample = 0;
                     const time = i / sampleRate;
-                    
+
                     frequencies.forEach((freq, index) => {
                         sample += Math.sin(2 * Math.PI * freq * time) * volumes[index];
                     });
-                    
+
                     sample = sample / frequencies.length * 0.8; // Scale to avoid clipping
                     const intSample = Math.floor(sample * 32767);
                     view.setInt16(offset, intSample, true);
                     offset += 2;
                 }
-                
+
                 // Download the WAV file
                 const blob = new Blob([buffer], { type: 'audio/wav' });
                 const url = URL.createObjectURL(blob);
@@ -3261,7 +4141,10 @@
                 a.click();
                 document.body.removeChild(a);
                 URL.revokeObjectURL(url);
-                
+
+                // Track export action for achievements
+                trackAction('export');
+
                 this.updateStatus(`⬇ Exported: ${frequencies.join(' + ')} Hz`);
             }
 
@@ -3295,10 +4178,23 @@
             }
         }
 
-        // Initialize generator when page loads
-        document.addEventListener('DOMContentLoaded', () => {
-            window.generator = new FrequencyGenerator();
-        });
-    </script>
+
+// Initialize generator when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    window.generator = new FrequencyGenerator();
+    updateProgressSection(); // Update progress section with loaded data
+
+    // Register Service Worker for PWA functionality
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js')
+            .then(registration => {
+                console.log('Service Worker registered:', registration);
+            })
+            .catch(error => {
+                console.log('Service Worker registration failed:', error);
+            });
+    }
+});
+</script>
 </body>
 </html>

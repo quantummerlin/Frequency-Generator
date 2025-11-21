@@ -1,13 +1,13 @@
 // Service Worker for Genesis Frequency Generator
-const CACHE_NAME = 'genesis-fg-v1.0.1';
+const CACHE_NAME = 'genesis-fg-v1.0.0';
 const urlsToCache = [
-  '/',
-  '/index.html',
-  '/Genesis FG Freemium.html',
-  '/Genesis.png',
-  '/manifest.json',
-  '/styles.css',
-  '/app.js'
+  '/Frequency-Generator/',
+  '/Frequency-Generator/index.html',
+  '/Frequency-Generator/Genesis%20FG%20Freemium.html',
+  '/Frequency-Generator/Genesis.png',
+  '/Frequency-Generator/manifest.json',
+  '/Frequency-Generator/styles.css',
+  '/Frequency-Generator/app.js'
 ];
 
 // Install event - cache resources

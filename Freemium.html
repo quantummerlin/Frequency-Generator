@@ -79,16 +79,194 @@
 
         @media (max-width: 767px) {
             body {
-                padding: 8px;
+                padding: 4px;
                 background-attachment: scroll;
             }
 
             .container {
                 margin: 0;
-                border-radius: 20px;
-                padding: 16px;
+                border-radius: 16px;
+                padding: 12px;
                 max-width: none;
                 width: 100%;
+                box-sizing: border-box;
+            }
+
+            .header {
+                padding: 8px 0 16px 0;
+            }
+
+            .header h1 {
+                font-size: 22px;
+                line-height: 1.2;
+            }
+
+            .header p {
+                font-size: 14px;
+                line-height: 1.4;
+            }
+
+            .section {
+                margin-bottom: 20px;
+            }
+
+            .section-title {
+                font-size: 18px;
+                margin-bottom: 12px;
+            }
+
+            .welcome-content {
+                font-size: 14px;
+                line-height: 1.5;
+            }
+
+            .welcome-content h3 {
+                font-size: 16px;
+            }
+
+            .welcome-content ul, .welcome-content ol {
+                padding-left: 16px;
+            }
+
+            .welcome-content li {
+                margin-bottom: 6px;
+            }
+
+            .trinity-base {
+                padding: 16px;
+                margin: 16px 0;
+            }
+
+            .trinity-title {
+                font-size: 16px;
+                margin-bottom: 12px;
+            }
+
+            .trinity-frequencies {
+                gap: 12px;
+            }
+
+            .trinity-freq {
+                padding: 8px 12px;
+            }
+
+            .trinity-freq .hz {
+                font-size: 18px;
+            }
+
+            .trinity-freq .label {
+                font-size: 12px;
+            }
+
+            .visualizer {
+                height: 120px;
+                margin: 16px 0;
+            }
+
+            .frequency-vibration {
+                height: 80px;
+            }
+
+            .recipes {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .recipe-card {
+                padding: 12px;
+                font-size: 14px;
+            }
+
+            .recipe-header {
+                font-size: 16px;
+                margin-bottom: 8px;
+            }
+
+            .recipe-freqs {
+                font-size: 12px;
+                margin-bottom: 8px;
+            }
+
+            .recipe-description {
+                font-size: 13px;
+                line-height: 1.4;
+            }
+
+            .controls {
+                padding: 16px;
+            }
+
+            .frequency-controls {
+                gap: 12px;
+            }
+
+            .control-group {
+                padding: 12px;
+                border-radius: 8px;
+            }
+
+            .control-group input[type="number"] {
+                font-size: 16px;
+                padding: 8px;
+            }
+
+            .control-group input[type="range"] {
+                height: 6px;
+            }
+
+            .range-value {
+                font-size: 12px;
+            }
+
+            .duration-input-container input {
+                font-size: 16px;
+                padding: 10px;
+            }
+
+            .duration-buttons {
+                gap: 6px;
+                flex-wrap: wrap;
+            }
+
+            .duration-btn {
+                font-size: 14px;
+                padding: 8px 12px;
+                min-width: 44px;
+            }
+
+            .button-group {
+                gap: 8px;
+                flex-wrap: wrap;
+            }
+
+            .button {
+                font-size: 16px;
+                padding: 12px 20px;
+                min-height: 48px;
+                flex: 1;
+                min-width: 120px;
+            }
+
+            .status {
+                font-size: 14px;
+                padding: 12px;
+                margin: 12px 0;
+            }
+
+            .instructions-panel {
+                padding: 16px !important;
+                margin: 0 8px 16px 8px !important;
+                border-radius: 12px !important;
+            }
+
+            .instructions-header h2 {
+                font-size: 20px !important;
+            }
+
+            .accordion-content {
+                padding: 12px 4px 0 4px !important;
+                font-size: 14px !important;
             }
         }
 
@@ -1539,39 +1717,28 @@
             }
         }
 
-        /* Freemium Styles - Disabled on mobile for full experience */
-        @media (min-width: 769px) {
-            .premium-lock {
-                position: relative;
-                opacity: 0.7;
-                cursor: pointer;
-            }
-
-            .premium-lock::after {
-                content: '🔒';
-                position: absolute;
-                top: 8px;
-                right: 8px;
-                font-size: 14px;
-                color: #fbbf24;
-                background: rgba(26, 0, 51, 0.8);
-                border-radius: 50%;
-                width: 20px;
-                height: 20px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                z-index: 1;
-                pointer-events: none;
-            }
+        /* Freemium Styles */
+        .premium-lock {
+            position: relative;
+            opacity: 0.7;
         }
 
-        /* On mobile, remove pointer events from premium locks */
-        @media (max-width: 768px) {
-            .premium-lock {
-                cursor: default !important;
-                pointer-events: auto !important;
-            }
+        .premium-lock::after {
+            content: '🔒';
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            font-size: 14px;
+            color: #fbbf24;
+            background: rgba(26, 0, 51, 0.8);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+            pointer-events: none;
         }
 
         /* Upgrade Modal */
@@ -1766,83 +1933,135 @@
 
         @media (max-width: 375px) {
             body {
-                padding: 4px;
+                padding: 3px;
             }
 
             .container {
-                padding: 10px;
-                border-radius: 12px;
+                padding: 8px;
+                border-radius: 10px;
             }
 
             .header h1 {
-                font-size: 20px;
+                font-size: 18px;
+                line-height: 1.2;
             }
 
             .header p {
+                font-size: 12px;
+                line-height: 1.3;
+            }
+
+            .welcome-content {
                 font-size: 13px;
             }
 
-            .info-modal-content {
-                padding: 16px 12px;
-                max-width: 98vw;
-                border-radius: 12px;
+            .welcome-content h3 {
+                font-size: 15px;
             }
 
-            .info-modal-header {
-                font-size: 20px;
-                margin-bottom: 12px;
-            }
-
-            .info-modal-body {
+            .trinity-title {
                 font-size: 14px;
             }
 
-            .button {
-                font-size: 16px !important;
-                padding: 12px 20px !important;
-                min-height: 44px; /* iOS touch target */
-                border-radius: 25px;
-                font-weight: 600;
-                text-align: center;
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                white-space: nowrap;
+            .trinity-freq .hz {
+                font-size: 16px;
             }
 
-            .accordion-header {
-                padding: 10px 5px !important;
+            .trinity-freq .label {
+                font-size: 11px;
             }
-            .accordion-header span:first-child {
-                font-size: 18px !important;
-                margin-right: 6px !important;
+
+            .visualizer {
+                height: 100px;
             }
-            .accordion-header span:last-child {
-                font-size: 14px !important;
+
+            .frequency-vibration {
+                height: 60px;
             }
-            .accordion-content {
-                padding: 12px 5px 0 5px !important;
-                font-size: 14px !important;
+
+            .recipes {
+                gap: 6px;
             }
-            .instructions-panel {
-                padding: 15px !important;
-                margin: 0 10px 15px 10px !important;
-                border-radius: 12px !important;
+
+            .recipe-card {
+                padding: 10px;
+                font-size: 13px;
             }
-            .instructions-header h2 {
-                font-size: 20px !important;
+
+            .recipe-header {
+                font-size: 14px;
             }
-            .btn-close {
-                font-size: 24px !important;
-                right: 15px !important;
-                top: 15px !important;
-            }
+
             .recipe-freqs {
-                font-size: 12px !important;
-                line-height: 1.2 !important;
+                font-size: 11px;
             }
+
+            .controls {
+                padding: 12px;
+            }
+
+            .frequency-controls {
+                gap: 8px;
+            }
+
+            .control-group {
+                padding: 10px;
+            }
+
+            .duration-buttons {
+                gap: 4px;
+            }
+
+            .duration-btn {
+                font-size: 13px;
+                padding: 6px 10px;
+                min-width: 40px;
+            }
+
             .button-group {
-                gap: 8px !important;
+                gap: 6px;
+            }
+
+            .button {
+                font-size: 15px !important;
+                padding: 10px 16px !important;
+                min-height: 42px;
+                flex: 1;
+                min-width: 100px;
+            }
+
+            .status {
+                font-size: 13px;
+                padding: 10px;
+            }
+
+            .info-modal-content {
+                padding: 14px 10px;
+                max-width: 96vw;
+                border-radius: 10px;
+            }
+
+            .info-modal-header {
+                font-size: 18px;
+                margin-bottom: 10px;
+            }
+
+            .info-modal-body {
+                font-size: 13px;
+            }
+
+            .instructions-panel {
+                padding: 12px !important;
+                margin: 0 4px 12px 4px !important;
+            }
+
+            .instructions-header h2 {
+                font-size: 18px !important;
+            }
+
+            .accordion-content {
+                padding: 10px 2px 0 2px !important;
+                font-size: 13px !important;
             }
         }
 
@@ -2249,7 +2468,7 @@
             <div class="section-title" data-translate="controlsTitle">Frequency Controls</div>
             <div class="controls">
                 <div class="frequency-controls">
-                    <div class="control-group premium-lock">
+                    <div class="control-group premium-lock" onclick="showUpgradeModal()">
                         <div style="display: flex; align-items: center; gap: 8px;">
                             <input type="number" id="freq1" min="0.1" max="100000" step="0.1" value="37" style="flex: 1;">
                             <span style="color: #a78bfa; font-size: 14px; font-weight: 500; min-width: 30px;">Hz</span>
@@ -2258,7 +2477,7 @@
                         <div class="range-value" id="volume1Value">50%</div>
                     </div>
                     
-                    <div class="control-group premium-lock">
+                    <div class="control-group premium-lock" onclick="showUpgradeModal()">
                         <div style="display: flex; align-items: center; gap: 8px;">
                             <input type="number" id="freq2" min="0.1" max="100000" step="0.1" value="73" style="flex: 1;">
                             <span style="color: #a78bfa; font-size: 14px; font-weight: 500; min-width: 30px;">Hz</span>
@@ -2267,7 +2486,7 @@
                         <div class="range-value" id="volume2Value">50%</div>
                     </div>
                     
-                    <div class="control-group premium-lock">
+                    <div class="control-group premium-lock" onclick="showUpgradeModal()">
                         <div style="display: flex; align-items: center; gap: 8px;">
                             <input type="number" id="freq3" min="0.1" max="100000" step="0.1" value="0" style="flex: 1;">
                             <span style="color: #a78bfa; font-size: 14px; font-weight: 500; min-width: 30px;">Hz</span>
@@ -2280,7 +2499,7 @@
                 <div class="control-group duration-control">
                     <label for="duration" data-translate="duration">⏱️ Duration</label>
                     <div class="duration-input-wrapper">
-                        <div class="duration-input-container premium-lock">
+                        <div class="duration-input-container premium-lock" onclick="showUpgradeModal()">
                             <input type="text" id="duration" placeholder="05:00" value="05:00" pattern="[0-9]{1,2}:[0-9]{2}" maxlength="5" readonly>
                         </div>
                         <div class="duration-buttons">
@@ -2295,7 +2514,7 @@
                 <div class="button-group">
                     <button class="button button-primary" id="playBtn">▶ PLAY</button>
                     <button class="button button-danger" id="stopBtn">■ STOP</button>
-                    <button class="button button-secondary premium-lock" id="exportBtn">⬇ EXPORT WAV</button>
+                    <button class="button button-secondary premium-lock" id="exportBtn" onclick="showUpgradeModal()">⬇ EXPORT WAV</button>
                     <button class="button button-secondary" id="resetBtn">↺ RESET</button>
                 </div>
             </div>
@@ -3818,7 +4037,7 @@
                 icon: '📊',
                 title: 'Your Journey & Achievements',
                     content: `
-                        <div style="line-height:1.8;text-align:center; position: relative;" class="premium-lock">
+                        <div style="line-height:1.8;text-align:center; position: relative;" class="premium-lock" onclick="showUpgradeModal()">
                             <h4 style="color:#fbbf24;">Track Your Progress</h4>
                             <p>
                                 Use the app’s built-in tracker to log your sessions and milestones.<br>
@@ -5238,18 +5457,6 @@
 
 
 // Initialize generator when page loads
-function setupPremiumLocks() {
-    // Add onclick handlers to premium elements only on desktop
-    const premiumElements = document.querySelectorAll('.premium-lock');
-    premiumElements.forEach(element => {
-        element.onclick = function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            showUpgradeModal();
-        };
-    });
-}
-
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize the frequency generator first
     window.generator = new FrequencyGenerator();
@@ -5314,14 +5521,6 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
             showToast('Welcome back! Ready to explore sacred frequencies? 🌟');
         }, 1000);
-    }
-
-    // Set up premium locks only on desktop (screen width > 768px)
-    if (window.innerWidth > 768) {
-        console.log('Setting up premium locks for desktop');
-        setupPremiumLocks();
-    } else {
-        console.log('Mobile device detected - enabling full functionality');
     }
 
     // Debug check after initialization

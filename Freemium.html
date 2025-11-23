@@ -10,9 +10,9 @@
     <meta name="theme-color" content="#6B46C1">
     <title>🌟 Genesis Frequency Generator (Free)</title>
 
-    <link rel="manifest" href="/Frequency-Generator/manifest.json">
-    <link rel="icon" type="image/png" sizes="192x192" href="/Frequency-Generator/Genesis.png">
-    <link rel="apple-touch-icon" href="/Frequency-Generator/Genesis.png">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" sizes="192x192" href="Genesis.png">
+    <link rel="apple-touch-icon" href="Genesis.png">
 
     <style>
         * {
@@ -24,14 +24,12 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: url('/Frequency-Generator/Genesis.png') center center/cover fixed;
+            background: url('Genesis.png') center center/cover fixed;
             min-height: 100vh;
-            padding: 8px;
-            color: #ffffff;
+            padding: 10px;
+            color: #fff;
             overflow-x: hidden;
             position: relative;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
 
         body::before {
@@ -65,362 +63,27 @@
             }
         }
 
-        /* Respect user's motion preferences */
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-
         @media (min-width: 768px) {
             body {
                 padding: 20px;
-            }
-
-            .container {
-                margin: 0 auto;
-                border-radius: 28px;
-                padding: 25px;
-            }
-        }
-
-        @media (max-width: 767px) {
-            body {
-                padding: 4px;
-                background-attachment: scroll;
-            }
-
-            .container {
-                margin: 0;
-                border-radius: 16px;
-                padding: 8px;
-                max-width: none;
-                width: calc(100vw - 8px);
-                box-sizing: border-box;
-            }
-
-            .header {
-                padding: 8px 0 16px 0;
-            }
-
-            .header h1 {
-                font-size: 22px;
-                line-height: 1.2;
-            }
-
-            .header p {
-                font-size: 14px;
-                line-height: 1.4;
-            }
-
-            .section {
-                margin-bottom: 20px;
-            }
-
-            .section-title {
-                font-size: 18px;
-                margin-bottom: 12px;
-            }
-
-            .welcome-content {
-                font-size: 14px;
-                line-height: 1.5;
-            }
-
-            .welcome-content h3 {
-                font-size: 16px;
-            }
-
-            .welcome-content ul, .welcome-content ol {
-                padding-left: 16px;
-            }
-
-            .welcome-content li {
-                margin-bottom: 6px;
-            }
-
-            .trinity-base {
-                padding: 16px;
-                margin: 16px 0;
-            }
-
-            .trinity-title {
-                font-size: 16px;
-                margin-bottom: 12px;
-            }
-
-            .trinity-frequencies {
-                gap: 12px;
-            }
-
-            .trinity-freq {
-                padding: 8px 12px;
-            }
-
-            .trinity-freq .hz {
-                font-size: 18px;
-            }
-
-            .trinity-freq .label {
-                font-size: 12px;
-            }
-
-            .visualizer {
-                height: 120px;
-                margin: 16px 0;
-            }
-
-            .frequency-vibration {
-                height: 80px;
-            }
-
-            .recipes {
-                display: grid;
-                grid-template-columns: 1fr;
-                gap: 8px;
-            }
-
-            .recipe-card {
-                padding: 12px;
-                font-size: 14px;
-            }
-
-            .recipe-header {
-                font-size: 16px;
-                margin-bottom: 8px;
-            }
-
-            .recipe-freqs {
-                font-size: 12px;
-                margin-bottom: 8px;
-            }
-
-            .recipe-description {
-                font-size: 13px;
-                line-height: 1.4;
-            }
-
-            .controls {
-                padding: 16px;
-            }
-
-            .frequency-controls {
-                gap: 12px;
-            }
-
-            .control-group {
-                padding: 12px;
-                border-radius: 8px;
-            }
-
-            .control-group input[type="number"] {
-                font-size: 16px;
-                padding: 8px;
-            }
-
-            .control-group input[type="range"] {
-                height: 6px;
-            }
-
-            .range-value {
-                font-size: 12px;
-            }
-
-            .duration-input-container input {
-                font-size: 16px;
-                padding: 10px;
-            }
-
-            .duration-buttons {
-                gap: 6px;
-                flex-wrap: wrap;
-            }
-
-            .duration-btn {
-                font-size: 14px;
-                padding: 8px 12px;
-                min-width: 44px;
-            }
-
-            .button-group {
-                gap: 8px;
-                flex-wrap: wrap;
-            }
-
-            .button {
-                font-size: 16px;
-                padding: 12px 20px;
-                min-height: 48px;
-                flex: 1;
-                min-width: 120px;
-            }
-
-            .status {
-                font-size: 14px;
-                padding: 12px;
-                margin: 12px 0;
-            }
-
-            .instructions-panel {
-                padding: 16px !important;
-                margin: 0 8px 16px 8px !important;
-                border-radius: 12px !important;
-            }
-
-            .instructions-header h2 {
-                font-size: 20px !important;
-            }
-
-            .accordion-content {
-                padding: 12px 4px 0 4px !important;
-                font-size: 14px !important;
-            }
-        }
-
-        @media (max-width: 480px) {
-            body {
-                padding: 4px;
-                overflow-x: hidden;
-            }
-
-            .container {
-                padding: 8px;
-                border-radius: 12px;
-                width: 100%;
-                max-width: 100%;
-                overflow-x: hidden;
-            }
-
-            .section {
-                width: 100%;
-                max-width: 100%;
-                box-sizing: border-box;
-                padding: 8px;
-                margin-bottom: 12px;
-            }
-
-            .frequency-controls {
-                gap: 0px;
-                width: 100%;
-                max-width: 100%;
-            }
-
-            .control-group {
-                padding: 0px;
-                width: 100%;
-                max-width: 100%;
-                box-sizing: border-box;
-            }
-
-            .control-group > div {
-                gap: 0px !important;
-                width: 100%;
-                max-width: 100%;
-            }
-
-            .control-group input,
-            .control-group span {
-                max-width: 100%;
-                box-sizing: border-box;
-            }
-
-            .control-group span {
-                min-width: 25px !important;
-                font-size: 12px !important;
-            }
-
-            input[type="number"],
-            input[type="text"],
-            input[type="range"] {
-                width: 100%;
-                max-width: 100%;
-                box-sizing: border-box;
-                margin: 0;
-                padding: 0;
-            }
-
-            input[type="range"] {
-                padding: 0;
-                margin: 0;
-            }
-
-            .button-group {
-                flex-direction: column;
-                gap: 8px;
-                width: 100%;
-                max-width: 100%;
-                padding: 0;
-                margin: 0 auto;
-            }
-
-            .button {
-                font-size: 14px;
-                padding: 10px 12px;
-                min-height: 44px;
-                min-width: 0;
-                width: 100%;
-                max-width: 100%;
-                box-sizing: border-box;
-            }
-
-            .duration-buttons {
-                flex-direction: row;
-                flex-wrap: wrap;
-                gap: 4px;
-                justify-content: space-between;
-            }
-
-            .duration-btn {
-                font-size: 12px;
-                padding: 6px 8px;
-                min-width: 48%;
-                flex: 0 0 48%;
-                box-sizing: border-box;
-            }
-
-            .status {
-                font-size: 12px;
-                padding: 8px;
-                margin: 8px 0;
-            }
-
-            .range-value {
-                font-size: 11px;
-            }
-
-            .instructions-panel {
-                padding: 12px !important;
-                margin: 0 4px 12px 4px !important;
-            }
-
-            .instructions-header h2 {
-                font-size: 18px !important;
-            }
-
-            .accordion-content {
-                font-size: 12px !important;
             }
         }
 
         .container {
             max-width: 900px;
             margin: 0 auto;
-            background: rgba(26, 0, 51, 0.95);
+            background: rgba(26, 0, 51, 0.88), url('Genesis.png') center center/cover;
             backdrop-filter: blur(30px);
             border-radius: 28px;
-            padding: 20px;
-            box-shadow:
+            padding: 25px;
+            box-shadow: 
                 0 25px 70px rgba(0, 0, 0, 0.6),
                 0 0 0 1px rgba(139, 92, 246, 0.3),
                 inset 0 1px 0 rgba(255, 255, 255, 0.05);
             animation: slideUp 0.5s ease-out;
             position: relative;
             z-index: 2;
-            overflow: hidden;
-            width: 100%;
-            box-sizing: border-box;
+            overflow: hidden; /* For particle effects */
         }
 
         .container::after {
@@ -455,7 +118,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('/Frequency-Generator/Genesis.png') center center/cover;
+            background: url('Genesis.png') center center/cover;
             border-radius: 28px;
             opacity: 0.12;
             z-index: -1;
@@ -498,7 +161,7 @@
             text-align: center;
             margin-bottom: 30px;
             position: relative;
-            background: url('/Frequency-Generator/Genesis.png') center center/cover;
+            background: url('Genesis.png') center center/cover;
             border-radius: 20px;
             padding: 30px 20px;
             box-shadow: 
@@ -559,12 +222,11 @@
 
         .hebrew-translation {
             font-size: 16px;
-            color: #ffffff;
+            color: #c4b5fd;
             font-weight: 500;
             margin-bottom: 20px;
             font-style: italic;
-            opacity: 0.95;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+            opacity: 0.9;
         }
 
         .main-title {
@@ -630,7 +292,7 @@
         }
 
         .trinity-base {
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%), url('Genesis.png') center center/cover;
             border: 2px solid rgba(139, 92, 246, 0.3);
             border-radius: 16px;
             padding: 15px;
@@ -675,7 +337,7 @@
         .trinity-freq {
             text-align: center;
             padding: 8px 12px;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.05), url('Genesis.png') center center/cover;
             border-radius: 12px;
             border: 1px solid rgba(139, 92, 246, 0.2);
             position: relative;
@@ -717,7 +379,7 @@
         }
 
         .section {
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(255, 255, 255, 0.03), url('Genesis.png') center center/cover;
             border-radius: 20px;
             padding: 20px;
             margin-bottom: 20px;
@@ -748,14 +410,13 @@
         .section-title {
             font-size: 18px;
             font-weight: 600;
-            color: #ffffff;
+            color: #c4b5fd;
             margin-bottom: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
             text-align: center;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
         }
 
         .section-title::before {
@@ -771,18 +432,12 @@
         .controls {
             display: grid;
             gap: 15px;
-            width: 100%;
-            max-width: 100%;
-            box-sizing: border-box;
         }
         
         .frequency-controls {
             display: grid;
             grid-template-columns: 1fr;
             gap: 15px;
-            width: 100%;
-            max-width: 100%;
-            box-sizing: border-box;
         }
         
         @media (min-width: 768px) {
@@ -800,9 +455,6 @@
             border-radius: 12px;
             border: 1px solid rgba(139, 92, 246, 0.1);
             text-align: center;
-            width: 100%;
-            max-width: 100%;
-            box-sizing: border-box;
         }
 
         .duration-control {
@@ -941,7 +593,6 @@
             letter-spacing: 1px;
             position: relative;
             overflow: hidden;
-            will-change: transform;
         }
 
         .button::before {
@@ -1319,35 +970,10 @@
             z-index: 1000;
             padding: 20px;
             animation: fadeIn 0.3s ease;
-            will-change: opacity;
         }
 
         .info-modal.active {
-            display: flex !important;
-            opacity: 1 !important;
-            visibility: visible !important;
-            z-index: 10000 !important;
-        }
-
-        /* Specifically hide upgrade modal by default */
-        #upgradeBenefitsModal {
-            display: none !important;
-        }
-
-        #upgradeBenefitsModal.active {
-            display: flex !important;
-        }
-
-        /* Force hide all modals except active one */
-        .info-modal:not(.active) {
-            display: none !important;
-        }
-
-        .info-modal.active {
-            display: flex !important;
-            opacity: 1 !important;
-            visibility: visible !important;
-            z-index: 10000 !important;
+            display: flex;
         }
 
         @keyframes fadeIn {
@@ -1772,87 +1398,37 @@
         
 
         @media (max-width: 480px) {
-            body {
-                padding: 5px;
-            }
-
             .container {
-                padding: 12px;
-                border-radius: 16px;
-                margin: 0;
+                padding: 15px;
+                border-radius: 20px;
             }
-
+            
             .header {
-                padding: 8px 0 12px 0;
-                text-align: center;
+                padding: 10px 0 15px 0;
             }
-
-            .header h1 {
-                font-size: 24px;
-                margin-bottom: 8px;
-                color: #ffffff;
-                text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-            }
-
-            .header p {
-                font-size: 14px;
-                color: #e0e7ff;
-                line-height: 1.4;
-            }
-
+            
             .info-modal {
-                padding: 8px;
+                padding: 10px;
             }
 
             .info-modal-content {
-                padding: 20px 16px;
+                padding: 25px 20px;
                 max-width: 95vw;
-                border-radius: 16px;
-                margin: 0 auto;
+                border-radius: 20px;
             }
 
             .info-modal-header {
-                font-size: 22px;
-                margin-bottom: 16px;
-                color: #fbbf24;
-                text-shadow: 0 1px 2px rgba(0,0,0,0.7);
+                font-size: 24px;
+                margin-bottom: 12px;
+            }
+
+            .info-modal-freqs {
+                font-size: 16px;
+                padding: 12px 15px;
             }
 
             .info-modal-body {
                 font-size: 15px;
-                color: #ffffff;
-                line-height: 1.6;
-            }
-
-            .info-modal-body h3 {
-                color: #d4d4ff;
-                font-size: 16px;
-                font-weight: 600;
-            }
-
-            .info-modal-body p {
-                color: #f0f0ff;
-                margin-bottom: 12px;
-                line-height: 1.5;
-            }
-
-            /* Improve button visibility on mobile */
-            .button {
-                font-size: 16px;
-                padding: 14px 24px;
-                min-height: 48px;
-                border-radius: 25px;
-                font-weight: 600;
-                text-align: center;
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                white-space: nowrap;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            }
-
-            .button:active {
-                transform: scale(0.98);
             }
 
             .info-modal-close {
@@ -1865,25 +1441,58 @@
         /* Freemium Styles */
         .premium-lock {
             position: relative;
-            opacity: 0.7;
+            opacity: 0.6;
+            pointer-events: none;
         }
 
         .premium-lock::after {
             content: '🔒';
             position: absolute;
-            top: 8px;
-            right: 8px;
-            font-size: 14px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
             color: #fbbf24;
-            background: rgba(26, 0, 51, 0.8);
+            background: rgba(26, 0, 51, 0.9);
             border-radius: 50%;
-            width: 20px;
-            height: 20px;
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 1;
-            pointer-events: none;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            z-index: 10;
+            pointer-events: auto;
+            cursor: pointer;
+        }
+
+        .premium-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(26, 0, 51, 0.7);
+            border-radius: inherit;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: auto;
+            cursor: pointer;
+        }
+
+        .premium-overlay::before {
+            content: '🔒';
+            font-size: 32px;
+            color: #fbbf24;
+            background: rgba(26, 0, 51, 0.9);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
 
         /* Upgrade Modal */
@@ -1897,9 +1506,10 @@
             background: rgba(0, 0, 0, 0.8);
             z-index: 10000;
             animation: fadeIn 0.3s ease-out;
-            align-items: flex-start;
+            display: flex;
+            align-items: center;
             justify-content: center;
-            padding: 40px 20px 20px 20px;
+            padding: 20px;
             box-sizing: border-box;
         }
 
@@ -1910,7 +1520,7 @@
             padding: 30px;
             max-width: 500px;
             width: 100%;
-            max-height: calc(100vh - 80px);
+            max-height: 90vh;
             overflow-y: auto;
             text-align: center;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
@@ -2027,378 +1637,183 @@
             opacity: 0.9;
         }
 
+        .duration-lock-icon {
+            position: absolute;
+            right: 10px;
+            font-size: 16px;
+            color: #fbbf24;
+            cursor: pointer;
+            background: rgba(26, 0, 51, 0.8);
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
 
+        .duration-lock-icon:hover {
+            background: rgba(251, 191, 36, 0.2);
+            transform: scale(1.1);
+        }
 
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
-        }
-
-        /* Mobile optimizations for iPhone SE */
-        @media (max-width: 320px) {
-            body {
-                padding: 2px;
-            }
-
-            .container {
-                padding: 8px;
-                border-radius: 8px;
-            }
-
-            .header h1 {
-                font-size: 18px;
-                line-height: 1.2;
-            }
-
-            .header p {
-                font-size: 12px;
-            }
-
-            .info-modal-content {
-                padding: 12px 8px;
-                max-width: 99vw;
-                border-radius: 8px;
-            }
-
-            .info-modal-header {
-                font-size: 18px;
-                margin-bottom: 10px;
-            }
-
-            .info-modal-body {
-                font-size: 13px;
-            }
-
-            .button {
-                font-size: 14px !important;
-                padding: 10px 16px !important;
-                min-height: 40px;
-            }
-        }
-
-        @media (max-width: 375px) {
-            body {
-                padding: 3px;
-            }
-
-            .container {
-                padding: 8px;
-                border-radius: 10px;
-            }
-
-            .header h1 {
-                font-size: 18px;
-                line-height: 1.2;
-            }
-
-            .header p {
-                font-size: 12px;
-                line-height: 1.3;
-            }
-
-            .welcome-content {
-                font-size: 13px;
-            }
-
-            .welcome-content h3 {
-                font-size: 15px;
-            }
-
-            .trinity-title {
-                font-size: 14px;
-            }
-
-            .trinity-freq .hz {
-                font-size: 16px;
-            }
-
-            .trinity-freq .label {
-                font-size: 11px;
-            }
-
-            .visualizer {
-                height: 100px;
-            }
-
-            .frequency-vibration {
-                height: 60px;
-            }
-
-            .recipes {
-                gap: 6px;
-            }
-
-            .recipe-card {
-                padding: 10px;
-                font-size: 13px;
-            }
-
-            .recipe-header {
-                font-size: 14px;
-            }
-
-            .recipe-freqs {
-                font-size: 11px;
-            }
-
-            .controls {
-                padding: 12px;
-            }
-
-            .frequency-controls {
-                gap: 8px;
-            }
-
-            .control-group {
-                padding: 10px;
-            }
-
-            .duration-buttons {
-                gap: 4px;
-            }
-
-            .duration-btn {
-                font-size: 13px;
-                padding: 6px 10px;
-                min-width: 40px;
-            }
-
-            .button-group {
-                gap: 6px;
-            }
-
-            .button {
-                font-size: 15px !important;
-                padding: 10px 16px !important;
-                min-height: 42px;
-                flex: 1;
-                min-width: 100px;
-            }
-
-            .status {
-                font-size: 13px;
-                padding: 10px;
-            }
-
-            .info-modal-content {
-                padding: 14px 10px;
-                max-width: 96vw;
-                border-radius: 10px;
-            }
-
-            .info-modal-header {
-                font-size: 18px;
-                margin-bottom: 10px;
-            }
-
-            .info-modal-body {
-                font-size: 13px;
-            }
-
-            .instructions-panel {
-                padding: 12px !important;
-                margin: 0 4px 12px 4px !important;
-            }
-
-            .instructions-header h2 {
-                font-size: 18px !important;
-            }
-
-            .accordion-content {
-                padding: 10px 2px 0 2px !important;
-                font-size: 13px !important;
-            }
-        }
-
-        @media (max-width: 320px) {
-            body {
-                padding: 2px;
-            }
-
-            .container {
-                padding: 8px;
-                border-radius: 8px;
-            }
-
-            .header h1 {
-                font-size: 18px;
-                line-height: 1.2;
-            }
-
-            .header p {
-                font-size: 12px;
-            }
-
-            .info-modal-content {
-                padding: 12px 8px;
-                max-width: 99vw;
-                border-radius: 8px;
-            }
-
-            .info-modal-header {
-                font-size: 18px;
-                margin-bottom: 10px;
-            }
-
-            .info-modal-body {
-                font-size: 13px;
-            }
-
-            .button {
-                font-size: 14px !important;
-                padding: 10px 16px !important;
-                min-height: 40px;
-            }
         }
     </style>
 <script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
 </head>
 <body>
     <!-- Immersive Welcome Modal -->
-    <div id="immersiveWelcome" class="info-modal" style="z-index:5000;">
+    <div id="immersiveWelcome" class="info-modal" style="z-index:3000; display: none;">
         <div class="info-modal-content" style="max-width: 500px; text-align: center; background: linear-gradient(135deg, rgba(26,0,51,0.95), rgba(139,92,246,0.9)); border: 2px solid rgba(251,191,36,0.5);">
-            <div class="info-modal-header" style="color: #fbbf24; font-size: 28px; margin-bottom: 20px;">Welcome to Genesis</div>
-            <div class="info-modal-body" style="color: #ffffff; font-size: 18px; line-height: 1.6;">
-                <p style="margin-bottom: 20px; color: #ffffff;">You are about to experience the sacred frequencies that shaped creation itself.</p>
-                <p style="margin-bottom: 20px; color: #f8f8ff;">Take a deep breath, set your intention, and let the vibrations guide you.</p>
-                <div style="display: flex; gap: 15px; justify-content: center; margin-top: 30px;">
-                    <button onclick="showFrequencyBenefits()" style="background: linear-gradient(90deg, #fbbf24, #f59e0b); color: #1a0033; border: none; border-radius: 25px; padding: 15px 30px; font-size: 18px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 15px rgba(251,191,36,0.3);">Next</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Frequency Benefits Modal -->
-    <div id="frequencyBenefitsModal" class="info-modal" style="z-index:4500;">
-        <div class="info-modal-content" style="max-width: 600px; text-align: center; background: linear-gradient(135deg, rgba(26,0,51,0.95), rgba(139,92,246,0.9)); border: 2px solid rgba(251,191,36,0.5);">
-            <div class="info-modal-header" style="color: #fbbf24; font-size: 28px; margin-bottom: 20px;">What Are These Frequencies Good For?</div>
-            <div class="info-modal-body" style="color: #fff; font-size: 16px; line-height: 1.6; text-align: left;">
-                <div style="margin-bottom: 20px;">
-                    <h3 style="color: #d4d4ff; margin-bottom: 10px;">🧘‍♀️ Meditation & Mindfulness</h3>
-                    <p style="color: #f0f0ff;">These sacred frequencies help quiet the mind, reduce stress, and deepen your meditation practice through harmonic resonance.</p>
-                </div>
-
-                <div style="margin-bottom: 20px;">
-                    <h3 style="color: #d4d4ff; margin-bottom: 10px;">💫 Energy Healing</h3>
-                    <p style="color: #f0f0ff;">Based on the biblical Trinity (Father, Son, Holy Spirit), these frequencies work with your body's natural energy centers for balance and healing.</p>
-                </div>
-
-                <div style="margin-bottom: 20px;">
-                    <h3 style="color: #d4d4ff; margin-bottom: 10px;">🌙 Sleep & Relaxation</h3>
-                    <p style="color: #f0f0ff;">The gentle vibrations promote deep relaxation, better sleep quality, and help release tension from the body and mind.</p>
-                </div>
-
-                <div style="margin-bottom: 20px;">
-                    <h3 style="color: #d4d4ff; margin-bottom: 10px;">🎵 Creative Flow</h3>
-                    <p style="color: #f0f0ff;">Many users report enhanced creativity, clearer thinking, and improved focus when working with these sacred frequencies.</p>
-                </div>
-
-                <div style="display: flex; gap: 15px; justify-content: center; margin-top: 30px;">
-                    <button onclick="showHowToUse()" style="background: linear-gradient(90deg, #fbbf24, #f59e0b); color: #1a0033; border: none; border-radius: 25px; padding: 15px 30px; font-size: 18px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 15px rgba(251,191,36,0.3);">How to Use</button>
-                    <button onclick="skipToApp()" style="background: rgba(26,0,51,0.7); color: #c4b5fd; border: none; border-radius: 25px; padding: 15px 30px; font-size: 16px; font-weight: 600; cursor: pointer;">Skip to App</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- How to Use Modal -->
-    <div id="howToUseModal" class="info-modal" style="z-index:4000;">
-        <div class="info-modal-content" style="max-width: 600px; text-align: center; background: linear-gradient(135deg, rgba(26,0,51,0.95), rgba(139,92,246,0.9)); border: 2px solid rgba(251,191,36,0.5);">
-            <div class="info-modal-header" style="color: #fbbf24; font-size: 28px; margin-bottom: 20px;">How to Use These Tracks</div>
-            <div class="info-modal-body" style="color: #fff; font-size: 16px; line-height: 1.6; text-align: left;">
-                <div style="margin-bottom: 20px;">
-                    <h3 style="color: #c4b5fd; margin-bottom: 10px;">🎧 Getting Started</h3>
-                    <p>• Find a quiet, comfortable space<br>
-                    • Put on headphones for the best experience<br>
-                    • Set your intention for the session<br>
-                    • Start with shorter sessions (5-15 minutes)</p>
-                </div>
-
-                <div style="margin-bottom: 20px;">
-                    <h3 style="color: #c4b5fd; margin-bottom: 10px;">⚙️ Controls Guide</h3>
-                    <p>• <strong>Frequencies:</strong> Try the Trinity set (37Hz, 73Hz) or experiment<br>
-                    • <strong>Volume:</strong> Start low and adjust to comfort<br>
-                    • <strong>Duration:</strong> Set timer for your preferred session length<br>
-                    • <strong>Play/Pause:</strong> Control your session as needed</p>
-                </div>
-
-                <div style="margin-bottom: 20px;">
-                    <h3 style="color: #c4b5fd; margin-bottom: 10px;">💡 Pro Tips</h3>
-                    <p>• Use during meditation or yoga<br>
-                    • Try different times of day<br>
-                    • Combine with deep breathing<br>
-                    • Keep a journal of your experiences</p>
-                </div>
-
-                <div style="display: flex; gap: 15px; justify-content: center; margin-top: 30px;">
-                    <button onclick="showPWATip()" style="background: linear-gradient(90deg, #fbbf24, #f59e0b); color: #1a0033; border: none; border-radius: 25px; padding: 15px 30px; font-size: 18px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 15px rgba(251,191,36,0.3);">Pro Tip</button>
-                    <button onclick="skipToApp()" style="background: rgba(26,0,51,0.7); color: #c4b5fd; border: none; border-radius: 25px; padding: 15px 30px; font-size: 16px; font-weight: 600; cursor: pointer;">Skip to App</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- PWA Tip Modal -->
-    <div id="pwaTipModal" class="info-modal" style="z-index:3500;">
-        <div class="info-modal-content" style="max-width: 500px; text-align: center; background: linear-gradient(135deg, rgba(26,0,51,0.95), rgba(139,92,246,0.9)); border: 2px solid rgba(251,191,36,0.5);">
-            <div class="info-modal-header" style="color: #fbbf24; font-size: 28px; margin-bottom: 20px;">Pro Tip</div>
+            <div class="info-modal-header" style="color: #fbbf24; font-size: 28px; margin-bottom: 20px;">🌟 Welcome to Genesis 🌟</div>
             <div class="info-modal-body" style="color: #fff; font-size: 18px; line-height: 1.6;">
-                <div style="font-size: 48px; margin-bottom: 20px;">📱</div>
-                <p style="margin-bottom: 20px; font-weight: 600; color: #ffffff;">Add to Home Screen NOW for the Best Experience!</p>
-                <p style="margin-bottom: 20px; color: #f0f0ff;">• Works offline without internet<br>
-                • Faster loading and better performance<br>
-                • True app-like experience<br>
-                • Background playback capability</p>
-                <div style="background: rgba(251,191,36,0.1); padding: 15px; border-radius: 12px; margin-bottom: 20px; border: 1px solid rgba(251,191,36,0.3);">
-                    <p style="font-size: 16px; color: #fbbf24; font-weight: 600; margin-bottom: 8px;">How to Add:</p>
-                    <p style="font-size: 14px; color: #d1d5db;">Tap the share button → "Add to Home Screen"</p>
-                </div>
+                <p style="margin-bottom: 20px;">You are about to experience the sacred frequencies that shaped creation itself.</p>
+                <p style="margin-bottom: 20px; color: #c4b5fd;">Take a deep breath, set your intention, and let the vibrations guide you.</p>
                 <div style="display: flex; gap: 15px; justify-content: center; margin-top: 30px;">
-                    <button onclick="showUpgradeBenefits()" style="background: linear-gradient(90deg, #fbbf24, #f59e0b); color: #1a0033; border: none; border-radius: 25px; padding: 15px 30px; font-size: 18px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 15px rgba(251,191,36,0.3);">Discover Premium</button>
-                    <button onclick="skipToApp()" style="background: rgba(26,0,51,0.7); color: #c4b5fd; border: none; border-radius: 25px; padding: 15px 30px; font-size: 16px; font-weight: 600; cursor: pointer;">Skip to App</button>
+                    <button onclick="startImmersiveExperience()" style="background: linear-gradient(90deg, #fbbf24, #f59e0b); color: #1a0033; border: none; border-radius: 25px; padding: 15px 30px; font-size: 18px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 15px rgba(251,191,36,0.3);">Begin Journey</button>
                 </div>
             </div>
         </div>
     </div>
-    <div id="upgradeBenefitsModal" class="info-modal" style="z-index:3000;">
+    <div id="firstTimeModal" class="info-modal" style="z-index:2000;">
         <div class="info-modal-content" style="max-width:420px; text-align: center;">
-            <div class="info-modal-header" style="color: #fbbf24; font-size: 28px; margin-bottom: 20px;">Premium Features</div>
-                <div class="info-modal-body" style="color: #fff; font-size: 16px; line-height: 1.6;">
-                    <div style="text-align: left; margin-bottom: 20px;">
-                        <div style="margin-bottom: 15px;">
-                            <h3 style="color: #d4d4ff; margin-bottom: 8px;">🎚️ Individual Volume Controls</h3>
-                            <p style="color: #f0f0ff;">Adjust each of the 3 frequencies separately for perfect harmonic balance.</p>
-                        </div>
-
-                        <div style="margin-bottom: 15px;">
-                            <h3 style="color: #d4d4ff; margin-bottom: 8px;">⏰ Custom Durations</h3>
-                            <p style="color: #f0f0ff;">Set any session length from 1 minute to hours of continuous playback.</p>
-                        </div>
-
-                        <div style="margin-bottom: 15px;">
-                            <h3 style="color: #d4d4ff; margin-bottom: 8px;">🏆 Achievement System</h3>
-                            <p style="color: #f0f0ff;">Track your progress, unlock achievements, and log your sacred sessions.</p>
-                        </div>
-
-                        <div style="margin-bottom: 15px;">
-                            <h3 style="color: #d4d4ff; margin-bottom: 8px;">🔊 Background Playback</h3>
-                            <p style="color: #f0f0ff;">Continue your frequency sessions while using other apps.</p>
-                        </div>
-
-                        <div style="margin-bottom: 15px;">
-                            <h3 style="color: #d4d4ff; margin-bottom: 8px;">💾 Export & Save</h3>
-                            <p style="color: #f0f0ff;">Save your frequency combinations as WAV files for offline use.</p>
+            <div id="premiumAccessSection">
+                <div class="info-modal-header" style="color:#e0e7ff; text-align: center;">Welcome to the Premium Version of The Genesis Frequency Generator</div>
+                <div class="info-modal-body" style="color:#d1d5db; font-size:16px; text-align: center;">
+                    <p style="margin-bottom: 20px; color:#c4b5fd;">Enter the sacred access code to unlock the premium frequency experience:</p>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <input type="password" id="premiumPassword" placeholder="Enter premium code..." 
+                               style="width: 80%; padding: 12px; border: 2px solid #6b46c1; border-radius: 8px; 
+                                      background: rgba(107, 70, 193, 0.1); color: #fff; font-size: 16px; 
+                                      text-align: center; margin-bottom: 10px;">
+                        <br>
+                        <button onclick="checkPremiumPassword()" 
+                                style="background: linear-gradient(90deg, #8b5cf6, #6b46c1); color: #fff; 
+                                       border: none; border-radius: 25px; padding: 12px 30px; font-size: 16px; 
+                                       font-weight: 600; cursor: pointer; box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);">
+                            Unlock Premium Access
+                        </button>
+                    </div>
+                    
+                    <p style="font-size: 14px; color: #9ca3af; margin-top: 15px;">
+                        Hint: The numerical value of Genesis 1:1 in Hebrew gematria
+                    </p>
+                </div>
+            </div>
+            
+            <div id="premiumWelcomeSection" style="display: none;">
+                <div class="info-modal-header" style="color:#e0e7ff; text-align: center;">🎉 Welcome to Premium Access! 🎉</div>
+                <div class="info-modal-body" style="color:#d1d5db; font-size:16px; text-align: center;">
+                    <p style="margin-bottom: 20px; color:#fbbf24; font-size:18px; font-weight:600;">
+                        Thank you for upgrading to Premium! ✨
+                    </p>
+                    
+                    <p style="margin-bottom: 15px; color:#c4b5fd;">
+                        You now have unlimited access to all premium features:
+                    </p>
+                    
+                    <div style="background: rgba(251,191,36,0.1); padding: 15px; border-radius: 12px; margin-bottom: 20px; border-left: 4px solid #fbbf24;">
+                        <ul style="text-align: left; display: inline-block; margin: 0; padding-left: 20px;">
+                            <li style="color:#e0e7ff; margin-bottom: 8px;">🎵 <b>Unlimited track listening</b> - No time restrictions</li>
+                            <li style="color:#e0e7ff; margin-bottom: 8px;">🔊 <b>Individual volume control</b> - Adjust each of the 3 frequencies</li>
+                            <li style="color:#e0e7ff; margin-bottom: 8px;">⏱️ <b>Custom durations</b> - Set any length from seconds to hours</li>
+                            <li style="color:#e0e7ff; margin-bottom: 8px;">💾 <b>WAV export</b> - Save tracks for offline use</li>
+                            <li style="color:#e0e7ff; margin-bottom: 8px;">🏆 <b>All achievements</b> - Unlock the complete achievement system</li>
+                            <li style="color:#e0e7ff; margin-bottom: 8px;">📱 <b>Background playback</b> - Frequencies play when app is minimized</li>
+                        </ul>
+                    </div>
+                    
+                    <p style="margin-bottom: 20px; color:#c4b5fd; font-style:italic;">
+                        Now, please create your personal sacred password for exclusive access...
+                    </p>
+                    
+                    <button onclick="showPersonalPasswordSection()" 
+                            style="background: linear-gradient(90deg, #10b981, #059669); color: #fff; 
+                                   border: none; border-radius: 25px; padding: 12px 30px; font-size: 16px; 
+                                   font-weight: 600; cursor: pointer; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);">
+                        Continue to Password Setup
+                    </button>
+                </div>
+            </div>
+            
+            <div id="personalPasswordSection" style="display: none;">
+                <div class="info-modal-header" style="color:#e0e7ff; text-align: center;">Create Your Personal Sacred Password</div>
+                <div class="info-modal-body" style="color:#d1d5db; font-size:16px; text-align: center;">
+                    <p style="margin-bottom: 20px; color:#c4b5fd;">Set a personal sacred password for your exclusive access:</p>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <input type="password" id="personalPassword" placeholder="Create sacred password..." 
+                               style="width: 80%; padding: 12px; border: 2px solid #6b46c1; border-radius: 8px; 
+                                      background: rgba(107, 70, 193, 0.1); color: #fff; font-size: 16px; 
+                                      text-align: center; margin-bottom: 10px;">
+                        <br>
+                        <input type="password" id="confirmPersonalPassword" placeholder="Confirm sacred password..." 
+                               style="width: 80%; padding: 12px; border: 2px solid #6b46c1; border-radius: 8px; 
+                                      background: rgba(107, 70, 193, 0.1); color: #fff; font-size: 16px; 
+                                      text-align: center; margin-bottom: 10px;">
+                        <br>
+                        <button onclick="setPersonalPassword()" 
+                                style="background: linear-gradient(90deg, #fbbf24, #f59e0b); color: #1a0033; 
+                                       border: none; border-radius: 25px; padding: 12px 30px; font-size: 16px; 
+                                       font-weight: 600; cursor: pointer; box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);">
+                            Set Sacred Password
+                        </button>
+                    </div>
+                    
+                    <p style="font-size: 14px; color: #9ca3af; margin-top: 15px;">
+                        This password will be remembered as long as you have the app installed
+                    </p>
+                </div>
+            </div>
+            
+            <div id="welcomeContentSection" style="display: none;">
+                <div class="info-modal-header" style="color:#e0e7ff; text-align: center;">Welcome to Genesis Frequency Generator</div>
+                <div class="info-modal-body" style="color:#d1d5db; font-size:16px; text-align: center;">
+                    <p style="font-size:18px; color:#c4b5fd; font-weight:700; margin-bottom:15px;">Discover the power of sacred frequencies! 🌟</p>
+                    
+                    <div style="background: linear-gradient(135deg, rgba(139,92,246,0.1), rgba(251,191,36,0.1)); padding: 15px; border-radius: 12px; margin-bottom: 15px; border: 1px solid rgba(139,92,246,0.2);">
+                        <p style="font-size:17px; color:#e0e7ff; font-weight:600; margin-bottom:10px;">GET STARTED:</p>
+                        <p style="font-size:16px; color:#c4b5fd; font-weight:700; margin-bottom:8px;">INSTALL AS AN APP for the best experience!</p>
+                        <p style="font-size:15px; color:#d1d5db; margin-bottom:12px;">Add to your home screen for instant access and offline capabilities.</p>
+                        
+                        <div style="background: rgba(251,191,36,0.1); padding: 12px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid #fbbf24;">
+                            <p style="font-size:15px; color:#fbbf24; font-weight:600; margin-bottom:6px;">How to Install:</p>
+                            <p style="font-size:14px; color:#d1d5db; margin:0;">
+                                <b>iOS:</b> Tap Share → "Add to Home Screen"<br>
+                                <b>Android:</b> Tap Menu → "Add to Home Screen"
+                            </p>
                         </div>
                     </div>
-
+                    
+                    <p style="font-size:16px; color:#e0e7ff; font-weight:600; margin-bottom:8px;">Tips for Your Journey:</p>
+                    <ul style="text-align: left; display: inline-block; margin-left:18px; margin-bottom:15px;">
+                        <li style="color:#d1d5db;">🎧 Use headphones for the deepest effect</li>
+                        <li style="color:#d1d5db;">🧘 Set sacred intentions before playing</li>
+                        <li style="color:#d1d5db;">🔄 Try different frequency combinations</li>
+                        <li style="color:#d1d5db;">💾 Export tracks to use offline</li>
+                    </ul>
+                    
                     <div style="background: rgba(251,191,36,0.1); padding: 15px; border-radius: 12px; margin-bottom: 20px; border: 1px solid rgba(251,191,36,0.3);">
-                        <p style="font-size: 18px; color: #fbbf24; font-weight: 600; margin-bottom: 8px;">🌟 Lifetime Access - One Time Payment</p>
-                        <p style="font-size: 14px; color: #d1d5db;">No subscriptions, no recurring fees. Unlock everything forever.</p>
+                        <p style="font-size:16px; color:#fbbf24; font-weight:600; margin-bottom:8px;">🚀 Want Premium Features?</p>
+                        <p style="font-size:14px; color:#d1d5db; margin-bottom:10px;">Unlock individual volume controls, custom durations, achievements, and background playback!</p>
+                        <button onclick="showUpgradeModal()" style="background: linear-gradient(90deg, #fbbf24, #f59e0b); color: #1a0033; border: none; border-radius: 20px; padding: 10px 20px; font-size: 14px; font-weight: 600; cursor: pointer;">Upgrade to Premium</button>
                     </div>
-
-                    <div style="display: flex; gap: 15px; justify-content: center; margin-top: 20px;">
-                        <button onclick="showUpgradeModal()" style="background: linear-gradient(90deg, #fbbf24, #f59e0b); color: #1a0033; border: none; border-radius: 25px; padding: 15px 30px; font-size: 18px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 15px rgba(251,191,36,0.3);">Upgrade Now</button>
-                        <button onclick="closeUpgradeBenefitsModal()" style="background: rgba(26,0,51,0.7); color: #c4b5fd; border: none; border-radius: 25px; padding: 15px 30px; font-size: 16px; font-weight: 600; cursor: pointer;">Maybe Later</button>
+                    
+                    <p style="color:#c4b5fd; font-size:15px; font-style:italic; margin-top:15px;">Your journey into sacred sound begins now... Let's create magic together!</p>
+                    
+                    <div style="margin-top: 20px;">
+                        <button onclick="closeFirstTimeModal()" 
+                                style="background: linear-gradient(90deg, #10b981, #059669); color: #fff; 
+                                       border: none; border-radius: 25px; padding: 12px 30px; font-size: 16px; 
+                                       font-weight: 600; cursor: pointer; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);">
+                            Begin Sacred Journey
+                        </button>
                     </div>
                 </div>
             </div>
@@ -2455,7 +1870,7 @@
             <div class="hebrew-header">בְּרֵאשִׁית בָּרָא אֱלֹהִים אֵת הַשָּׁמַיִם וְאֵת הָאָרֶץ</div>
             <div class="hebrew-translation" data-translate="hebrewTranslation">In the beginning God created the heavens and the earth</div>
             <div style="font-size:22px; font-weight:800; color:#fbbf24; text-align:center; margin-bottom:2px;">Genesis Frequency Generator</div>
-            <div style="font-size:16px; font-weight:600; color:#ffffff; text-align:center; margin-bottom:10px; text-shadow: 0 1px 2px rgba(0,0,0,0.3);">inspired by</div>
+            <div style="font-size:16px; font-weight:600; color:#c4b5fd; text-align:center; margin-bottom:10px;">inspired by</div>
             <h1 class="main-title" data-translate="title" style="margin-bottom:0;">Genesis 1:1</h1>
             <div class="subtitle" data-translate="subtitle">Biblical Trinity Frequency System</div>
             <div class="divider"></div>
@@ -2464,14 +1879,14 @@
 
             <!-- Sacred Guide Button (always visible in header) -->
             <button class="btn-instructions" onclick="toggleInstructions()" style="margin: 0 auto 18px auto; display: block; font-size: 18px; font-weight: 700; background: linear-gradient(90deg, #8b5cf6 0%, #fbbf24 100%); color: #1a0033; border: none; border-radius: 12px; padding: 10px 24px; box-shadow: 0 2px 12px rgba(139,92,246,0.15); cursor: pointer;">
-                Genesis Companion
+                🌟 Genesis Companion 🌟
             </button>
 
             <!-- Instructions Panel (expandable) -->
-            <div id="instructionsPanel" class="instructions-panel" style="display: none; max-width: 900px; margin: 0 auto 18px auto; background: rgba(26,0,51,0.97); border-radius: 18px; box-shadow: 0 8px 32px rgba(139,92,246,0.18); padding: 20px; color: #fff; z-index: 10; position: relative;">
+            <div id="instructionsPanel" class="instructions-panel" style="display: none; max-width: 900px; margin: 0 auto 18px auto; background: rgba(26,0,51,0.97); border-radius: 18px; box-shadow: 0 8px 32px rgba(139,92,246,0.18); padding: 24px; color: #fff; z-index: 10; position: relative;">
                 <div class="instructions-content" style="text-align:center;">
                     <div class="instructions-header" style="display: flex; justify-content: center; align-items: center;">
-                        <h2 style="font-size: 24px; color: #fbbf24; font-weight: 800; margin: 0 auto; text-align:center; width:100%;">Genesis Frequency Companion</h2>
+                        <h2 style="font-size: 24px; color: #fbbf24; font-weight: 800; margin: 0 auto; text-align:center; width:100%;">🌟 Genesis Frequency Companion 🌟</h2>
                         <button class="btn-close" onclick="toggleInstructions()" style="background: none; border: none; color: #c4b5fd; font-size: 28px; cursor: pointer; position:absolute; right:24px;">✕</button>
                     </div>
                     <div class="instructions-body" style="margin-top: 18px;">
@@ -2479,78 +1894,15 @@
                         <div id="instructionsAccordion" class="instructions-accordion">
                             <!-- Sections will be dynamically rendered here by JS for accordion, search, and navigation -->
                         </div>
-                        <div style="margin-top:32px; text-align:center; color:#fbbf24; font-size:18px; font-weight:700;">This is your complete Genesis companion. Everything you need to understand, master, and share the divine frequencies.</div>
+                        <div style="margin-top:32px; text-align:center; color:#fbbf24; font-size:18px; font-weight:700;">🌟 This is your complete Genesis companion. Everything you need to understand, master, and share the divine frequencies. 🌟</div>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
-
-        <!-- Welcome Section for Freemium -->
-        <div class="section welcome-section">
-            <div class="section-title">Welcome to Genesis Frequency Generator</div>
-            <div class="welcome-content">
-                <p style="font-size: 16px; line-height: 1.6; margin-bottom: 20px; color: #ffffff;">
-                    Discover the sacred frequencies that shaped creation itself. This app generates powerful vibrational frequencies based on the Hebrew text of Genesis 1:1, using the ancient science of gematria to unlock divine harmonics.
-                </p>
-
-                <div style="background: rgba(251,191,36,0.1); padding: 20px; border-radius: 12px; margin: 20px 0; border-left: 4px solid #fbbf24;">
-                    <h3 style="color: #fbbf24; margin-bottom: 15px; font-size: 18px;">🎵 What Are These Frequencies Good For?</h3>
-                    <ul style="color: #f0f0ff; padding-left: 20px; line-height: 1.6;">
-                        <li><strong>Meditation & Prayer</strong> - Enhance your spiritual practice with divine vibrations</li>
-                        <li><strong>Energy Healing</strong> - Balance your body's energy centers (chakras)</li>
-                        <li><strong>Manifestation</strong> - Amplify your intentions and affirmations</li>
-                        <li><strong>Sound Therapy</strong> - Experience therapeutic frequency benefits</li>
-                        <li><strong>Sacred Geometry</strong> - Connect with the mathematical patterns of creation</li>
-                        <li><strong>Personal Growth</strong> - Support mindfulness and inner peace</li>
-                    </ul>
-                </div>
-
-                <div style="background: rgba(139,92,246,0.1); padding: 20px; border-radius: 12px; margin: 20px 0; border-left: 4px solid #8b5cf6;">
-                    <h3 style="color: #c4b5fd; margin-bottom: 15px; font-size: 18px;">📖 How to Use the Tracks</h3>
-                    <ol style="color: #d1d5db; padding-left: 20px; line-height: 1.6;">
-                        <li><strong>Set Your Intention</strong> - Begin with a clear purpose or prayer</li>
-                        <li><strong>Find a Quiet Space</strong> - Sit comfortably in a peaceful environment</li>
-                        <li><strong>Use Headphones</strong> - For best results, use quality headphones or speakers</li>
-                        <li><strong>Start with Trinity Foundation</strong> - Begin with the core 37Hz + 73Hz frequencies</li>
-                        <li><strong>Explore Recipes</strong> - Try different frequency combinations for various purposes</li>
-                        <li><strong>Practice Regularly</strong> - Consistent use yields the best results</li>
-                        <li><strong>Stay Hydrated</strong> - Drink water before and after sessions</li>
-                    </ol>
-                </div>
-
-                <div style="text-align: center; margin: 30px 0;">
-                    <p style="color: #fbbf24; font-size: 18px; font-weight: 600; margin-bottom: 20px;">
-                        🚀 Ready to unlock unlimited access and premium features?
-                    </p>
-                    <button onclick="showUpgradeModal()" style="background: linear-gradient(90deg, #fbbf24, #f59e0b); color: #1a0033; border: none; border-radius: 25px; padding: 15px 30px; font-size: 18px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 15px rgba(251,191,36,0.3);">
-                        Upgrade to Premium
-                    </button>
-                    <p style="margin-top: 15px; font-size: 14px; color: #9ca3af;">
-                        Get lifetime access to all features • No subscriptions • One-time payment
-                    </p>
-                </div>
-
-                <div style="background: rgba(139,92,246,0.1); padding: 20px; border-radius: 12px; margin: 20px 0; border-left: 4px solid #8b5cf6;">
-                    <h3 style="color: #c4b5fd; margin-bottom: 15px; font-size: 18px;">📱 Pro Tip: Add to Home Screen</h3>
-                    <p style="color: #d1d5db; margin-bottom: 15px; line-height: 1.6;">
-                        For the best experience, add this app to your home screen! You'll unlock achievements, 
-                        get offline access, and receive gentle reminders to maintain your frequency practice.
-                    </p>
-                    <div style="text-align: center;">
-                        <button onclick="installPWA()" id="homescreenBtn" style="background: linear-gradient(90deg, #8b5cf6, #6b46c1); color: #fff; border: none; border-radius: 25px; padding: 12px 25px; font-size: 16px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 15px rgba(139,92,246,0.3);">
-                            📱 Add to Home Screen
-                        </button>
-                        <p style="margin-top: 10px; font-size: 12px; color: #9ca3af;">
-                            Optional: Enable notifications for gentle practice reminders
-                        </p>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <div class="trinity-base">
-            <div class="trinity-title" data-translate="trinityTitle">Trinity Foundation Frequencies</div>
+            <div class="trinity-title" data-translate="trinityTitle">🌟 Trinity Foundation Frequencies 🌟</div>
             <div class="trinity-frequencies">
                 <div class="trinity-freq">
                     <div class="hz">37 Hz</div>
@@ -2593,7 +1945,7 @@
         
 
         <div class="section">
-            <div class="section-title" data-translate="recipesTitle">Trinity Frequency Recipes</div>
+            <div class="section-title" data-translate="recipesTitle">🌟 Trinity Frequency Recipes 🌟</div>
             <div class="recipes" id="recipes">
                 <!-- Recipes will be populated by JavaScript -->
             </div>
@@ -2610,7 +1962,7 @@
         </div>
 
         <div class="section">
-            <div class="section-title" data-translate="controlsTitle">Frequency Controls</div>
+            <div class="section-title" data-translate="controlsTitle">🌟 Frequency Controls 🌟</div>
             <div class="controls">
                 <div class="frequency-controls">
                     <div class="control-group premium-lock" onclick="showUpgradeModal()">
@@ -2644,8 +1996,9 @@
                 <div class="control-group duration-control">
                     <label for="duration" data-translate="duration">⏱️ Duration</label>
                     <div class="duration-input-wrapper">
-                        <div class="duration-input-container premium-lock" onclick="showUpgradeModal()">
-                            <input type="text" id="duration" placeholder="05:00" value="05:00" pattern="[0-9]{1,2}:[0-9]{2}" maxlength="5" readonly>
+                        <div class="duration-input-container">
+                            <input type="text" id="duration" placeholder="05:00" value="05:00" pattern="[0-9]{1,2}:[0-9]{2}" maxlength="5" readonly onclick="showUpgradeModal()">
+                            <div class="duration-lock-icon" onclick="showUpgradeModal()">🔒</div>
                         </div>
                         <div class="duration-buttons">
                             <button type="button" class="duration-btn" data-time="01:00">1m</button>
@@ -2657,16 +2010,18 @@
                 </div>
 
                 <div class="button-group">
-                    <button class="button button-primary" id="playBtn" aria-label="Play frequency generator">▶ PLAY</button>
-                    <button class="button button-danger" id="stopBtn" aria-label="Stop frequency generator">■ STOP</button>
-                    <button class="button button-secondary premium-lock" id="exportBtn" onclick="showUpgradeModal()" aria-label="Export as WAV file - Premium feature">⬇ EXPORT WAV</button>
-                    <button class="button button-secondary" id="resetBtn" aria-label="Reset frequencies to default">↺ RESET</button>
+                    <button class="button button-primary" id="playBtn">▶ PLAY</button>
+                    <button class="button button-danger" id="stopBtn">■ STOP</button>
+                    <div class="premium-lock" onclick="showUpgradeModal()" style="display: inline-block;">
+                        <button class="button button-secondary" id="exportBtn">⬇ EXPORT WAV</button>
+                    </div>
+                    <button class="button button-secondary" id="resetBtn">↺ RESET</button>
                 </div>
             </div>
         </div>
 
         <div class="status stopped" id="status">
-            Ready to Generate Genesis Frequencies
+            🌟 Ready to Generate Genesis Frequencies 🌟
         </div>
 
         <div class="visualizer" style="margin-top: 20px;">
@@ -2693,20 +2048,6 @@
             <div class="sacred-geometry"></div>
             <div class="visualizer-content">
             </div>
-        </div>
-
-        <!-- Bottom Upgrade CTA -->
-        <div style="text-align: center; margin: 40px 0; padding: 30px; background: linear-gradient(135deg, rgba(26,0,51,0.8), rgba(139,92,246,0.6)); border-radius: 20px; border: 2px solid rgba(251,191,36,0.3);">
-            <h3 style="color: #fbbf24; font-size: 24px; margin-bottom: 15px;">🚀 Ready to Unlock Premium Features?</h3>
-            <p style="color: #c4b5fd; font-size: 16px; margin-bottom: 20px; line-height: 1.6;">
-                Get lifetime access to individual volume controls, custom durations, WAV export, background playback, and the achievement system.
-            </p>
-            <button onclick="showUpgradeModal()" style="background: linear-gradient(90deg, #fbbf24, #f59e0b); color: #1a0033; border: none; border-radius: 25px; padding: 15px 30px; font-size: 18px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 15px rgba(251,191,36,0.3);">
-                Upgrade to Premium
-            </button>
-            <p style="margin-top: 15px; font-size: 14px; color: #9ca3af;">
-                One-time payment • Lifetime access • No subscriptions
-            </p>
         </div>
     </div>
 
@@ -2763,92 +2104,46 @@
                     }
                     document.getElementById('addToHomeModal').style.display = 'none';
                 });
-        // Modal flow functions for first-time users
-        function showFrequencyBenefits() {
-            document.getElementById('immersiveWelcome').classList.remove('active');
-            document.getElementById('frequencyBenefitsModal').classList.add('active');
+        // Start immersive experience
+        function startImmersiveExperience() {
+            document.getElementById('immersiveWelcome').style.display = 'none';
+            localStorage.setItem('immersiveWelcomeShown', 'true');
+
+            // Gentle vibration
+            if ('vibrate' in navigator) {
+                navigator.vibrate([100, 50, 100]);
+            }
+
+            // Auto-play a gentle frequency after a moment
+            setTimeout(() => {
+                if (window.generator) {
+                    // Set to Trinity frequencies
+                    window.generator.elements.freq1.value = 37;
+                    window.generator.elements.freq2.value = 73;
+                    window.generator.elements.freq3.value = 0;
+                    window.generator.elements.volume1.value = 30;
+                    window.generator.elements.volume2.value = 30;
+                    window.generator.elements.volume3.value = 0;
+                    window.generator.elements.duration.value = '05:00';
+
+                    // Optional: Auto-play
+                    // window.generator.play();
+                }
+            }, 1000);
         }
 
-        function showHowToUse() {
-            document.getElementById('frequencyBenefitsModal').classList.remove('active');
-            document.getElementById('howToUseModal').classList.add('active');
-        }
+        // Show immersive welcome on first visit
+        document.addEventListener('DOMContentLoaded', function() {
+            if (localStorage.getItem('immersiveWelcomeShown') !== 'true') {
+                document.getElementById('immersiveWelcome').style.display = 'flex';
+            }
+        });
 
-        function showPWATip() {
-            document.getElementById('howToUseModal').classList.remove('active');
-            document.getElementById('pwaTipModal').classList.add('active');
+        // Show first-time modal only on first visit
+        function closeFirstTimeModal() {
+            document.getElementById('firstTimeModal').style.display = 'none';
+            localStorage.setItem('hideFirstTimeModal', 'true');
         }
-
-        function showUpgradeBenefits() {
-            console.log('showUpgradeBenefits() called - adding active class to upgrade modal');
-            // Hide any current modal
-            document.getElementById('pwaTipModal').classList.remove('active');
-            
-            // Mark onboarding as complete
-            localStorage.setItem('onboardingComplete', 'true');
-            
-            // Show upgrade benefits
-            document.getElementById('upgradeBenefitsModal').classList.add('active');
-        }
-
-        function skipToApp() {
-            // Hide all modals
-            document.getElementById('immersiveWelcome').classList.remove('active');
-            document.getElementById('frequencyBenefitsModal').classList.remove('active');
-            document.getElementById('howToUseModal').classList.remove('active');
-            document.getElementById('pwaTipModal').classList.remove('active');
-            document.getElementById('upgradeBenefitsModal').classList.remove('active');
-            
-            // Mark onboarding as complete
-            localStorage.setItem('onboardingComplete', 'true');
-        }
-
-        // Close upgrade benefits modal
-        function closeUpgradeBenefitsModal() {
-            document.getElementById('upgradeBenefitsModal').classList.remove('active');
-        }
-
-        // Debug function to force show upgrade modal (call forceShowUpgrade() in console)
-        window.forceShowUpgrade = function() {
-            document.getElementById('upgradeBenefitsModal').innerHTML = `
-                <div class="info-modal-content" style="max-width:420px; text-align: center;">
-                    <div class="info-modal-header" style="color: #fbbf24; font-size: 28px; margin-bottom: 20px;">Premium Features</div>
-                    <div class="info-modal-body" style="color: #fff; font-size: 16px; line-height: 1.6;">
-                        <div style="text-align: left; margin-bottom: 20px;">
-                            <div style="margin-bottom: 15px;">
-                                <h3 style="color: #c4b5fd; margin-bottom: 8px;">🎚️ Individual Volume Controls</h3>
-                                <p>Adjust each of the 3 frequencies separately for perfect harmonic balance.</p>
-                            </div>
-                            <div style="margin-bottom: 15px;">
-                                <h3 style="color: #c4b5fd; margin-bottom: 8px;">⏰ Custom Durations</h3>
-                                <p>Set any session length from 1 minute to hours of continuous playback.</p>
-                            </div>
-                            <div style="margin-bottom: 15px;">
-                                <h3 style="color: #c4b5fd; margin-bottom: 8px;">🏆 Achievement System</h3>
-                                <p>Track your progress, unlock achievements, and log your sacred sessions.</p>
-                            </div>
-                            <div style="margin-bottom: 15px;">
-                                <h3 style="color: #c4b5fd; margin-bottom: 8px;">🔊 Background Playback</h3>
-                                <p>Continue your frequency sessions while using other apps.</p>
-                            </div>
-                            <div style="margin-bottom: 15px;">
-                                <h3 style="color: #c4b5fd; margin-bottom: 8px;">💾 Export & Save</h3>
-                                <p>Save your frequency combinations as WAV files for offline use.</p>
-                            </div>
-                        </div>
-                        <div style="background: rgba(251,191,36,0.1); padding: 15px; border-radius: 12px; margin-bottom: 20px; border: 1px solid rgba(251,191,36,0.3);">
-                            <p style="font-size: 18px; color: #fbbf24; font-weight: 600; margin-bottom: 8px;">🌟 Lifetime Access - One Time Payment</p>
-                            <p style="font-size: 14px; color: #d1d5db;">No subscriptions, no recurring fees. Unlock everything forever.</p>
-                        </div>
-                        <div style="display: flex; gap: 15px; justify-content: center; margin-top: 20px;">
-                            <button onclick="showUpgradeModal()" style="background: linear-gradient(90deg, #fbbf24, #f59e0b); color: #1a0033; border: none; border-radius: 25px; padding: 15px 30px; font-size: 18px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 15px rgba(251,191,36,0.3);">Upgrade Now</button>
-                            <button onclick="closeUpgradeBenefitsModal()" style="background: rgba(26,0,51,0.7); color: #c4b5fd; border: none; border-radius: 25px; padding: 15px 30px; font-size: 16px; font-weight: 600; cursor: pointer;">Maybe Later</button>
-                        </div>
-                    </div>
-                </div>
-            `;
-            document.getElementById('upgradeBenefitsModal').classList.add('active');
-        };
 
         // Freemium upgrade functions
         function showUpgradeModal() {
@@ -2858,6 +2153,106 @@
         function closeUpgradeModal() {
             document.getElementById('upgradeModal').style.display = 'none';
         }
+
+        // Premium access password functions
+        function checkPremiumPassword() {
+            const password = document.getElementById('premiumPassword').value;
+            if (password === '2701') {
+                document.getElementById('premiumAccessSection').style.display = 'none';
+                document.getElementById('premiumWelcomeSection').style.display = 'block';
+            } else {
+                alert('Incorrect premium access code. Hint: The numerical value of Genesis 1:1 in Hebrew gematria');
+                document.getElementById('premiumPassword').value = '';
+            }
+        }
+
+        function showPersonalPasswordSection() {
+            document.getElementById('premiumWelcomeSection').style.display = 'none';
+            document.getElementById('personalPasswordSection').style.display = 'block';
+        }
+
+        function setPersonalPassword() {
+            const password = document.getElementById('personalPassword').value;
+            const confirmPassword = document.getElementById('confirmPersonalPassword').value;
+            
+            if (password.length < 4) {
+                alert('Personal password must be at least 4 characters long');
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match. Please try again.');
+                document.getElementById('personalPassword').value = '';
+                document.getElementById('confirmPersonalPassword').value = '';
+                return;
+            }
+            
+            // Store the personal password
+            localStorage.setItem('personalSacredPassword', btoa(password)); // Base64 encode for basic obfuscation
+            localStorage.setItem('premiumAccessGranted', 'true');
+            
+            document.getElementById('personalPasswordSection').style.display = 'none';
+            document.getElementById('welcomeContentSection').style.display = 'block';
+        }
+
+        function checkPersonalPassword() {
+            const storedPassword = localStorage.getItem('personalSacredPassword');
+            if (!storedPassword) return false;
+            
+            const password = prompt('Enter your personal sacred password:');
+            if (!password) return false;
+            
+            return btoa(password) === storedPassword;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if premium access has been granted
+            const premiumGranted = localStorage.getItem('premiumAccessGranted') === 'true';
+            const personalPassword = localStorage.getItem('personalSacredPassword');
+            
+            if (premiumGranted && personalPassword) {
+                // Check personal password
+                if (checkPersonalPassword()) {
+                    document.getElementById('firstTimeModal').style.display = 'none';
+                } else {
+                    // Wrong personal password - reset to premium access
+                    localStorage.removeItem('premiumAccessGranted');
+                    localStorage.removeItem('personalSacredPassword');
+                    document.getElementById('firstTimeModal').style.display = 'flex';
+                    document.getElementById('premiumAccessSection').style.display = 'block';
+                    document.getElementById('premiumWelcomeSection').style.display = 'none';
+                    document.getElementById('personalPasswordSection').style.display = 'none';
+                    document.getElementById('welcomeContentSection').style.display = 'none';
+                }
+            } else if (localStorage.getItem('hideFirstTimeModal') === 'true') {
+                document.getElementById('firstTimeModal').style.display = 'none';
+            } else {
+                document.getElementById('firstTimeModal').style.display = 'flex';
+                document.getElementById('premiumAccessSection').style.display = 'block';
+                document.getElementById('premiumWelcomeSection').style.display = 'none';
+                document.getElementById('personalPasswordSection').style.display = 'none';
+                document.getElementById('welcomeContentSection').style.display = 'none';
+            }
+
+            // Add Enter key support for password inputs
+            document.getElementById('premiumPassword').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    checkPremiumPassword();
+                }
+            });
+            
+            document.getElementById('personalPassword').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    document.getElementById('confirmPersonalPassword').focus();
+                }
+            });
+            
+            document.getElementById('confirmPersonalPassword').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    setPersonalPassword();
+                }
+            });
+        });
         const translations = {
             en: {
                 hebrewTranslation: "In the beginning God created the heavens and the earth",
@@ -4019,7 +3414,7 @@
             {
                 id: 'welcome',
                 icon: '🌟',
-                title: 'Welcome to Genesis Frequencies',
+                title: '🌟 Welcome to Genesis Frequencies 🌟',
                 content: `
                     <div style="text-align:center;line-height:1.8;">
                         <p style="font-size:18px;color:#fbbf24;margin-bottom:20px;">
@@ -4033,19 +3428,19 @@
                             <div style="font-size:24px;color:#fbbf24;margin-bottom:10px;">
                                 <b>37 × 73 = 2701</b>
                             </div>
-                            <div style="font-size:16px;color:#ffffff;">
+                            <div style="font-size:16px;color:#c4b5fd;">
                                 Genesis 1:1 in Hebrew = 2701
                             </div>
                         </div>
-                        <p style="color:#ffffff;margin-bottom:15px;">
+                        <p style="color:#a78bfa;margin-bottom:15px;">
                             The frequencies of creation, encoded in the Bible's first verse<br>
                             for thousands of years.
                         </p>
                         <p style="font-size:18px;color:#fbbf24;">
                             <em>Now in your hands.</em>
                         </p>
-                        <p style="margin-top:20px;font-size:16px;color:#ffffff;">
-                            <b>Embark on your sacred frequency journey</b><br>
+                        <p style="margin-top:20px;font-size:16px;color:#c4b5fd;">
+                            🌟 <b>Embark on your sacred frequency journey</b> 🌟<br>
                             Discover the divine mathematics that shaped reality itself
                         </p>
                     </div>
@@ -4054,7 +3449,7 @@
             {
                 id: 'myJourney',
                 icon: '📖',
-                title: 'The Discovery',
+                title: '🌟 The Discovery 🌟',
                 content: `
                     <div style="line-height:1.8;text-align:center;">
                         <h4 style="color:#fbbf24;margin-top:25px;margin-bottom:12px;">🔢 The Number: 3773</h4>
@@ -4064,7 +3459,7 @@
                             of numbers—this pattern revealed itself. I didn't know what it meant, but I knew 
                             it was significant.
                         </p>
-                        <p style="color:#ffffff;font-style:italic;">
+                        <p style="color:#a78bfa;font-style:italic;">
                             This number became an anchor. A code. A key to something waiting to be unlocked.
                         </p>
                     </div>
@@ -4073,7 +3468,7 @@
             {
                 id: 'whyWorks',
                 icon: '💡',
-                title: 'Why 37 & 73 Hz?',
+                title: '🌟 Why 37 & 73 Hz? 🌟',
                     content: `
                         <div style="line-height:1.8;text-align:center;">
                             <h4 style="color:#fbbf24;">The Genesis Frequencies</h4>
@@ -4087,7 +3482,7 @@
                                 They align your mind and body with the original blueprint of creation, supporting healing, clarity, and spiritual awakening.
                             </p>
                             <div style="margin:18px 0;padding:12px;background:rgba(139,92,246,0.08);border-radius:10px;">
-                                <b style="color:#fbbf24;">Experience profound transformation:</b>
+                                <b style="color:#fbbf24;">🌟 Experience profound transformation:</b>
                                 <ul style="text-align:left;margin:10px auto 0 auto;max-width:400px;">
                                     <li>🔮 <b>Restore balance and harmony</b> - Feel the divine equilibrium</li>
                                     <li>💚 <b>Activate deep healing</b> - Cellular regeneration at the quantum level</li>
@@ -4095,7 +3490,7 @@
                                     <li>🌌 <b>Connect with higher consciousness</b> - Elevate your spiritual awareness</li>
                                 </ul>
                             </div>
-                            <p style="color:#ffffff;font-style:italic;margin-top:15px;">
+                            <p style="color:#a78bfa;font-style:italic;margin-top:15px;">
                                 "These aren't just sounds... they're the language of creation itself."
                             </p>
                         </div>
@@ -4104,38 +3499,38 @@
             {
                 id: 'categories',
                 icon: '📂',
-                title: 'Categories & Tracks',
+                title: '🌟 Categories & Tracks 🌟',
                     content: `
                         <div style="line-height:1.8;text-align:center;">
-                            <h4 style="color:#fbbf24;">Explore Frequency Categories</h4>
+                            <h4 style="color:#fbbf24;">🌟 Explore Frequency Categories 🌟</h4>
                             <p style="font-size:18px;color:#fbbf24;margin-bottom:20px;">
                                 <b>Each category is a doorway to transformation</b>
                             </p>
                             <p>
                                 From deep healing to peak performance, discover frequencies designed for specific purposes.<br>
-                                <span style="color:#ffffff;">Select a category to view available tracks and their benefits.</span>
+                                <span style="color:#a78bfa;">Select a category to view available tracks and their benefits.</span>
                             </p>
                             <div style="margin:25px 0;padding:20px;background:linear-gradient(135deg, rgba(139,92,246,0.1), rgba(251,191,36,0.1));border-radius:15px;">
                                 <ul style="text-align:left;max-width:450px;margin:0 auto;list-style:none;padding:0;">
                                     <li style="margin-bottom:15px;padding:10px;border-radius:8px;background:rgba(255,255,255,0.05);">
                                         <b style="color:#fbbf24;">🔺 Trinity Foundation</b><br>
-                                        <span style="color:#ffffff;font-size:14px;">Core creation frequencies (37, 73, 2701 Hz) - The foundation of all</span>
+                                        <span style="color:#c4b5fd;font-size:14px;">Core creation frequencies (37, 73, 2701 Hz) - The foundation of all</span>
                                     </li>
                                     <li style="margin-bottom:15px;padding:10px;border-radius:8px;background:rgba(255,255,255,0.05);">
                                         <b style="color:#fbbf24;">💚 Healing</b><br>
-                                        <span style="color:#ffffff;font-size:14px;">DNA repair, cellular regeneration, miracle tone (528 Hz) - Restore vitality</span>
+                                        <span style="color:#c4b5fd;font-size:14px;">DNA repair, cellular regeneration, miracle tone (528 Hz) - Restore vitality</span>
                                     </li>
                                     <li style="margin-bottom:15px;padding:10px;border-radius:8px;background:rgba(255,255,255,0.05);">
                                         <b style="color:#fbbf24;">🧠 Focus & Learning</b><br>
-                                        <span style="color:#ffffff;font-size:14px;">Memory, study, mental clarity (20.3 Hz) - Unlock your mind's potential</span>
+                                        <span style="color:#c4b5fd;font-size:14px;">Memory, study, mental clarity (20.3 Hz) - Unlock your mind's potential</span>
                                     </li>
                                     <li style="margin-bottom:15px;padding:10px;border-radius:8px;background:rgba(255,255,255,0.05);">
                                         <b style="color:#fbbf24;">⚡ Energy & Activation</b><br>
-                                        <span style="color:#ffffff;font-size:14px;">Motivation, vitality, spiritual awakening - Ignite your inner fire</span>
+                                        <span style="color:#c4b5fd;font-size:14px;">Motivation, vitality, spiritual awakening - Ignite your inner fire</span>
                                     </li>
                                     <li style="padding:10px;border-radius:8px;background:rgba(255,255,255,0.05);">
                                         <b style="color:#fbbf24;">😴 Sleep & Recovery</b><br>
-                                        <span style="color:#ffffff;font-size:14px;">Deep rest, rejuvenation, stress relief - Sacred restoration</span>
+                                        <span style="color:#c4b5fd;font-size:14px;">Deep rest, rejuvenation, stress relief - Sacred restoration</span>
                                     </li>
                                 </ul>
                             </div>
@@ -4145,7 +3540,7 @@
             {
                 id: 'trinity',
                 icon: '🔺',
-                title: 'The Trinity Foundation',
+                title: '🌟 The Trinity Foundation 🌟',
                     content: `
                         <div style="line-height:1.8;text-align:center;">
                             <h4 style="color:#fbbf24;">Trinity Frequencies</h4>
@@ -4164,7 +3559,7 @@
             {
                 id: 'waterCharging',
                 icon: '💧',
-                title: 'Quantum Holy Water',
+                title: '🌟 Quantum Holy Water 🌟',
                     content: `
                         <div style="line-height:1.8;text-align:center;">
                             <h4 style="color:#fbbf24;">Charging Water with Frequencies</h4>
@@ -4173,16 +3568,17 @@
                                 Play Genesis frequencies near a glass of water for 10-20 minutes.<br>
                                 Drink mindfully to absorb the encoded energy.
                             </p>
-                            <p style="color:#ffffff;">Tip: Use spring or filtered water for best results.</p>
+                            <p style="color:#a78bfa;">Tip: Use spring or filtered water for best results.</p>
                         </div>
                     `
             },
             {
                 id: 'progress',
                 icon: '📊',
-                title: 'Your Journey & Achievements',
+                title: '🌟 Your Journey & Achievements 🌟',
                     content: `
-                        <div style="line-height:1.8;text-align:center; position: relative;" class="premium-lock" onclick="showUpgradeModal()">
+                        <div style="line-height:1.8;text-align:center; position: relative;">
+                            <div class="premium-overlay" onclick="showUpgradeModal()"></div>
                             <h4 style="color:#fbbf24;">Track Your Progress</h4>
                             <p>
                                 Use the app’s built-in tracker to log your sessions and milestones.<br>
@@ -4210,27 +3606,27 @@
                                 <ul style="text-align:left;max-width:450px;margin:0 auto;list-style:none;padding:0;">
                                     <li style="margin-bottom:15px;padding:12px;border-radius:10px;background:rgba(255,255,255,0.05);">
                                         <b style="color:#fbbf24;">🎧 Headphones</b><br>
-                                        <span style="color:#ffffff;">Use quality headphones for deeper immersion into the sacred vibrations</span>
+                                        <span style="color:#c4b5fd;">Use quality headphones for deeper immersion into the sacred vibrations</span>
                                     </li>
                                     <li style="margin-bottom:15px;padding:12px;border-radius:10px;background:rgba(255,255,255,0.05);">
                                         <b style="color:#fbbf24;">💭 Set Intentions</b><br>
-                                        <span style="color:#ffffff;">Begin each session with a clear intention - what transformation do you seek?</span>
+                                        <span style="color:#c4b5fd;">Begin each session with a clear intention - what transformation do you seek?</span>
                                     </li>
                                     <li style="margin-bottom:15px;padding:12px;border-radius:10px;background:rgba(255,255,255,0.05);">
                                         <b style="color:#fbbf24;">💧 Stay Hydrated</b><br>
-                                        <span style="color:#ffffff;">Water amplifies frequency effects - drink mindfully before and after</span>
+                                        <span style="color:#c4b5fd;">Water amplifies frequency effects - drink mindfully before and after</span>
                                     </li>
                                     <li style="margin-bottom:15px;padding:12px;border-radius:10px;background:rgba(255,255,255,0.05);">
                                         <b style="color:#fbbf24;">📓 Journal Your Journey</b><br>
-                                        <span style="color:#ffffff;">Record your experiences, insights, and subtle shifts in awareness</span>
+                                        <span style="color:#c4b5fd;">Record your experiences, insights, and subtle shifts in awareness</span>
                                     </li>
                                     <li style="padding:12px;border-radius:10px;background:rgba(255,255,255,0.05);">
                                         <b style="color:#fbbf24;">🔄 Daily Consistency</b><br>
-                                        <span style="color:#ffffff;">Like prayer or meditation, consistency unlocks profound transformation</span>
+                                        <span style="color:#c4b5fd;">Like prayer or meditation, consistency unlocks profound transformation</span>
                                     </li>
                                 </ul>
                             </div>
-                            <p style="color:#ffffff;font-style:italic;margin-top:20px;">
+                            <p style="color:#a78bfa;font-style:italic;margin-top:20px;">
                                 "The frequencies work best when approached with reverence and presence."
                             </p>
                         </div>
@@ -4267,7 +3663,7 @@
                             <p>
                                 Connect with fellow seekers on their Genesis journey.<br>
                                 Share your transformation stories, insights, and miraculous results.<br>
-                                <span style="color:#ffffff;">Together we amplify the divine frequencies.</span>
+                                <span style="color:#a78bfa;">Together we amplify the divine frequencies.</span>
                             </p>
                             <div style="margin:25px 0;padding:20px;background:linear-gradient(135deg, rgba(139,92,246,0.1), rgba(251,191,36,0.1));border-radius:15px;">
                                 <p style="color:#fbbf24;font-weight:600;margin-bottom:15px;">📱 Share Your Experience</p>
@@ -4278,7 +3674,7 @@
                                     <li>• Create content about your journey</li>
                                 </ul>
                             </div>
-                            <p style="color:#ffffff;font-style:italic;">
+                            <p style="color:#c4b5fd;font-style:italic;">
                                 "When we share our light, we illuminate the path for others."
                             </p>
                         </div>
@@ -4314,23 +3710,14 @@
 
         // Load progress from localStorage
         function loadProgress() {
-            try {
-                const STORAGE_VERSION = 1;
-                const saved = localStorage.getItem('genesisProgress');
-                if (saved) {
-                    const loaded = JSON.parse(saved);
-                    // Validate and add version if missing
-                    if (!loaded.version) {
-                        loaded.version = STORAGE_VERSION;
-                    }
-                    userProgress = {
-                        ...userProgress,
-                        ...loaded,
-                        actions: new Set(loaded.actions || []) // Convert Array back to Set
-                    };
-                }
-            } catch (e) {
-                console.error('Error loading progress, using defaults:', e);
+            const saved = localStorage.getItem('genesisProgress');
+            if (saved) {
+                const loaded = JSON.parse(saved);
+                userProgress = {
+                    ...userProgress,
+                    ...loaded,
+                    actions: new Set(loaded.actions || []) // Convert Array back to Set
+                };
             }
         }
 
@@ -4644,8 +4031,9 @@
                 panel.className = 'accordion-panel';
                 panel.innerHTML = `
                     <div class="accordion-header" style="display:flex;align-items:center;justify-content:center;cursor:pointer;padding:12px 0;">
-                        <span style="font-size:20px;margin-right:8px;">${section.icon}</span>
-                        <span style="font-size:16px;font-weight:700;color:#fbbf24;">${section.title}</span>
+                        <span style="font-size:22px;margin-right:10px;">${section.icon}</span>
+                        <span style="font-size:18px;font-weight:700;color:#fbbf24;">${section.title}</span>
+                        <span class="accordion-arrow" style="margin-left:10px;font-size:18px;color:#c4b5fd;">▼</span>
                     </div>
                     <div class="accordion-content" style="display:none;padding:16px 0 0 0;text-align:center;color:#fff;">${section.content}</div>
                 `;
@@ -4655,8 +4043,10 @@
                 header.addEventListener('click', () => {
                     const expanded = content.style.display === 'block';
                     document.querySelectorAll('.accordion-content').forEach(c => c.style.display = 'none');
+                    document.querySelectorAll('.accordion-arrow').forEach(a => a.textContent = '▼');
                     if (!expanded) {
                         content.style.display = 'block';
+                        header.querySelector('.accordion-arrow').textContent = '▲';
                     }
                 });
                 accordion.appendChild(panel);
@@ -4692,10 +4082,7 @@
             const body = document.getElementById('modalBody');
             
             title.textContent = recipe.name;
-            freqs.textContent = `${recipe.frequencies.join(' Hz + ')} Hz`;
-            
-            // Prevent body scroll when modal opens
-            document.body.style.overflow = 'hidden';
+            freqs.textContent = `🎵 ${recipe.frequencies.join(' Hz + ')} Hz`;
             
             if (recipe.fullInfo) {
                 body.innerHTML = `
@@ -4718,8 +4105,6 @@
         function closeInfoModal() {
             const modal = document.getElementById('infoModal');
             modal.classList.remove('active');
-            // Restore body scroll
-            document.body.style.overflow = '';
         }
         
         // Close modal when clicking outside
@@ -4727,25 +4112,6 @@
             const modal = document.getElementById('infoModal');
             if (e.target === modal) {
                 closeInfoModal();
-            }
-        });
-
-        // Close modal with ESC key for accessibility
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' || e.keyCode === 27) {
-                const infoModal = document.getElementById('infoModal');
-                const upgradeModal = document.getElementById('upgradeModal');
-                const immersiveWelcome = document.getElementById('immersiveWelcome');
-                
-                if (infoModal && infoModal.classList.contains('active')) {
-                    closeInfoModal();
-                }
-                if (upgradeModal && upgradeModal.style.display === 'flex') {
-                    closeUpgradeModal();
-                }
-                if (immersiveWelcome && immersiveWelcome.classList.contains('active')) {
-                    skipToApp();
-                }
             }
         });
 
@@ -4853,7 +4219,7 @@
                         recipeElement.innerHTML = `
                             <div class="recipe-info">
                                 <div class="recipe-name" data-translate="track${recipe.name.replace(/[^a-zA-Z0-9]/g, '').replace(/\s+/g, '')}">${recipe.name}</div>
-                                <div class="recipe-freqs">${recipe.frequencies.join(' Hz + ')} Hz</div>
+                                <div class="recipe-freqs">🎵 ${recipe.frequencies.join(' Hz + ')} Hz</div>
                             </div>
                             <div class="recipe-buttons">
                                 <button class="track-btn play-btn" title="Play this track">▶</button>
@@ -5171,9 +4537,7 @@
                         gain.gain.cancelScheduledValues(currentTime);
                         gain.gain.setValueAtTime(gain.gain.value, currentTime);
                         gain.gain.linearRampToValueAtTime(0, currentTime + fadeOutTime);
-                    } catch (e) {
-                        console.warn('Error during fade out:', e);
-                    }
+                    } catch (e) {}
                 });
                 
                 // Stop oscillators after fade out
@@ -5182,17 +4546,13 @@
                         try {
                             osc.stop();
                             osc.disconnect();
-                        } catch (e) {
-                            console.warn('Error stopping oscillator:', e);
-                        }
+                        } catch (e) {}
                     });
                     
                     this.gainNodes.forEach(gain => {
                         try {
                             gain.disconnect();
-                        } catch (e) {
-                            console.warn('Error disconnecting gain node:', e);
-                        }
+                        } catch (e) {}
                     });
                     
                     this.oscillators = [];
@@ -5422,245 +4782,10 @@
             }
         }
 
-        // Homescreen PWA Prompt System
-        let deferredPrompt;
-        let pwaPromptShown = false;
-
-        function initializePWAPrompt() {
-            // Check if already installed
-            if (window.matchMedia('(display-mode: standalone)').matches || 
-                window.navigator.standalone === true) {
-                trackAction('pwa'); // Mark as completed if already installed
-                hideHomescreenButton();
-                return;
-            }
-
-            // Listen for the beforeinstallprompt event
-            window.addEventListener('beforeinstallprompt', (e) => {
-                e.preventDefault();
-                deferredPrompt = e;
-                
-                // Show prompt after some usage (3 sessions)
-                if (userProgress.totalSessions >= 3 && !pwaPromptShown) {
-                    setTimeout(() => showPWAPrompt(), 2000);
-                }
-            });
-
-            // Listen for successful installation
-            window.addEventListener('appinstalled', () => {
-                trackAction('pwa');
-                hidePWAPrompt();
-                hideHomescreenButton();
-                showToast('🎉 App added to home screen! Achievement unlocked!', 'success');
-            });
-        }
-
-        function hideHomescreenButton() {
-            const btn = document.getElementById('homescreenBtn');
-            if (btn) btn.style.display = 'none';
-        }
-
-        function showPWAPrompt() {
-            if (pwaPromptShown) return;
-            pwaPromptShown = true;
-
-            const prompt = document.createElement('div');
-            prompt.id = 'pwaPrompt';
-            prompt.innerHTML = `
-                <div style="position: fixed; bottom: 20px; left: 20px; right: 20px; 
-                           background: linear-gradient(135deg, rgba(251,191,36,0.95), rgba(139,92,246,0.9)); 
-                           border: 2px solid rgba(251,191,36,0.5); border-radius: 15px; 
-                           padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); 
-                           z-index: 1000; text-align: center; backdrop-filter: blur(10px);">
-                    <div style="color: #1a0033; font-size: 18px; font-weight: 700; margin-bottom: 10px;">
-                        📱 Unlock Achievement: Add to Home Screen!
-                    </div>
-                    <div style="color: #1a0033; font-size: 14px; margin-bottom: 15px; line-height: 1.4;">
-                        Get the full PWA experience and unlock the "Home Screen Hero" achievement! 
-                        Access frequencies instantly and track your progress offline.
-                    </div>
-                    <div style="display: flex; gap: 10px; justify-content: center;">
-                        <button onclick="installPWA()" style="background: #1a0033; color: #fbbf24; 
-                                 border: none; border-radius: 25px; padding: 10px 20px; 
-                                 font-weight: 600; cursor: pointer;">
-                            🚀 Add to Home Screen
-                        </button>
-                        <button onclick="hidePWAPrompt()" style="background: rgba(26,0,51,0.7); 
-                                 color: #c4b5fd; border: none; border-radius: 25px; 
-                                 padding: 10px 20px; font-weight: 600; cursor: pointer;">
-                            Maybe Later
-                        </button>
-                    </div>
-                </div>
-            `;
-            document.body.appendChild(prompt);
-        }
-
-        function hidePWAPrompt() {
-            const prompt = document.getElementById('pwaPrompt');
-            if (prompt) prompt.remove();
-        }
-
-        async function installPWA() {
-            if (!deferredPrompt) return;
-            
-            deferredPrompt.prompt();
-            const { outcome } = await deferredPrompt.userChoice;
-            
-            if (outcome === 'accepted') {
-                trackAction('pwa');
-                showToast('🎉 App added to home screen! Achievement unlocked!', 'success');
-            }
-            
-            deferredPrompt = null;
-            hidePWAPrompt();
-        }
-
-        // Subtle Notification System
-        let notificationInterval;
-        let lastNotificationTime = 0;
-
-        function initializeNotifications() {
-            // Check if notifications are already granted
-            if (Notification.permission === 'granted') {
-                startNotificationSchedule();
-                return;
-            }
-
-            // Request permission on first significant usage (2 sessions)
-            if (userProgress.totalSessions >= 2 && Notification.permission === 'default') {
-                setTimeout(() => requestNotificationPermission(), 3000);
-            }
-        }
-
-        function requestNotificationPermission() {
-            if ('Notification' in window) {
-                Notification.requestPermission().then(permission => {
-                    if (permission === 'granted') {
-                        showToast('🔔 Notifications enabled! You\'ll receive gentle reminders.', 'info');
-                        startNotificationSchedule();
-                    }
-                });
-            }
-        }
-
-        function startNotificationSchedule() {
-            // Send notifications every 2-4 days, but only if user hasn't used app recently
-            notificationInterval = setInterval(() => {
-                const now = Date.now();
-                const daysSinceLastUse = (now - new Date(userProgress.lastSession || 0)) / (1000 * 60 * 60 * 24);
-                
-                // Only notify if it's been 2+ days since last use
-                if (daysSinceLastUse >= 2 && (now - lastNotificationTime) > (1000 * 60 * 60 * 24 * 2)) {
-                    sendGentleNotification();
-                }
-            }, 1000 * 60 * 60 * 6); // Check every 6 hours
-        }
-
-        function sendGentleNotification() {
-            if (Notification.permission !== 'granted') return;
-
-            const messages = [
-                {
-                    title: '🌟 Your frequencies are waiting',
-                    body: 'Take a moment to connect with the sacred vibrations of Genesis.',
-                    icon: '/Genesis.png'
-                },
-                {
-                    title: '💚 How are you feeling today?',
-                    body: 'A short frequency session can help center your energy.',
-                    icon: '/Genesis.png'
-                },
-                {
-                    title: '🔮 Continue your journey',
-                    body: 'Each session brings you closer to harmonic balance.',
-                    icon: '/Genesis.png'
-                },
-                {
-                    title: '✨ Ready for unlimited access?',
-                    body: 'Upgrade to premium for custom durations and all features.',
-                    icon: '/Genesis.png'
-                },
-                {
-                    title: '🎵 Sacred frequencies calling',
-                    body: 'Your daily practice awaits. Just 5-10 minutes of peace.',
-                    icon: '/Genesis.png'
-                }
-            ];
-
-            const message = messages[Math.floor(Math.random() * messages.length)];
-            
-            const notification = new Notification(message.title, {
-                body: message.body,
-                icon: message.icon,
-                badge: '/Genesis.png',
-                tag: 'genesis-reminder', // Prevents spam if multiple
-                requireInteraction: false,
-                silent: true // Gentle, not disruptive
-            });
-
-            lastNotificationTime = Date.now();
-
-            // Auto-close after 10 seconds
-            setTimeout(() => notification.close(), 10000);
-
-            // Click handler to open app
-            notification.onclick = () => {
-                window.focus();
-                notification.close();
-            };
-        }
-
-        // Toast notification system for in-app messages
-        function showToast(message, type = 'info') {
-            const toast = document.createElement('div');
-            toast.style.cssText = `
-                position: fixed; top: 20px; right: 20px; 
-                background: ${type === 'success' ? 'rgba(34,197,94,0.9)' : 
-                           type === 'error' ? 'rgba(239,68,68,0.9)' : 'rgba(251,191,36,0.9)'}; 
-                color: white; padding: 15px 20px; border-radius: 10px; 
-                box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 10000; 
-                font-weight: 600; max-width: 300px; backdrop-filter: blur(10px);
-            `;
-            toast.textContent = message;
-            document.body.appendChild(toast);
-
-            setTimeout(() => {
-                toast.style.transition = 'opacity 0.5s';
-                toast.style.opacity = '0';
-                setTimeout(() => toast.remove(), 500);
-            }, 3000);
-        }
-
-        // Make functions globally available
-        window.installPWA = installPWA;
-        window.showPWAPrompt = showPWAPrompt;
-        window.hidePWAPrompt = hidePWAPrompt;
-        window.requestNotificationPermission = requestNotificationPermission;
-        window.showToast = showToast;
-
 
 // Initialize generator when page loads
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize the frequency generator first
     window.generator = new FrequencyGenerator();
-    
-    // Cleanup on page unload to prevent memory leaks
-    window.addEventListener('beforeunload', function() {
-        if (window.generator && window.generator.isPlaying) {
-            window.generator.stop();
-        }
-        // Clear any notification intervals
-        if (typeof notificationInterval !== 'undefined' && notificationInterval) {
-            clearInterval(notificationInterval);
-        }
-        // Remove visibility change listeners
-        if (typeof handleVisibilityChange !== 'undefined') {
-            document.removeEventListener('visibilitychange', handleVisibilityChange);
-        }
-    });
-    
-    // Update progress section if available
     if (typeof instructionsSections !== 'undefined') {
         updateProgressSection(); // Update progress section with loaded data
     }
@@ -5673,7 +4798,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Register Service Worker for PWA functionality
     if ('serviceWorker' in navigator && (location.protocol === 'http:' || location.protocol === 'https:')) {
-        navigator.serviceWorker.register('/Frequency-Generator/sw.js', { scope: '/Frequency-Generator/' })
+        navigator.serviceWorker.register('/sw.js')
             .then(registration => {
                 console.log('Service Worker registered:', registration);
             })
@@ -5681,58 +4806,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log('Service Worker registration failed:', error);
             });
     }
-
-    // Initialize homescreen and notification features
-    initializePWAPrompt();
-    initializeNotifications();
-
-    // Show immersive welcome on first visit, welcome back toast for return visits
-    console.log('DOMContentLoaded fired - checking localStorage immediately');
-    console.log('Raw localStorage onboardingComplete:', localStorage.getItem('onboardingComplete'));
-    console.log('All localStorage keys:', Object.keys(localStorage));
-    
-    // Check for test parameter to force clean state
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.has('test')) {
-        console.log('Test parameter detected - forcing clean localStorage state');
-        localStorage.clear();
-    }
-    
-    const onboardingComplete = localStorage.getItem('onboardingComplete') === 'true';
-    console.log('Modal initialization - onboardingComplete:', onboardingComplete);
-    
-    // Debug: Check if modal element exists
-    const welcomeModal = document.getElementById('immersiveWelcome');
-    console.log('Welcome modal element:', welcomeModal);
-    
-    if (!onboardingComplete) {
-        // First time user - show welcome sequence
-        console.log('New user - showing welcome modal');
-        document.getElementById('upgradeBenefitsModal').classList.remove('active'); // Ensure upgrade modal is hidden
-        
-        // Add active class and verify
-        welcomeModal.classList.add('active');
-        console.log('Added active class, modal classes:', welcomeModal.className);
-        console.log('Modal computed style display:', window.getComputedStyle(welcomeModal).display);
-    } else {
-        // Returning user - show welcome back toast after a brief delay
-        console.log('Returning user - showing welcome toast');
-        setTimeout(() => {
-            showToast('Welcome back! Ready to explore sacred frequencies? 🌟');
-        }, 1000);
-    }
-
-    // Debug check after initialization
-    setTimeout(() => {
-        console.log('Modal state check:');
-        const welcomeModal = document.getElementById('immersiveWelcome');
-        const upgradeModal = document.getElementById('upgradeBenefitsModal');
-        console.log('- immersiveWelcome exists:', !!welcomeModal);
-        console.log('- immersiveWelcome active:', welcomeModal ? welcomeModal.classList.contains('active') : 'N/A');
-        console.log('- immersiveWelcome display:', welcomeModal ? window.getComputedStyle(welcomeModal).display : 'N/A');
-        console.log('- upgradeBenefitsModal active:', upgradeModal ? upgradeModal.classList.contains('active') : 'N/A');
-        console.log('- onboardingComplete in localStorage:', localStorage.getItem('onboardingComplete'));
-    }, 200);
 });
 </script>
 </body>

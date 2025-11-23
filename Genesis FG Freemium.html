@@ -280,11 +280,17 @@
         }
 
         @media (max-width: 480px) {
+            body {
+                padding: 4px;
+                overflow-x: hidden;
+            }
+
             .container {
                 padding: 8px;
                 border-radius: 12px;
                 width: 100%;
                 max-width: 100%;
+                overflow-x: hidden;
             }
 
             .section {
@@ -302,9 +308,22 @@
             }
 
             .control-group {
-                padding: 8px 6px;
+                padding: 8px 4px;
                 width: 100%;
                 max-width: 100%;
+                box-sizing: border-box;
+            }
+
+            .control-group > div {
+                gap: 4px !important;
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .control-group input,
+            .control-group span {
+                max-width: 100%;
+                box-sizing: border-box;
             }
 
             input[type="number"],
@@ -358,6 +377,10 @@
                 font-size: 12px;
                 padding: 8px;
                 margin: 8px 0;
+            }
+
+            .range-value {
+                font-size: 11px;
             }
 
             .instructions-panel {

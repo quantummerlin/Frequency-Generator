@@ -323,16 +323,22 @@
                 gap: 0px !important;
                 width: 100%;
                 max-width: 100%;
+                display: flex;
+                align-items: center;
+                box-sizing: border-box;
             }
 
-            .control-group input,
-            .control-group span {
-                max-width: 100%;
+            .control-group input[type="number"] {
+                flex: 1 1 auto;
+                min-width: 0;
+                width: 100%;
                 box-sizing: border-box;
             }
 
             .control-group span {
-                min-width: 25px !important;
+                flex: 0 0 auto;
+                width: 30px;
+                text-align: right;
                 font-size: 12px !important;
             }
 
@@ -2290,110 +2296,89 @@
             }
         }
 
+        }
+
         /* Mobile slider and duration alignment fixes */
         /* General normalization for control groups on mobile */
-        .control-group {
-            box-sizing: border-box;
-            overflow: visible; /* content can breathe without clipping the thumb */
+        @media (max-width: 767px) {
+            .control-group {
+                box-sizing: border-box;
+                overflow: visible;
+            }
+
+            .control-group > div {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
+            }
+
+            .control-group input[type="number"] {
+                flex: 1 1 auto;
+                min-width: 0;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .control-group span {
+                flex: 0 0 auto;
+                width: 30px;
+                text-align: right;
+            }
+
+            .control-group input[type="range"] {
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
+                display: block;
+                margin: 8px 0;
+            }
+
+            .control-group::before {
+                pointer-events: none;
+            }
+
+            .duration-input-wrapper {
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
+            }
+
+            .duration-input-container {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
+            }
+
+            .duration-input-container input {
+                flex: 1 1 auto;
+                min-width: 0;
+                width: 100%;
+                box-sizing: border-box;
+            }
         }
 
-        /* Make the input row robust */
-        .control-group > div {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            width: 100%;
-            max-width: 100%;
-            box-sizing: border-box;
-        }
-
-        /* Frequency number input + unit */
-        .control-group input[type="number"] {
-            flex: 1 1 auto;
-            min-width: 0;            /* critical to prevent overflow in flex */
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        /* Unit span should not push layout */
-        .control-group span {
-            flex: 0 0 auto;
-            width: 30px;             /* keep as in your design */
-            text-align: right;
-        }
-
-        /* Range track sizing */
-        .control-group input[type="range"] {
-            width: 100%;
-            max-width: 100%;
-            box-sizing: border-box;
-            display: block;
-            margin: 8px 0;
-        }
-
-        /* Ensure the overlay (::before) never clips content visually */
-        .control-group::before {
-            pointer-events: none;
-        }
-
-        /* Duration block improvements */
-        .duration-input-wrapper {
-            width: 100%;
-            max-width: 100%;
-            box-sizing: border-box;
-        }
-
-        .duration-input-container {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            width: 100%;
-            max-width: 100%;
-            box-sizing: border-box;
-        }
-
-        .duration-input-container input {
-            flex: 1 1 auto;
-            min-width: 0;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        /* Buttons grid on very small devices */
         @media (max-width: 375px) {
             .duration-buttons {
                 display: grid;
                 grid-template-columns: repeat(2, minmax(0, 1fr));
                 gap: 6px;
             }
-        }
 
-        /* Prevent horizontal scrolling induced by inner elements */
-        .section, .controls, .frequency-controls {
-            width: 100%;
-            max-width: 100%;
-            overflow-x: hidden;
-            box-sizing: border-box;
-        }
-
-        /* Ensure frequency-controls grid collapses well */
-        @media (max-width: 480px) {
-            .frequency-controls {
-                display: grid;
-                grid-template-columns: 1fr; /* single column */
-                gap: 10px;
-            }
-        }
-
-        /* Optional visual polish */
-        @media (max-width: 375px) {
             .control-group {
                 padding: 8px;
                 border-radius: 10px;
             }
+
             .control-group::before {
                 background: rgba(26, 0, 51, 0.80);
             }
+
             .range-value {
                 font-size: 12px;
             }

@@ -1924,6 +1924,13 @@
             opacity: 0.7;
         }
 
+        .premium-lock input[type="number"],
+        .premium-lock input[type="range"],
+        .premium-lock button {
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
         .premium-lock::after {
             content: '🔒';
             position: absolute;
@@ -1933,6 +1940,13 @@
             color: #fbbf24;
             background: rgba(26, 0, 51, 0.8);
             border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
             width: 20px;
             height: 20px;
             display: flex;
@@ -3059,6 +3073,32 @@
 
         function closeUpgradeModal() {
             document.getElementById('upgradeModal').style.display = 'none';
+            // Update premium features in case user just upgraded
+            setTimeout(updatePremiumFeatures, 100);
+        }
+
+        // Function to enable/disable premium features based on access status
+        function updatePremiumFeatures() {
+            const isPremium = localStorage.getItem('premiumAccessGranted') === 'true';
+            const premiumLockedElements = document.querySelectorAll('.premium-lock input, .premium-lock button');
+            
+            premiumLockedElements.forEach(element => {
+                if (isPremium) {
+                    // Enable premium features
+                    element.style.pointerEvents = 'auto';
+                    element.style.opacity = '1';
+                    element.closest('.premium-lock').style.opacity = '1';
+                    // Remove lock icon
+                    element.closest('.premium-lock').style.position = 'relative';
+                    const lockIcon = element.closest('.premium-lock').querySelector('::after');
+                    if (lockIcon) lockIcon.style.display = 'none';
+                } else {
+                    // Disable premium features
+                    element.style.pointerEvents = 'none';
+                    element.style.opacity = '0.5';
+                    element.closest('.premium-lock').style.opacity = '0.7';
+                }
+            });
         }
         const translations = {
             en: {
@@ -5985,6 +6025,16 @@ document.addEventListener('DOMContentLoaded', function() {
             showToast('Welcome back! Ready to explore sacred frequencies? 🌟');
         }, 1000);
     }
+
+    // Handle premium-locked inputs
+    updatePremiumFeatures();
+
+    // Listen for storage changes (when premium access is granted)
+    window.addEventListener('storage', function(e) {
+        if (e.key === 'premiumAccessGranted') {
+            updatePremiumFeatures();
+        }
+    });
 
     // Debug check after initialization
     setTimeout(() => {

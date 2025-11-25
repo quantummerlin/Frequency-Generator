@@ -253,7 +253,6 @@
                 font-size: 16px;
                 padding: 12px 20px;
                 min-height: 48px;
-                flex: 1;
                 min-width: 120px;
             }
 
@@ -852,7 +851,7 @@
         .duration-buttons {
             display: flex;
             gap: 8px;
-            justify-content: center;
+            justify-content: flex-start;
         }
 
         .duration-btn {
@@ -1038,11 +1037,11 @@
         }
 
         .button-group {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            display: flex;
             gap: 10px;
             margin-top: 15px;
-            text-align: center;
+            justify-content: flex-start;
+            flex-wrap: wrap;
         }
 
         .recipes {
@@ -2228,7 +2227,6 @@
                 font-size: 15px !important;
                 padding: 10px 16px !important;
                 min-height: 42px;
-                flex: 1;
                 min-width: 100px;
             }
 

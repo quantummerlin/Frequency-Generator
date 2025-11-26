@@ -8640,27 +8640,6 @@
         // Initialize progress on load
         loadProgress();
 
-        // Handle companion button click
-        // Handle Genesis Companion button click
-        function handleCompanionClick(event) {
-            event.preventDefault();
-            const panel = document.getElementById('instructionsPanel');
-            if (panel) {
-                panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
-                // Render category-based content if showing
-                if (panel.style.display === 'block') {
-                    // Hide welcome content and show categories
-                    const welcomeContent = document.querySelector('.welcome-section-content');
-                    if (welcomeContent) welcomeContent.style.display = 'none';
-                    renderInstructionsCategories();
-                } else {
-                    // Show welcome content when closing
-                    const welcomeContent = document.querySelector('.welcome-section-content');
-                    if (welcomeContent) welcomeContent.style.display = 'block';
-                }
-            }
-        }
-
         // Render Instructions Categories (like recipes)
         function renderInstructionsCategories() {
             const container = document.getElementById('instructionsAccordion');

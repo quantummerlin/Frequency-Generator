@@ -2951,7 +2951,7 @@
         </div>
 
         <!-- Sacred Guide Button (moved outside header) -->
-        <button class="btn-instructions" onclick="toggleInstructions()" style="margin: 20px auto; display: block; font-size: 18px; font-weight: 700; background: linear-gradient(90deg, #8b5cf6 0%, #fbbf24 100%); color: #1a0033; border: none; border-radius: 12px; padding: 10px 24px; box-shadow: 0 2px 12px rgba(139,92,246,0.15); cursor: pointer; position: relative; z-index: 15000; pointer-events: auto;">
+        <button id="genesisCompanionBtn" class="btn-instructions" style="margin: 20px auto; display: block; font-size: 18px; font-weight: 700; background: linear-gradient(90deg, #8b5cf6 0%, #fbbf24 100%); color: #1a0033; border: none; border-radius: 12px; padding: 10px 24px; box-shadow: 0 2px 12px rgba(139,92,246,0.15); cursor: pointer; position: relative; z-index: 15000; pointer-events: auto;">
             Genesis Companion
         </button>
 
@@ -3156,12 +3156,16 @@
     <script>
                         // Instructions panel toggle function
                         window.toggleInstructions = function() {
+                            console.log('🎯 toggleInstructions called!');
                             var panel = document.getElementById('instructionsPanel');
+                            console.log('📋 Panel element:', panel);
                             if (panel.style.display === 'none' || panel.style.display === '') {
+                                console.log('📂 Showing panel');
                                 panel.style.display = 'block';
                                 renderInstructionsAccordion();
                                 addInstructionsSearch();
                             } else {
+                                console.log('📁 Hiding panel');
                                 panel.style.display = 'none';
                             }
                         }
@@ -3181,6 +3185,20 @@
                         document.getElementById('addToHome').style.display = 'block';
                     }
                     document.getElementById('addToHomeModal').style.display = 'none';
+                    
+                    // Add event listener for Genesis Companion button
+                    const genesisBtn = document.getElementById('genesisCompanionBtn');
+                    if (genesisBtn) {
+                        genesisBtn.addEventListener('click', function(e) {
+                            console.log('🎯 Button clicked via addEventListener!');
+                            e.preventDefault();
+                            e.stopPropagation();
+                            window.toggleInstructions();
+                        });
+                        console.log('✅ Event listener attached to Genesis Companion button');
+                    } else {
+                        console.log('❌ Genesis Companion button not found');
+                    }
                 });
         // Modal flow functions for first-time users
         function showFrequencyBenefits() {

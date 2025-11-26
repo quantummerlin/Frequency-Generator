@@ -3176,6 +3176,10 @@
                                 overlay.appendChild(panel);
                                 document.body.appendChild(overlay);
                                 
+                                // Hide welcome content when showing categories
+                                const welcomeContent = document.querySelector('.welcome-section-content');
+                                if (welcomeContent) welcomeContent.style.display = 'none';
+                                
                                 renderInstructionsCategories();
                                 addInstructionsSearch();
                             } else {
@@ -3188,6 +3192,10 @@
                                     document.querySelector('.header').appendChild(panel);
                                     // Remove overlay
                                     document.body.removeChild(overlay);
+                                    
+                                    // Show welcome content when closing
+                                    const welcomeContent = document.querySelector('.welcome-section-content');
+                                    if (welcomeContent) welcomeContent.style.display = 'block';
                                 }
                             }
                         }
@@ -3199,25 +3207,9 @@
                             console.log('Event type:', event.type);
                             event.preventDefault();
                             event.stopPropagation();
-                            console.log('Calling renderInstructionsCategories...');
-
-                            const panel = document.getElementById('instructionsPanel');
-                            if (panel) {
-                                panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
-                                // Render category-based content if showing
-                                if (panel.style.display === 'block') {
-                                    // Hide welcome content and show categories
-                                    const welcomeContent = document.querySelector('.welcome-section-content');
-                                    if (welcomeContent) welcomeContent.style.display = 'none';
-                                    renderInstructionsCategories();
-                                } else {
-                                    // Show welcome content when closing
-                                    const welcomeContent = document.querySelector('.welcome-section-content');
-                                    if (welcomeContent) welcomeContent.style.display = 'block';
-                                }
-                            }
-
-                            console.log('renderInstructionsCategories called successfully');
+                            console.log('Calling toggleInstructions...');
+                            window.toggleInstructions();
+                            console.log('toggleInstructions called successfully');
                         }
                 // Add to Home Screen popup logic
                 function showAddToHomePopup() {

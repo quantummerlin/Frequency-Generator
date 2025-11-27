@@ -1056,7 +1056,7 @@
         }
 
         .category-tab {
-            background: rgba(139, 92, 246, 0.1), url('Genesis.png') center center/cover;
+            background: rgba(139, 92, 246, 0.1);
             border: 2px solid rgba(139, 92, 246, 0.3);
             border-radius: 12px;
             margin-bottom: 10px;
@@ -1088,7 +1088,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: rgba(139, 92, 246, 0.15), url('Genesis.png') center center/cover;
+            background: rgba(139, 92, 246, 0.15);
             transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
@@ -1117,7 +1117,7 @@
         }
 
         .category-header:hover {
-            background: rgba(139, 92, 246, 0.25), url('Genesis.png') center center/cover;
+            background: rgba(139, 92, 246, 0.25);
             border-color: rgba(139, 92, 246, 0.35);
             transform: translateY(-2px);
             box-shadow: 
@@ -1170,7 +1170,7 @@
         }
 
         .recipe-item {
-            background: rgba(255, 255, 255, 0.05), url('Genesis.png') center center/cover;
+            background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(139, 92, 246, 0.2);
             border-radius: 14px;
             padding: 14px 16px;
@@ -8877,6 +8877,10 @@
                 
                 // Create category tabs in specified order
                 categoryOrder.forEach((category, categoryIndex) => {
+                    if (!trinityRecipes[category]) {
+                        console.warn('Category not found in trinityRecipes:', category);
+                        return;
+                    }
                     const categoryTab = document.createElement('div');
                     categoryTab.className = 'category-tab';
                     

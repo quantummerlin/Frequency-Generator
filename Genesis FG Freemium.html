@@ -3057,20 +3057,25 @@
             Ready to Generate Genesis Frequencies
         </div>
 
-        <!-- Achievements Section - Under the Frequency Player -->
-        <div class="section" id="achievementsSection" style="margin-top: 20px;">
-            <div class="section-title" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
-                <span>🏆</span>
-                <span>Your Spiritual Journey</span>
-                <span>🏆</span>
+        <!-- Achievements Section - Collapsible Tab -->
+        <div class="section category-tab" id="achievementsSection" style="margin-top: 20px;">
+            <div class="category-header" onclick="this.parentElement.classList.toggle('expanded')" style="cursor: pointer;">
+                <div class="category-title">
+                    <span class="category-icon">🏆</span>
+                    <span>Your Spiritual Journey</span>
+                    <span class="category-icon">🏆</span>
+                </div>
+                <div class="category-arrow">▶</div>
             </div>
-            <div id="achievementsPreview" style="padding: 10px;">
-                <!-- Achievement stats and preview will be populated by JavaScript -->
-            </div>
-            <div style="text-align: center; margin-top: 15px;">
-                <button onclick="showFullAchievements()" style="background: linear-gradient(90deg, #8b5cf6, #6b46c1); color: #fff; border: none; border-radius: 25px; padding: 12px 25px; font-size: 16px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 15px rgba(139,92,246,0.3); transition: all 0.3s ease;">
-                    🎯 View All Achievements
-                </button>
+            <div class="category-content">
+                <div id="achievementsPreview" style="padding: 15px;">
+                    <!-- Achievement stats and preview will be populated by JavaScript -->
+                </div>
+                <div style="text-align: center; padding: 10px 15px 20px;">
+                    <button onclick="showFullAchievements()" style="background: linear-gradient(90deg, #8b5cf6, #6b46c1); color: #fff; border: none; border-radius: 25px; padding: 12px 25px; font-size: 16px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 15px rgba(139,92,246,0.3); transition: all 0.3s ease;">
+                        🎯 View All Achievements
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -5736,29 +5741,11 @@
         }
 
         function getLevelTitle(level) {
-            const tiers = Object.keys(LEVEL_TITLES).map(Number).sort((a, b) => b - a);
-            for (const tier of tiers) {
-                if (level >= tier) {
-                    return LEVEL_TITLES[tier];
-                }
-            }
-            return 'Initiate';
+            return 'Sacred Listener';
         }
 
         function awardXP(amount) {
-            const oldLevel = calculateLevel(userProgress.experiencePoints);
-            userProgress.experiencePoints += amount;
-            const newLevel = calculateLevel(userProgress.experiencePoints);
-
-            // Check for level up
-            if (newLevel > oldLevel) {
-                userProgress.level = newLevel;
-                showLevelUpModal(newLevel, getLevelTitle(newLevel));
-
-                // Award level up bonus XP
-                awardXP(newLevel * 10);
-            }
-
+            // XP system removed - just save progress
             saveProgress();
         }
 
@@ -5858,19 +5845,6 @@
                         line-height: 1.6;
                         margin-bottom: 25px;
                     ">${achievement.description}</p>
-
-                    <div class="xp-reward" style="
-                        background: rgba(255,255,255,0.2);
-                        border-radius: 30px;
-                        padding: 12px 30px;
-                        display: inline-block;
-                        margin-bottom: 20px;
-                        font-size: 20px;
-                        font-weight: 700;
-                        color: #fff;
-                    ">
-                        ✨ +${achievement.xpReward} XP
-                    </div>
 
                     ${achievement.unlocks ? `
                         <div class="unlock-bonus" style="
@@ -6128,10 +6102,6 @@
         // ============================================
 
         function renderProgressDashboard() {
-            const level = calculateLevel(userProgress.experiencePoints);
-            const levelTitle = getLevelTitle(level);
-            const xpProgress = xpProgressInCurrentLevel(userProgress.experiencePoints, level);
-
             // Calculate achievement progress
             const totalAchievements = Object.keys(ACHIEVEMENTS).length;
             const unlockedAchievements = userProgress.achievements.size;
@@ -6144,62 +6114,6 @@
                     border-radius: 20px;
                     margin: 20px 0;
                 ">
-                    <!-- Level Card -->
-                    <div class="level-card" style="
-                        background: linear-gradient(135deg, #8b5cf6, #6b46c1);
-                        border-radius: 16px;
-                        padding: 30px;
-                        margin-bottom: 20px;
-                        box-shadow: 0 8px 20px rgba(139,92,246,0.3);
-                    ">
-                        <div style="display: flex; align-items: center; justify-content: space-between;">
-                            <div>
-                                <div style="color: #fbbf24; font-size: 14px; font-weight: 600; margin-bottom: 5px;">
-                                    YOUR LEVEL
-                                </div>
-                                <div style="color: #fff; font-size: 48px; font-weight: 700; line-height: 1;">
-                                    ${level}
-                                </div>
-                                <div style="color: #c4b5fd; font-size: 18px; font-style: italic; margin-top: 5px;">
-                                    ${levelTitle}
-                                </div>
-                            </div>
-                            <div style="font-size: 80px;">
-                                ${level >= 100 ? '👑' : level >= 73 ? '✨' : level >= 37 ? '🔮' : level >= 21 ? '🌟' : '⭐'}
-                            </div>
-                        </div>
-
-                        <!-- XP Progress Bar -->
-                        <div style="margin-top: 25px;">
-                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-                                <span style="color: rgba(255,255,255,0.8); font-size: 13px;">
-                                    Level ${level + 1}
-                                </span>
-                                <span style="color: #fbbf24; font-size: 13px; font-weight: 600;">
-                                    ${xpProgress.percentage}%
-                                </span>
-                            </div>
-                            <div style="
-                                background: rgba(255,255,255,0.2);
-                                border-radius: 20px;
-                                height: 12px;
-                                overflow: hidden;
-                            ">
-                                <div style="
-                                    background: linear-gradient(90deg, #fbbf24, #f59e0b);
-                                    height: 100%;
-                                    width: ${xpProgress.percentage}%;
-                                    border-radius: 20px;
-                                    transition: width 0.5s ease;
-                                    box-shadow: 0 0 10px rgba(251,191,36,0.5);
-                                "></div>
-                            </div>
-                            <div style="color: rgba(255,255,255,0.7); font-size: 12px; margin-top: 5px; text-align: center;">
-                                $${xpProgress.current.toLocaleString()} /$$ {xpProgress.needed.toLocaleString()} XP
-                            </div>
-                        </div>
-                    </div>
-
                     <!-- Streak Card -->
                     <div class="streak-card" style="
                         background: linear-gradient(135deg, rgba(251,191,36,0.15), rgba(251,191,36,0.05));
@@ -6900,29 +6814,15 @@
                         ${achievement.description}
                     </p>
                     
-                    <!-- XP Badge -->
-                    <div style="
-                        text-align: center;
-                        background: rgba(251,191,36,0.2);
-                        color: #fbbf24;
-                        padding: 8px 16px;
-                        border-radius: 20px;
-                        font-size: 14px;
-                        font-weight: 700;
-                        display: inline-block;
-                        width: 100%;
-                    ">
-                        ✓ Earned ${achievement.xpReward} XP
-                    </div>
-                    
                     <!-- Unlock Date -->
                     <div style="
                         text-align: center;
-                        color: #6b7280;
-                        font-size: 11px;
+                        color: #22c55e;
+                        font-size: 13px;
+                        font-weight: 600;
                         margin-top: 10px;
                     ">
-                        Unlocked ${getUnlockDate(achievementId)}
+                        ✓ Unlocked ${getUnlockDate(achievementId)}
                     </div>
                 </div>
             `;
@@ -7082,7 +6982,7 @@
                         </div>
                     </div>
                     
-                    <!-- Reward Preview (Glowing) -->
+                    <!-- Motivational Message -->
                     <div style="
                         text-align: center;
                         background: linear-gradient(90deg, rgba(251,191,36,0.3), rgba(249,115,22,0.3));
@@ -7094,7 +6994,7 @@
                         border: 2px solid #fbbf24;
                         box-shadow: 0 0 20px rgba(251,191,36,0.3);
                     ">
-                        🎁 ${achievement.xpReward} XP REWARD
+                        🌟 Almost there!
                     </div>
                     
                     <!-- Motivational Message -->
@@ -7247,7 +7147,7 @@
                         </div>
                     </div>
                     
-                    <!-- Reward Preview -->
+                    <!-- Progress Hint -->
                     <div style="
                         text-align: center;
                         background: rgba(139,92,246,0.2);
@@ -7258,7 +7158,7 @@
                         font-weight: 600;
                         border: 1px solid rgba(139,92,246,0.3);
                     ">
-                        🎁 Unlock for ${achievement.xpReward} XP
+                        🎯 Keep going!
                     </div>
                 </div>
             `;
@@ -7270,7 +7170,7 @@
 
         function renderLockedAchievement(achievement, achievementId) {
             // Decide how mysterious based on achievement tier
-            const isMysteryBox = achievement.xpReward >= 500; // Hide details for rare achievements
+            const isMysteryBox = achievement.rarity === 'legendary'; // Hide details for rare achievements
             
             return `
                 <div class="achievement-card locked" style="
@@ -7374,15 +7274,6 @@
                             
                             <div style="
                                 text-align: center;
-                                color: #6b7280;
-                                font-size: 13px;
-                                font-weight: 600;
-                            ">
-                                🎁 Worth ${achievement.xpReward} XP
-                            </div>
-                            
-                            <div style="
-                                text-align: center;
                                 color: #8b5cf6;
                                 font-size: 11px;
                                 margin-top: 10px;
@@ -7431,7 +7322,7 @@
                                 font-weight: 600;
                                 border: 1px solid rgba(107,114,128,0.2);
                             ">
-                                🔒 Locked • ${achievement.xpReward} XP
+                                🔒 Locked
                             </div>
                             
                             <div style="
@@ -7498,7 +7389,7 @@
             if (!achievement) return;
             
             const progress = getAchievementProgress(achievementId, achievement);
-            const isMystery = achievement.xpReward >= 500;
+            const isMystery = achievement.rarity === 'legendary' || achievement.rarity === 'rare';
             
             const modal = document.createElement('div');
             modal.className = 'achievement-modal';
@@ -7654,7 +7545,7 @@
                         </div>
                     `}
                     
-                    <!-- Reward Display -->
+                    <!-- Rarity Display -->
                     <div style="
                         background: linear-gradient(135deg, rgba(251,191,36,0.2), rgba(249,115,22,0.2));
                         border: 2px solid ${progress && progress.percentage >= 75 ? '#fbbf24' : 'rgba(251,191,36,0.3)'};
@@ -7663,31 +7554,16 @@
                         text-align: center;
                         ${progress && progress.percentage >= 75 ? 'box-shadow: 0 0 30px rgba(251,191,36,0.3);' : ''}
                     ">
-                        <div style="color: #fbbf24; font-size: 14px; margin-bottom: 8px; font-weight: 600;">
-                            UNLOCK REWARD
-                        </div>
-                        <div style="color: #fff; font-size: 32px; font-weight: 700;">
-                            ${achievement.xpReward} XP
-                        </div>
-                        ${achievement.xpReward >= 1000 ? `
-                            <div style="
-                                color: #fbbf24;
-                                font-size: 12px;
-                                margin-top: 8px;
-                                font-weight: 600;
-                            ">
-                                ⭐ LEGENDARY ACHIEVEMENT ⭐
-                            </div>
-                        ` : achievement.xpReward >= 500 ? `
-                            <div style="
-                                color: #a78bfa;
-                                font-size: 12px;
-                                margin-top: 8px;
-                                font-weight: 600;
-                            ">
-                                💜 RARE ACHIEVEMENT
-                            </div>
-                        ` : ''}
+                        ${achievement.rarity === 'legendary' ? `
+                            <div style="color: #fbbf24; font-size: 40px; margin-bottom: 8px;">⭐</div>
+                            <div style="color: #fbbf24; font-size: 16px; font-weight: 700;">LEGENDARY ACHIEVEMENT</div>
+                        ` : achievement.rarity === 'rare' ? `
+                            <div style="color: #a78bfa; font-size: 40px; margin-bottom: 8px;">💜</div>
+                            <div style="color: #a78bfa; font-size: 16px; font-weight: 700;">RARE ACHIEVEMENT</div>
+                        ` : `
+                            <div style="color: #22c55e; font-size: 40px; margin-bottom: 8px;">✨</div>
+                            <div style="color: #22c55e; font-size: 16px; font-weight: 700;">ACHIEVEMENT</div>
+                        `}
                     </div>
                     
                     <!-- Call to Action -->
@@ -8025,9 +7901,6 @@
                                     <div style="flex: 1;">
                                         <div style="color: #22c55e; font-size: 14px; font-weight: 600;">
                                             ${achievement.name}
-                                        </div>
-                                        <div style="color: #6b7280; font-size: 11px;">
-                                            +${achievement.xpReward} XP
                                         </div>
                                     </div>
                                 </div>
@@ -8396,7 +8269,7 @@
         }
 
         function showDailyChallengeComplete(challenge) {
-            showNotification(`🎉 Daily Challenge Complete! $${challenge.name} (+$$ {challenge.xpReward} XP)`);
+            showNotification(`🎉 Daily Challenge Complete! ${challenge.name}`);
         }
 
         function renderDailyChallenge() {
@@ -8441,17 +8314,6 @@
                             <p style="color: #a78bfa; font-size: 13px; margin-bottom: 10px;">
                                 ${challenge.description}
                             </p>
-                            <div style="
-                                display: inline-block;
-                                background: rgba(251,191,36,0.2);
-                                color: #fbbf24;
-                                padding: 4px 12px;
-                                border-radius: 12px;
-                                font-size: 12px;
-                                font-weight: 600;
-                            ">
-                                +${challenge.xpReward} XP
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -8767,12 +8629,11 @@
             const totalSessions = userProgress.totalSessions || 0;
             const totalMinutes = Math.floor((userProgress.totalSeconds || 0) / 60);
             const streak = userProgress.currentStreak || 0;
-            const level = userProgress.level || 1;
 
             greetingContainer.innerHTML = `
                 ${timeInfo.emoji} ${timeInfo.greeting}, Sacred Listener
                 <span style="font-size: 14px; color: #c4b5fd; font-weight: 400; display: block; margin-top: 4px;">
-                    Level ${level} • ${streak > 0 ? `🔥 ${streak} day streak` : 'Start your streak today'}
+                    ${streak > 0 ? `🔥 ${streak} day streak` : 'Begin your sacred journey today'}
                 </span>
             `;
 
@@ -8871,7 +8732,6 @@
             const instructionCategories = {
                 "🚀 Your Journey": [
                     { id: 'quickStart', icon: '⚡', title: 'Quick Start Guide', content: instructionsSections.find(s => s.id === 'quickStart')?.content || '' },
-                    { id: 'progress', icon: '📊', title: 'Your Spiritual Progress', content: instructionsSections.find(s => s.id === 'progress')?.content || '' },
                     { id: 'usageTips', icon: '🎧', title: 'Best Practices', content: instructionsSections.find(s => s.id === 'usageTips')?.content || '' }
                 ],
                 "🧠 Understanding": [

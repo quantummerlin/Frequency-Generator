@@ -3300,6 +3300,200 @@
             localStorage.setItem('onboardingComplete', 'true');
         }
 
+        // Update welcome flow content based on current language
+        function updateWelcomeFlowLanguage() {
+            const t = translations[currentLanguage];
+            
+            // Update immersiveWelcome modal
+            const welcomeHeader = document.querySelector('#immersiveWelcome .welcome-header');
+            if (welcomeHeader) welcomeHeader.textContent = `✨ ${t.welcomeTitle || 'Welcome to Genesis Frequencies'} ✨`;
+            
+            const welcomeBody = document.querySelector('#immersiveWelcome .info-modal-body');
+            if (welcomeBody) {
+                welcomeBody.innerHTML = `
+                    <div style="text-align:center;line-height:1.8;padding:10px 20px 20px 20px;">
+                        <p style="font-size:18px;color:#ffd700;margin-bottom:20px;font-weight:600;">
+                            ${t.frequenciesInHands || 'The frequencies of creation are now in your hands.'}
+                        </p>
+                        <div style="background:linear-gradient(135deg,rgba(251,191,36,0.2),rgba(139,92,246,0.2));border-radius:14px;padding:20px;margin:20px 0;border:2px solid rgba(251,191,36,0.4);box-shadow: 0 0 30px rgba(251,191,36,0.15);">
+                            <div style="font-size:28px;color:#ffd700;margin-bottom:10px;font-weight:800;text-shadow: 0 0 10px rgba(251,191,36,0.5);">
+                                37 × 73 = 2701
+                            </div>
+                            <div style="font-size:16px;color:#ffffff;margin-bottom:8px;">
+                                ${t.title || 'Genesis 1:1'} = 2701
+                            </div>
+                            <div style="font-size:14px;color:#e9d5ff;font-style:italic;margin-top:10px;">
+                                "${t.inTheBeginning || 'In the beginning God created...'}"
+                            </div>
+                        </div>
+                        <p style="color:#ffffff;margin-bottom:15px;font-size:15px;">
+                            ${t.hiddenInScripture || 'These frequencies are encoded in the first verse of the Bible. Hidden in Scripture for thousands of years.'}
+                        </p>
+                        <p style="font-size:17px;color:#ffd700;font-weight:600;margin-top:20px;">
+                            ${t.takeBreath || 'Take a deep breath. Set your intention.'}
+                        </p>
+                        <p style="color:#e9d5ff;font-size:14px;margin-top:10px;">
+                            ${t.journeyBegins || 'Your journey begins now.'}
+                        </p>
+                    </div>
+                `;
+            }
+            
+            // Update Begin button
+            const beginBtn = document.querySelector('#immersiveWelcome button[onclick="showFrequencyBenefits()"]');
+            if (beginBtn) beginBtn.textContent = `${t.beginBtn || 'Begin'} →`;
+            
+            // Update frequencyBenefitsModal
+            const freqHeader = document.querySelector('#frequencyBenefitsModal .welcome-header');
+            if (freqHeader) freqHeader.textContent = `🎵 ${t.whatCanFrequenciesDo || 'What Can These Frequencies Do?'} 🎵`;
+            
+            const freqBody = document.querySelector('#frequencyBenefitsModal .info-modal-body');
+            if (freqBody) {
+                freqBody.innerHTML = `
+                    <div style="line-height:1.8;padding:10px 20px 20px 20px;">
+                        <p style="text-align:center;font-size:16px;color:#ffd700;margin-bottom:20px;font-weight:600;">
+                            ${t.trinityFoundation || 'Built on the Trinity Foundation: 37 Hz + 73 Hz + one intention frequency'}
+                        </p>
+                        <div style="margin-bottom:15px;padding:15px;background:rgba(139,92,246,0.12);border-radius:12px;border-left:4px solid #fbbf24;">
+                            <div style="font-size:17px;margin-bottom:8px;">🧘‍♀️ <b style="color:#ffd700;">${t.meditationPrayer || 'Meditation & Prayer'}</b></div>
+                            <p style="font-size:14px;color:#ffffff;margin:0;">${t.meditationPrayerDesc || 'Deepen your spiritual practice with frequencies designed to quiet the mind and enhance focus.'}</p>
+                        </div>
+                        <div style="margin-bottom:15px;padding:15px;background:rgba(139,92,246,0.12);border-radius:12px;border-left:4px solid #8b5cf6;">
+                            <div style="font-size:17px;margin-bottom:8px;">💫 <b style="color:#ffd700;">${t.energyWork || 'Energy Work & Balance'}</b></div>
+                            <p style="font-size:14px;color:#ffffff;margin:0;">${t.energyWorkDesc || 'Support your energy centers and restore natural harmony using biblical mathematics.'}</p>
+                        </div>
+                        <div style="margin-bottom:15px;padding:15px;background:rgba(139,92,246,0.12);border-radius:12px;border-left:4px solid #fbbf24;">
+                            <div style="font-size:17px;margin-bottom:8px;">🌙 <b style="color:#ffd700;">${t.restRenewal || 'Rest & Renewal'}</b></div>
+                            <p style="font-size:14px;color:#ffffff;margin:0;">${t.restRenewalDesc || 'Promote deep relaxation and improve sleep quality. Feel more peaceful after sessions.'}</p>
+                        </div>
+                        <div style="margin-bottom:15px;padding:15px;background:rgba(139,92,246,0.12);border-radius:12px;border-left:4px solid #8b5cf6;">
+                            <div style="font-size:17px;margin-bottom:8px;">🎨 <b style="color:#ffd700;">${t.creativeFlow || 'Creative Flow & Clarity'}</b></div>
+                            <p style="font-size:14px;color:#ffffff;margin:0;">${t.creativeFlowDesc || 'Unlock inspiration, enhance focus, and access flow states for work and creativity.'}</p>
+                        </div>
+                        <p style="text-align:center;font-size:12px;color:#a78bfa;margin-top:15px;font-style:italic;">${t.forSpiritualExploration || 'For spiritual exploration • Not medical treatment'}</p>
+                    </div>
+                `;
+            }
+            
+            // Update buttons in frequencyBenefitsModal
+            const howToUseBtn = document.querySelector('#frequencyBenefitsModal button[onclick="showHowToUse()"]');
+            if (howToUseBtn) howToUseBtn.textContent = `${t.howToUseBtn || 'How to Use'} →`;
+            const freqSkipBtn = document.querySelector('#frequencyBenefitsModal button[onclick="skipToApp()"]');
+            if (freqSkipBtn) freqSkipBtn.textContent = t.skipBtn || 'Skip';
+            
+            // Update howToUseModal
+            const howHeader = document.querySelector('#howToUseModal .welcome-header');
+            if (howHeader) howHeader.textContent = `🎯 ${t.firstSessionSteps || 'Your First Session in 3 Steps'} 🎯`;
+            
+            const howBody = document.querySelector('#howToUseModal .info-modal-body');
+            if (howBody) {
+                howBody.innerHTML = `
+                    <div style="line-height:1.8;padding:10px 20px 20px 20px;">
+                        <div style="background:rgba(251,191,36,0.15);border-radius:12px;padding:18px;margin-bottom:18px;border-left:4px solid #fbbf24;">
+                            <p style="font-size:16px;color:#ffd700;margin-bottom:12px;font-weight:700;">🎧 ${t.quickStart || 'Quick Start'}</p>
+                            <ol style="text-align:left;color:#ffffff;font-size:14px;line-height:1.7;padding-left:20px;margin:0;">
+                                <li style="margin-bottom:8px;"><b>${t.chooseGenesis || 'Choose "Genesis Creation" from Biblical & Original'}</b><br><span style="font-size:12px;color:#e9d5ff;">${t.pureFoundation || 'The pure 37 + 73 Hz foundation'}</span></li>
+                                <li style="margin-bottom:8px;"><b>${t.setDuration || 'Set duration to 5-10 minutes and put on headphones'}</b><br><span style="font-size:12px;color:#e9d5ff;">${t.startShort || 'Start short—go longer once you feel it'}</span></li>
+                                <li><b>${t.pressPlay || 'Press PLAY, close your eyes, breathe slowly'}</b><br><span style="font-size:12px;color:#e9d5ff;">${t.setIntention || 'Set one intention: "peace," "clarity," or "thank you"'}</span></li>
+                            </ol>
+                        </div>
+                        <div style="background:rgba(139,92,246,0.12);border-radius:12px;padding:15px;margin-bottom:15px;">
+                            <p style="font-size:15px;color:#e9d5ff;margin-bottom:10px;font-weight:600;">⚙️ ${t.controlsYouUse || "Controls You'll Use"}</p>
+                            <ul style="text-align:left;color:#ffffff;font-size:13px;line-height:1.6;padding-left:20px;margin:0;">
+                                <li><b style="color:#ffd700;">${t.categoriesLabel || 'Categories:'}</b> ${t.categoriesDesc || 'Biblical, Angel Numbers, Solfeggio, etc.'}</li>
+                                <li><b style="color:#ffd700;">${t.volumeLabel || 'Volume:'}</b> ${t.volumeDesc || 'Start low and adjust'}</li>
+                                <li><b style="color:#ffd700;">${t.durationLabel || 'Duration:'}</b> ${t.durationDesc || 'Set your session timer'}</li>
+                            </ul>
+                        </div>
+                        <div style="background:rgba(251,191,36,0.1);border-radius:10px;padding:15px;">
+                            <p style="font-size:15px;color:#ffd700;margin-bottom:8px;font-weight:600;">💡 ${t.proTips || 'Pro Tips'}</p>
+                            <ul style="text-align:left;color:#ffffff;font-size:12px;line-height:1.5;padding-left:20px;margin:0;">
+                                <li>${t.tipMeditation || 'Use during meditation, prayer, or yoga'}</li>
+                                <li>${t.tipWater || 'Drink water before and after'}</li>
+                                <li>${t.tipJournal || 'Journal after each session'}</li>
+                            </ul>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Update buttons in howToUseModal
+            const proTipBtn = document.querySelector('#howToUseModal button[onclick="showPWATip()"]');
+            if (proTipBtn) proTipBtn.textContent = `${t.proTipBtn || 'Pro Tip'} →`;
+            const howSkipBtn = document.querySelector('#howToUseModal button[onclick="skipToApp()"]');
+            if (howSkipBtn) howSkipBtn.textContent = t.skipBtn || 'Skip';
+            
+            // Update pwaTipModal
+            const pwaHeader = document.querySelector('#pwaTipModal .welcome-header');
+            if (pwaHeader) pwaHeader.textContent = `📱 ${t.addToHomeScreen || 'Add to Home Screen'} 📱`;
+            
+            const pwaBody = document.querySelector('#pwaTipModal .info-modal-body');
+            if (pwaBody) {
+                pwaBody.innerHTML = `
+                    <div style="text-align:center;line-height:1.8;padding:10px 20px 20px 20px;">
+                        <p style="font-size:17px;color:#ffd700;margin-bottom:15px;font-weight:600;">${t.getFullExperience || 'Get the Full Experience'}</p>
+                        <div style="background:linear-gradient(135deg,rgba(139,92,246,0.15),rgba(251,191,36,0.15));border-radius:14px;padding:18px;margin:15px 0;">
+                            <ul style="text-align:left;max-width:350px;margin:0 auto;color:#ffffff;font-size:14px;line-height:1.8;list-style:none;padding:0;">
+                                <li>⚡ <b style="color:#ffd700;">${t.worksOffline || 'Works offline'}</b> — ${t.listenAnytime || 'Listen anytime'}</li>
+                                <li>🚀 <b style="color:#ffd700;">${t.fasterLoading || 'Faster loading'}</b> — ${t.oneTapAccess || 'One tap access'}</li>
+                                <li>🎵 <b style="color:#ffd700;">${t.backgroundPlayback || 'Background playback'}</b> — ${t.whileYouWork || 'While you work'}</li>
+                                <li>📊 <b style="color:#ffd700;">${t.trackJourney || 'Track progress'}</b> — ${t.streaksAchievements || 'Streaks & achievements'}</li>
+                            </ul>
+                        </div>
+                        <div style="background:rgba(139,92,246,0.12);border-radius:10px;padding:12px;margin:15px 0;">
+                            <p style="color:#e9d5ff;font-weight:600;margin-bottom:6px;font-size:14px;">${t.howToInstall || 'How to install:'}</p>
+                            <p style="color:#ffffff;font-size:13px;margin:0;">${t.tapShare || 'Tap Share (iOS) or Menu ⋮ (Android)'}<br>→ ${t.selectAddHome || 'Select "Add to Home Screen"'}</p>
+                        </div>
+                        <p style="font-size:12px;color:#a78bfa;margin-top:15px;">${t.doThisLater || 'You can always do this later from the menu!'}</p>
+                    </div>
+                `;
+            }
+            
+            // Update buttons in pwaTipModal
+            const pwaContBtn = document.querySelector('#pwaTipModal button[onclick="showUpgradeBenefits()"]');
+            if (pwaContBtn) pwaContBtn.textContent = `${t.continueBtn || 'Continue'} →`;
+            const pwaSkipBtn = document.querySelector('#pwaTipModal button[onclick="skipToApp()"]');
+            if (pwaSkipBtn) pwaSkipBtn.textContent = t.skipBtn || 'Skip';
+            
+            // Update upgradeBenefitsModal
+            const upgradeHeader = document.querySelector('#upgradeBenefitsModal .welcome-header');
+            if (upgradeHeader) upgradeHeader.textContent = `✨ ${t.unlockPremium || 'Unlock Premium'} ✨`;
+            
+            const upgradeBody = document.querySelector('#upgradeBenefitsModal .info-modal-body');
+            if (upgradeBody) {
+                upgradeBody.innerHTML = `
+                    <div style="line-height:1.8;padding:10px 20px 20px 20px;">
+                        <p style="text-align:center;font-size:16px;color:#ffd700;margin-bottom:18px;font-weight:600;">${t.readyGoDeeper || 'Ready to go deeper? Premium gives you full control.'}</p>
+                        <div style="margin-bottom:12px;padding:12px;background:rgba(251,191,36,0.1);border-radius:10px;border-left:3px solid #fbbf24;">
+                            <div style="font-size:15px;margin-bottom:4px;"><b style="color:#ffd700;">🎚️ ${t.volumeControls || 'Individual Volume Controls'}</b></div>
+                            <p style="font-size:13px;color:#ffffff;margin:0;">${t.adjustEachFrequency || 'Adjust each frequency separately for perfect balance.'}</p>
+                        </div>
+                        <div style="margin-bottom:12px;padding:12px;background:rgba(139,92,246,0.1);border-radius:10px;border-left:3px solid #8b5cf6;">
+                            <div style="font-size:15px;margin-bottom:4px;"><b style="color:#e9d5ff;">⏰ ${t.unlimitedDurations || 'Unlimited Durations'}</b></div>
+                            <p style="font-size:13px;color:#ffffff;margin:0;">${t.anySessionLength || 'Any session length—perfect for sleep or deep meditation.'}</p>
+                        </div>
+                        <div style="margin-bottom:12px;padding:12px;background:rgba(251,191,36,0.1);border-radius:10px;border-left:3px solid #fbbf24;">
+                            <div style="font-size:15px;margin-bottom:4px;"><b style="color:#ffd700;">🔊 ${t.backgroundPlayback || 'Background Playback'} + ${t.exportSave || 'Export'}</b></div>
+                            <p style="font-size:13px;color:#ffffff;margin:0;">${t.keepPlayingExport || 'Keep playing while you work. Save as WAV files.'}</p>
+                        </div>
+                        <div style="text-align:center;background:linear-gradient(135deg,rgba(251,191,36,0.2),rgba(139,92,246,0.2));border-radius:14px;padding:18px;margin:18px 0;border:2px solid rgba(251,191,36,0.5);box-shadow: 0 0 20px rgba(251,191,36,0.15);">
+                            <p style="font-size:22px;color:#ffd700;font-weight:800;margin-bottom:6px;text-shadow: 0 0 10px rgba(251,191,36,0.3);">🌟 ${t.lifetimeAccess || 'Lifetime Access'}</p>
+                            <p style="font-size:14px;color:#ffffff;margin-bottom:4px;">${t.oneTimePayment || 'One-Time Payment • No Subscriptions'}</p>
+                            <p style="font-size:12px;color:#e9d5ff;">${t.joinGenesisJourney || 'Join thousands on the Genesis journey'}</p>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Update buttons in upgradeBenefitsModal
+            const getPremiumBtn = document.querySelector('#upgradeBenefitsModal a[href*="etsy"]');
+            if (getPremiumBtn) getPremiumBtn.textContent = `🚀 ${t.getPremiumNow || 'Get Premium Now'}`;
+            const tryFreeBtn = document.querySelector('#upgradeBenefitsModal button[onclick="skipToApp()"]');
+            if (tryFreeBtn) tryFreeBtn.textContent = t.tryFreeVersionFirst || 'Try Free Version First';
+            const upgradeNote = document.querySelector('#upgradeBenefitsModal p[style*="font-size:11px"]');
+            if (upgradeNote) upgradeNote.textContent = t.upgradeFromSettings || 'Upgrade anytime from the Settings menu';
+        }
+
         // Set language from welcome screen selector
         function setWelcomeLanguage(lang) {
             // Update global language
@@ -3320,6 +3514,9 @@
                     btn.classList.remove('active');
                 }
             });
+            
+            // Update welcome flow content
+            updateWelcomeFlowLanguage();
             
             // Apply translations immediately
             if (typeof changeLanguage === 'function') {
@@ -3665,7 +3862,78 @@
                 questionsContact: "Questions? Contact us through Etsy",
                 // Daily Challenge
                 dailyChallengeComplete: "Daily Challenge Complete!",
-                continueJourney: "Continue Your Journey"
+                continueJourney: "Continue Your Journey",
+                // Companion Header
+                sacredListener: "Sacred Listener",
+                dayStreak: "day streak",
+                beginJourney: "Begin your sacred journey today",
+                welcomeBack: "Welcome back! Ready to explore sacred frequencies?",
+                // Welcome Flow
+                welcomeTitle: "Welcome to Genesis Frequencies",
+                frequenciesInHands: "The frequencies of creation are now in your hands.",
+                inTheBeginning: "In the beginning God created...",
+                hiddenInScripture: "These frequencies are encoded in the first verse of the Bible. Hidden in Scripture for thousands of years.",
+                takeBreath: "Take a deep breath. Set your intention.",
+                journeyBegins: "Your journey begins now.",
+                beginBtn: "Begin",
+                // Frequency Benefits
+                whatCanFrequenciesDo: "What Can These Frequencies Do?",
+                trinityFoundation: "Built on the Trinity Foundation: 37 Hz + 73 Hz + one intention frequency",
+                meditationPrayer: "Meditation & Prayer",
+                meditationPrayerDesc: "Deepen your spiritual practice with frequencies designed to quiet the mind and enhance focus.",
+                energyWork: "Energy Work & Balance",
+                energyWorkDesc: "Support your energy centers and restore natural harmony using biblical mathematics.",
+                restRenewal: "Rest & Renewal",
+                restRenewalDesc: "Promote deep relaxation and improve sleep quality. Feel more peaceful after sessions.",
+                creativeFlow: "Creative Flow & Clarity",
+                creativeFlowDesc: "Unlock inspiration, enhance focus, and access flow states for work and creativity.",
+                forSpiritualExploration: "For spiritual exploration • Not medical treatment",
+                howToUseBtn: "How to Use",
+                // How To Use
+                firstSessionSteps: "Your First Session in 3 Steps",
+                quickStart: "Quick Start",
+                chooseGenesis: "Choose \"Genesis Creation\" from Biblical & Original",
+                pureFoundation: "The pure 37 + 73 Hz foundation",
+                setDuration: "Set duration to 5-10 minutes and put on headphones",
+                startShort: "Start short—go longer once you feel it",
+                pressPlay: "Press PLAY, close your eyes, breathe slowly",
+                setIntention: "Set one intention: \"peace,\" \"clarity,\" or \"thank you\"",
+                controlsYouUse: "Controls You'll Use",
+                categoriesLabel: "Categories:",
+                categoriesDesc: "Biblical, Angel Numbers, Solfeggio, etc.",
+                volumeLabel: "Volume:",
+                volumeDesc: "Start low and adjust",
+                durationLabel: "Duration:",
+                durationDesc: "Set your session timer",
+                proTips: "Pro Tips",
+                tipMeditation: "Use during meditation, prayer, or yoga",
+                tipWater: "Drink water before and after",
+                tipJournal: "Journal after each session",
+                proTipBtn: "Pro Tip",
+                // PWA Tip
+                addToHomeScreen: "Add to Home Screen",
+                getFullExperience: "Get the Full Experience",
+                worksOffline: "Works offline",
+                listenAnytime: "Listen anytime",
+                fasterLoading: "Faster loading",
+                oneTapAccess: "One tap access",
+                whileYouWork: "While you work",
+                streaksAchievements: "Streaks & achievements",
+                howToInstall: "How to install:",
+                tapShare: "Tap Share (iOS) or Menu ⋮ (Android)",
+                selectAddHome: "Select \"Add to Home Screen\"",
+                doThisLater: "You can always do this later from the menu!",
+                continueBtn: "Continue",
+                skipBtn: "Skip",
+                // Upgrade Benefits
+                unlockPremium: "Unlock Premium",
+                getPremiumNow: "Get Premium Now",
+                tryFreeVersionFirst: "Try Free Version First",
+                upgradeFromSettings: "Upgrade anytime from the Settings menu",
+                joinGenesisJourney: "Join thousands on the Genesis journey",
+                adjustEachFrequency: "Adjust each frequency separately for perfect balance.",
+                anySessionLength: "Any session length—perfect for sleep or deep meditation.",
+                keepPlayingExport: "Keep playing while you work. Save as WAV files."
             },
             pt: {
                 hebrewTranslation: "No princípio Deus criou os céus e a terra",
@@ -3858,7 +4126,78 @@
                 questionsContact: "Dúvidas? Entre em contato através do Etsy",
                 // Daily Challenge
                 dailyChallengeComplete: "Desafio Diário Completo!",
-                continueJourney: "Continue Sua Jornada"
+                continueJourney: "Continue Sua Jornada",
+                // Companion Header
+                sacredListener: "Ouvinte Sagrado",
+                dayStreak: "dias consecutivos",
+                beginJourney: "Comece sua jornada sagrada hoje",
+                welcomeBack: "Bem-vindo de volta! Pronto para explorar frequências sagradas?",
+                // Welcome Flow
+                welcomeTitle: "Bem-vindo ao Genesis Frequencies",
+                frequenciesInHands: "As frequências da criação estão agora em suas mãos.",
+                inTheBeginning: "No princípio Deus criou...",
+                hiddenInScripture: "Essas frequências estão codificadas no primeiro versículo da Bíblia. Escondidas nas Escrituras por milhares de anos.",
+                takeBreath: "Respire fundo. Defina sua intenção.",
+                journeyBegins: "Sua jornada começa agora.",
+                beginBtn: "Começar",
+                // Frequency Benefits
+                whatCanFrequenciesDo: "O Que Essas Frequências Podem Fazer?",
+                trinityFoundation: "Construído na Fundação da Trindade: 37 Hz + 73 Hz + uma frequência de intenção",
+                meditationPrayer: "Meditação e Oração",
+                meditationPrayerDesc: "Aprofunde sua prática espiritual com frequências projetadas para aquietar a mente e melhorar o foco.",
+                energyWork: "Trabalho Energético e Equilíbrio",
+                energyWorkDesc: "Apoie seus centros de energia e restaure a harmonia natural usando matemática bíblica.",
+                restRenewal: "Descanso e Renovação",
+                restRenewalDesc: "Promova relaxamento profundo e melhore a qualidade do sono. Sinta-se mais em paz após as sessões.",
+                creativeFlow: "Fluxo Criativo e Clareza",
+                creativeFlowDesc: "Desbloqueie inspiração, melhore o foco e acesse estados de fluxo para trabalho e criatividade.",
+                forSpiritualExploration: "Para exploração espiritual • Não é tratamento médico",
+                howToUseBtn: "Como Usar",
+                // How To Use
+                firstSessionSteps: "Sua Primeira Sessão em 3 Passos",
+                quickStart: "Início Rápido",
+                chooseGenesis: "Escolha \"Criação de Gênesis\" de Bíblico & Original",
+                pureFoundation: "A fundação pura de 37 + 73 Hz",
+                setDuration: "Defina a duração para 5-10 minutos e coloque fones de ouvido",
+                startShort: "Comece curto—vá mais longo quando sentir",
+                pressPlay: "Pressione TOCAR, feche os olhos, respire devagar",
+                setIntention: "Defina uma intenção: \"paz\", \"clareza\" ou \"obrigado\"",
+                controlsYouUse: "Controles Que Você Usará",
+                categoriesLabel: "Categorias:",
+                categoriesDesc: "Bíblico, Números dos Anjos, Solfeggio, etc.",
+                volumeLabel: "Volume:",
+                volumeDesc: "Comece baixo e ajuste",
+                durationLabel: "Duração:",
+                durationDesc: "Defina o timer da sua sessão",
+                proTips: "Dicas Profissionais",
+                tipMeditation: "Use durante meditação, oração ou yoga",
+                tipWater: "Beba água antes e depois",
+                tipJournal: "Escreva no diário após cada sessão",
+                proTipBtn: "Dica Pro",
+                // PWA Tip
+                addToHomeScreen: "Adicionar à Tela Inicial",
+                getFullExperience: "Obtenha a Experiência Completa",
+                worksOffline: "Funciona offline",
+                listenAnytime: "Ouça a qualquer hora",
+                fasterLoading: "Carregamento mais rápido",
+                oneTapAccess: "Acesso com um toque",
+                whileYouWork: "Enquanto você trabalha",
+                streaksAchievements: "Sequências e conquistas",
+                howToInstall: "Como instalar:",
+                tapShare: "Toque em Compartilhar (iOS) ou Menu ⋮ (Android)",
+                selectAddHome: "Selecione \"Adicionar à Tela Inicial\"",
+                doThisLater: "Você pode fazer isso depois no menu!",
+                continueBtn: "Continuar",
+                skipBtn: "Pular",
+                // Upgrade Benefits
+                unlockPremium: "Desbloquear Premium",
+                getPremiumNow: "Obter Premium Agora",
+                tryFreeVersionFirst: "Experimentar Versão Gratuita Primeiro",
+                upgradeFromSettings: "Atualize a qualquer momento no menu Configurações",
+                joinGenesisJourney: "Junte-se a milhares na jornada Genesis",
+                adjustEachFrequency: "Ajuste cada frequência separadamente para equilíbrio perfeito.",
+                anySessionLength: "Qualquer duração de sessão—perfeito para sono ou meditação profunda.",
+                keepPlayingExport: "Continue tocando enquanto trabalha. Salve como arquivos WAV."
             },
             es: {
                 hebrewTranslation: "En el principio creó Dios los cielos y la tierra",
@@ -4051,7 +4390,78 @@
                 questionsContact: "¿Preguntas? Contáctanos a través de Etsy",
                 // Daily Challenge
                 dailyChallengeComplete: "¡Desafío Diario Completado!",
-                continueJourney: "Continúa Tu Viaje"
+                continueJourney: "Continúa Tu Viaje",
+                // Companion Header
+                sacredListener: "Oyente Sagrado",
+                dayStreak: "días consecutivos",
+                beginJourney: "Comienza tu viaje sagrado hoy",
+                welcomeBack: "¡Bienvenido de nuevo! ¿Listo para explorar frecuencias sagradas?",
+                // Welcome Flow
+                welcomeTitle: "Bienvenido a Genesis Frequencies",
+                frequenciesInHands: "Las frecuencias de la creación están ahora en tus manos.",
+                inTheBeginning: "En el principio Dios creó...",
+                hiddenInScripture: "Estas frecuencias están codificadas en el primer versículo de la Biblia. Ocultas en las Escrituras durante miles de años.",
+                takeBreath: "Respira profundo. Establece tu intención.",
+                journeyBegins: "Tu viaje comienza ahora.",
+                beginBtn: "Comenzar",
+                // Frequency Benefits
+                whatCanFrequenciesDo: "¿Qué Pueden Hacer Estas Frecuencias?",
+                trinityFoundation: "Construido sobre la Fundación de la Trinidad: 37 Hz + 73 Hz + una frecuencia de intención",
+                meditationPrayer: "Meditación y Oración",
+                meditationPrayerDesc: "Profundiza tu práctica espiritual con frecuencias diseñadas para aquietar la mente y mejorar el enfoque.",
+                energyWork: "Trabajo Energético y Equilibrio",
+                energyWorkDesc: "Apoya tus centros de energía y restaura la armonía natural usando matemáticas bíblicas.",
+                restRenewal: "Descanso y Renovación",
+                restRenewalDesc: "Promueve la relajación profunda y mejora la calidad del sueño. Siéntete más en paz después de las sesiones.",
+                creativeFlow: "Flujo Creativo y Claridad",
+                creativeFlowDesc: "Desbloquea inspiración, mejora el enfoque y accede a estados de flujo para trabajo y creatividad.",
+                forSpiritualExploration: "Para exploración espiritual • No es tratamiento médico",
+                howToUseBtn: "Cómo Usar",
+                // How To Use
+                firstSessionSteps: "Tu Primera Sesión en 3 Pasos",
+                quickStart: "Inicio Rápido",
+                chooseGenesis: "Elige \"Creación de Génesis\" de Bíblico & Original",
+                pureFoundation: "La base pura de 37 + 73 Hz",
+                setDuration: "Establece la duración en 5-10 minutos y ponte auriculares",
+                startShort: "Empieza corto—ve más largo cuando lo sientas",
+                pressPlay: "Presiona REPRODUCIR, cierra los ojos, respira lento",
+                setIntention: "Establece una intención: \"paz\", \"claridad\" o \"gracias\"",
+                controlsYouUse: "Controles Que Usarás",
+                categoriesLabel: "Categorías:",
+                categoriesDesc: "Bíblico, Números de Ángeles, Solfeggio, etc.",
+                volumeLabel: "Volumen:",
+                volumeDesc: "Empieza bajo y ajusta",
+                durationLabel: "Duración:",
+                durationDesc: "Establece el temporizador de tu sesión",
+                proTips: "Consejos Pro",
+                tipMeditation: "Usa durante meditación, oración o yoga",
+                tipWater: "Bebe agua antes y después",
+                tipJournal: "Escribe en tu diario después de cada sesión",
+                proTipBtn: "Consejo Pro",
+                // PWA Tip
+                addToHomeScreen: "Agregar a Pantalla de Inicio",
+                getFullExperience: "Obtén la Experiencia Completa",
+                worksOffline: "Funciona sin conexión",
+                listenAnytime: "Escucha en cualquier momento",
+                fasterLoading: "Carga más rápida",
+                oneTapAccess: "Acceso con un toque",
+                whileYouWork: "Mientras trabajas",
+                streaksAchievements: "Rachas y logros",
+                howToInstall: "Cómo instalar:",
+                tapShare: "Toca Compartir (iOS) o Menú ⋮ (Android)",
+                selectAddHome: "Selecciona \"Agregar a Pantalla de Inicio\"",
+                doThisLater: "¡Puedes hacer esto después desde el menú!",
+                continueBtn: "Continuar",
+                skipBtn: "Omitir",
+                // Upgrade Benefits
+                unlockPremium: "Desbloquear Premium",
+                getPremiumNow: "Obtener Premium Ahora",
+                tryFreeVersionFirst: "Probar Versión Gratuita Primero",
+                upgradeFromSettings: "Actualiza en cualquier momento desde el menú Configuración",
+                joinGenesisJourney: "Únete a miles en el viaje Genesis",
+                adjustEachFrequency: "Ajusta cada frecuencia por separado para un equilibrio perfecto.",
+                anySessionLength: "Cualquier duración de sesión—perfecto para dormir o meditación profunda.",
+                keepPlayingExport: "Sigue reproduciendo mientras trabajas. Guarda como archivos WAV."
             },
             it: {
                 hebrewTranslation: "In principio Dio creò il cielo e la terra",
@@ -4244,7 +4654,78 @@
                 questionsContact: "Domande? Contattaci tramite Etsy",
                 // Daily Challenge
                 dailyChallengeComplete: "Sfida Giornaliera Completata!",
-                continueJourney: "Continua il Tuo Viaggio"
+                continueJourney: "Continua il Tuo Viaggio",
+                // Companion Header
+                sacredListener: "Ascoltatore Sacro",
+                dayStreak: "giorni consecutivi",
+                beginJourney: "Inizia oggi il tuo viaggio sacro",
+                welcomeBack: "Bentornato! Pronto per esplorare frequenze sacre?",
+                // Welcome Flow
+                welcomeTitle: "Benvenuto in Genesis Frequencies",
+                frequenciesInHands: "Le frequenze della creazione sono ora nelle tue mani.",
+                inTheBeginning: "In principio Dio creò...",
+                hiddenInScripture: "Queste frequenze sono codificate nel primo versetto della Bibbia. Nascoste nelle Scritture per migliaia di anni.",
+                takeBreath: "Fai un respiro profondo. Imposta la tua intenzione.",
+                journeyBegins: "Il tuo viaggio inizia ora.",
+                beginBtn: "Inizia",
+                // Frequency Benefits
+                whatCanFrequenciesDo: "Cosa Possono Fare Queste Frequenze?",
+                trinityFoundation: "Costruito sulla Fondazione della Trinità: 37 Hz + 73 Hz + una frequenza di intenzione",
+                meditationPrayer: "Meditazione e Preghiera",
+                meditationPrayerDesc: "Approfondisci la tua pratica spirituale con frequenze progettate per quietare la mente e migliorare la concentrazione.",
+                energyWork: "Lavoro Energetico ed Equilibrio",
+                energyWorkDesc: "Supporta i tuoi centri energetici e ripristina l'armonia naturale usando la matematica biblica.",
+                restRenewal: "Riposo e Rinnovamento",
+                restRenewalDesc: "Promuovi un rilassamento profondo e migliora la qualità del sonno. Sentiti più in pace dopo le sessioni.",
+                creativeFlow: "Flusso Creativo e Chiarezza",
+                creativeFlowDesc: "Sblocca l'ispirazione, migliora la concentrazione e accedi a stati di flusso per lavoro e creatività.",
+                forSpiritualExploration: "Per esplorazione spirituale • Non è un trattamento medico",
+                howToUseBtn: "Come Usare",
+                // How To Use
+                firstSessionSteps: "La Tua Prima Sessione in 3 Passi",
+                quickStart: "Avvio Rapido",
+                chooseGenesis: "Scegli \"Creazione Genesis\" da Biblico & Originale",
+                pureFoundation: "La base pura di 37 + 73 Hz",
+                setDuration: "Imposta la durata su 5-10 minuti e metti le cuffie",
+                startShort: "Inizia breve—vai più lungo quando lo senti",
+                pressPlay: "Premi RIPRODUCI, chiudi gli occhi, respira lentamente",
+                setIntention: "Imposta un'intenzione: \"pace\", \"chiarezza\" o \"grazie\"",
+                controlsYouUse: "Controlli Che Userai",
+                categoriesLabel: "Categorie:",
+                categoriesDesc: "Biblico, Numeri degli Angeli, Solfeggio, ecc.",
+                volumeLabel: "Volume:",
+                volumeDesc: "Inizia basso e regola",
+                durationLabel: "Durata:",
+                durationDesc: "Imposta il timer della sessione",
+                proTips: "Consigli Pro",
+                tipMeditation: "Usa durante meditazione, preghiera o yoga",
+                tipWater: "Bevi acqua prima e dopo",
+                tipJournal: "Scrivi sul diario dopo ogni sessione",
+                proTipBtn: "Consiglio Pro",
+                // PWA Tip
+                addToHomeScreen: "Aggiungi alla Schermata Home",
+                getFullExperience: "Ottieni l'Esperienza Completa",
+                worksOffline: "Funziona offline",
+                listenAnytime: "Ascolta in qualsiasi momento",
+                fasterLoading: "Caricamento più veloce",
+                oneTapAccess: "Accesso con un tocco",
+                whileYouWork: "Mentre lavori",
+                streaksAchievements: "Serie e traguardi",
+                howToInstall: "Come installare:",
+                tapShare: "Tocca Condividi (iOS) o Menu ⋮ (Android)",
+                selectAddHome: "Seleziona \"Aggiungi alla Schermata Home\"",
+                doThisLater: "Puoi farlo dopo dal menu!",
+                continueBtn: "Continua",
+                skipBtn: "Salta",
+                // Upgrade Benefits
+                unlockPremium: "Sblocca Premium",
+                getPremiumNow: "Ottieni Premium Ora",
+                tryFreeVersionFirst: "Prova Prima la Versione Gratuita",
+                upgradeFromSettings: "Aggiorna in qualsiasi momento dal menu Impostazioni",
+                joinGenesisJourney: "Unisciti a migliaia nel viaggio Genesis",
+                adjustEachFrequency: "Regola ogni frequenza separatamente per un equilibrio perfetto.",
+                anySessionLength: "Qualsiasi durata della sessione—perfetto per dormire o meditazione profonda.",
+                keepPlayingExport: "Continua a riprodurre mentre lavori. Salva come file WAV."
             }
         };
         
@@ -4325,6 +4806,11 @@
             // Update companion header with new language
             if (typeof renderCompanionHeader === 'function') {
                 renderCompanionHeader();
+            }
+            
+            // Update welcome flow content with new language
+            if (typeof updateWelcomeFlowLanguage === 'function') {
+                updateWelcomeFlowLanguage();
             }
         }
         
@@ -8938,9 +9424,9 @@
             const streak = userProgress.currentStreak || 0;
 
             greetingContainer.innerHTML = `
-                ${timeInfo.emoji} ${timeInfo.greeting}, Sacred Listener
+                ${timeInfo.emoji} ${timeInfo.greeting}, ${t.sacredListener || 'Sacred Listener'}
                 <span style="font-size: 14px; color: #c4b5fd; font-weight: 400; display: block; margin-top: 4px;">
-                    ${streak > 0 ? `🔥 ${streak} day streak` : 'Begin your sacred journey today'}
+                    ${streak > 0 ? `🔥 ${streak} ${t.dayStreak || 'day streak'}` : (t.beginJourney || 'Begin your sacred journey today')}
                 </span>
             `;
 
@@ -10385,7 +10871,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Returning user - show welcome back toast after a brief delay
         console.log('Returning user - showing welcome toast');
         setTimeout(() => {
-            showToast('Welcome back! Ready to explore sacred frequencies? 🌟');
+            const t = translations[currentLanguage];
+            showToast((t.welcomeBack || 'Welcome back! Ready to explore sacred frequencies?') + ' 🌟');
         }, 1000);
     }
 

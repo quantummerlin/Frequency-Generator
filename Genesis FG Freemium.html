@@ -9474,6 +9474,10 @@
                 userProgress.achievements = new Set(userProgress.achievements || []);
             }
             
+            // Remove any existing modal first
+            const existingModal = document.getElementById('achievementsFullModal');
+            if (existingModal) existingModal.remove();
+            
             // Close companion panel first
             const panel = document.getElementById('instructionsPanel');
             if (panel) panel.style.display = 'none';
@@ -9497,7 +9501,12 @@
             // Close function
             function closeAchievementsModal() {
                 const m = document.getElementById('achievementsFullModal');
-                if (m) m.remove();
+                if (m) {
+                    m.remove();
+                    // Ensure page is scrollable and visible
+                    document.body.style.overflow = '';
+                    window.scrollTo(0, 0);
+                }
             }
             
             // Store close function globally
@@ -10183,6 +10192,10 @@
         // Show daily challenge modal
         function showDailyChallengeModal() {
             try {
+            // Remove any existing modal first
+            const existingModal = document.getElementById('dailyChallengeModal');
+            if (existingModal) existingModal.remove();
+            
             // Close companion panel first
             const panel = document.getElementById('instructionsPanel');
             if (panel) panel.style.display = 'none';
@@ -10214,7 +10227,12 @@
             // Close function
             function closeDailyChallengeModal() {
                 const m = document.getElementById('dailyChallengeModal');
-                if (m) m.remove();
+                if (m) {
+                    m.remove();
+                    // Ensure page is scrollable and visible
+                    document.body.style.overflow = '';
+                    window.scrollTo(0, 0);
+                }
             }
             
             // Store close function globally

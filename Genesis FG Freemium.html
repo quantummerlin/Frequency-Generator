@@ -1376,7 +1376,6 @@
 
         .info-modal.active {
             display: flex !important;
-            -webkit-display: flex !important;
         }
 
         /* Upgrade modal sits on top, not dimmed */
@@ -1422,7 +1421,6 @@
         #pwaTipModal.active,
         #upgradeBenefitsModal.active {
             display: flex !important;
-            -webkit-display: flex !important;
             opacity: 1 !important;
             visibility: visible !important;
             -webkit-transform: translateZ(0);
@@ -2614,6 +2612,43 @@
 <script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
 </head>
 <body>
+    <!-- Safari Early Welcome Flow Initialization - runs before DOM fully loads -->
+    <script>
+    (function() {
+        // Safari-safe storage check
+        function canUseStorage() {
+            try {
+                localStorage.setItem('_test', '1');
+                localStorage.removeItem('_test');
+                return true;
+            } catch(e) {
+                return false;
+            }
+        }
+        
+        function getStorageItem(key) {
+            try {
+                return localStorage.getItem(key) || sessionStorage.getItem(key);
+            } catch(e) {
+                return null;
+            }
+        }
+        
+        // Check if this is first visit
+        var onboardingDone = getStorageItem('onboardingComplete') === 'true';
+        var forceShow = window.location.search.indexOf('showWelcome=true') !== -1;
+        
+        if (!onboardingDone || forceShow) {
+            // Create a style to force the welcome modal visible immediately
+            var style = document.createElement('style');
+            style.id = 'safari-welcome-fix';
+            style.textContent = '#immersiveWelcome { display: flex !important; visibility: visible !important; opacity: 1 !important; position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important; z-index: 9999999 !important; background: rgba(0,0,0,0.95) !important; align-items: center !important; justify-content: center !important; }';
+            document.head.appendChild(style);
+            document.body.style.overflow = 'hidden';
+        }
+    })();
+    </script>
+    
     <!-- Immersive Welcome Modal - starts hidden, shown via JavaScript for first-time users -->
     <div id="immersiveWelcome" class="info-modal" style="z-index:9999999;">
         <div class="info-modal-content" style="max-width: 500px; text-align: center; background: linear-gradient(135deg, rgba(26,0,51,0.98), rgba(139,92,246,0.95)); border: 2px solid rgba(251,191,36,0.6); box-shadow: 0 0 60px rgba(251,191,36,0.3);">
@@ -3258,10 +3293,15 @@
                 });
         // Modal flow functions for first-time users - with Safari/WebKit compatibility
         function showFrequencyBenefits() {
+            // Remove Safari early-init style
+            var safariStyle = document.getElementById('safari-welcome-fix');
+            if (safariStyle) safariStyle.remove();
+            
             const welcome = document.getElementById('immersiveWelcome');
             const benefits = document.getElementById('frequencyBenefitsModal');
             welcome.classList.remove('active');
             welcome.style.display = 'none';
+            welcome.style.visibility = 'hidden';
             benefits.classList.add('active');
             benefits.style.display = 'flex';
             benefits.style.visibility = 'visible';
@@ -3320,6 +3360,10 @@
         }
 
         function skipToApp() {
+            // Remove Safari early-init style if present
+            var safariStyle = document.getElementById('safari-welcome-fix');
+            if (safariStyle) safariStyle.remove();
+            
             // Hide all modals with explicit display setting for Safari
             const modals = ['immersiveWelcome', 'frequencyBenefitsModal', 'howToUseModal', 'pwaTipModal', 'upgradeBenefitsModal'];
             modals.forEach(id => {
@@ -3327,6 +3371,8 @@
                 if (modal) {
                     modal.classList.remove('active');
                     modal.style.display = 'none';
+                    modal.style.visibility = 'hidden';
+                    modal.style.opacity = '0';
                 }
             });
             

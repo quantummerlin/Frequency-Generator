@@ -3247,9 +3247,11 @@
                                 newOverlay.appendChild(panel);
                                 document.body.appendChild(newOverlay);
                                 
-                                // Refresh translations before rendering
+                                // Refresh translations before rendering - ensure currentLanguage is applied
+                                console.log('🌐 Current language for companion panel:', currentLanguage);
                                 instructionsSections = getInstructionsSections();
                                 renderInstructionsCategories();
+                                renderCompanionHeader(); // Force refresh header with current language
                                 addInstructionsSearch();
                             }
                         }

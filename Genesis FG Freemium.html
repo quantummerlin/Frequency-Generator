@@ -9,7 +9,10 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#6B46C1">
     <meta name="format-detection" content="telephone=no">
-    <title>🌟 Genesis Frequency Generator (Free)</title>
+    <title>Genesis Frequency Generator (Free)</title>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 
     <link rel="manifest" href="/Frequency-Generator/manifest.json">
     <link rel="icon" type="image/png" sizes="192x192" href="/Frequency-Generator/Genesis.png">
@@ -2608,10 +2611,323 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 30px rgba(34,197,94,0.5);
         }
+
+        /* ═══════════════════════════════════════════════════════════════
+           LUCIDE ICONS - Professional Icon System
+        ═══════════════════════════════════════════════════════════════ */
+        .lucide-icon {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+            vertical-align: middle;
+            display: inline-block;
+        }
+        
+        .lucide-icon-sm { width: 16px; height: 16px; }
+        .lucide-icon-lg { width: 24px; height: 24px; }
+        .lucide-icon-xl { width: 32px; height: 32px; }
+        
+        .icon-gold { color: #fbbf24; }
+        .icon-purple { color: #a78bfa; }
+        .icon-green { color: #22c55e; }
+        .icon-blue { color: #3b82f6; }
+        .icon-pink { color: #ec4899; }
+
+        /* ═══════════════════════════════════════════════════════════════
+           HOLOGRAPHIC CARD EFFECTS
+        ═══════════════════════════════════════════════════════════════ */
+        .holographic-card {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, 
+                rgba(139, 92, 246, 0.15) 0%, 
+                rgba(251, 191, 36, 0.1) 50%,
+                rgba(139, 92, 246, 0.15) 100%);
+            border: 1px solid rgba(251, 191, 36, 0.2);
+            border-radius: 16px;
+        }
+        
+        .holographic-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 30%,
+                rgba(251, 191, 36, 0.08) 40%,
+                rgba(139, 92, 246, 0.12) 50%,
+                rgba(251, 191, 36, 0.08) 60%,
+                transparent 70%
+            );
+            animation: holographicShimmer 6s linear infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes holographicShimmer {
+            0% { transform: translateX(-50%) translateY(-50%) rotate(0deg); }
+            100% { transform: translateX(50%) translateY(50%) rotate(360deg); }
+        }
+        
+        .holographic-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0.1) 0%,
+                transparent 50%,
+                rgba(255, 255, 255, 0.05) 100%
+            );
+            pointer-events: none;
+            border-radius: inherit;
+        }
+
+        /* Card Shimmer on Hover */
+        .shimmer-hover {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .shimmer-hover::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.15),
+                transparent
+            );
+            transition: left 0.5s ease;
+        }
+        
+        .shimmer-hover:hover::after {
+            left: 100%;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           FLOATING PARTICLES SYSTEM
+        ═══════════════════════════════════════════════════════════════ */
+        #particles-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        
+        .floating-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            opacity: 0;
+            animation: floatParticle linear infinite;
+        }
+        
+        .particle-gold {
+            background: radial-gradient(circle, #fbbf24, transparent);
+            box-shadow: 0 0 6px #fbbf24, 0 0 12px rgba(251, 191, 36, 0.5);
+        }
+        
+        .particle-purple {
+            background: radial-gradient(circle, #a78bfa, transparent);
+            box-shadow: 0 0 6px #a78bfa, 0 0 12px rgba(167, 139, 250, 0.5);
+        }
+        
+        .particle-white {
+            background: radial-gradient(circle, #ffffff, transparent);
+            box-shadow: 0 0 4px #ffffff, 0 0 8px rgba(255, 255, 255, 0.3);
+        }
+        
+        @keyframes floatParticle {
+            0% {
+                opacity: 0;
+                transform: translateY(100vh) scale(0);
+            }
+            10% {
+                opacity: 0.8;
+                transform: translateY(80vh) scale(1);
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-10vh) scale(0.5);
+            }
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           PULSING GLOW EFFECTS
+        ═══════════════════════════════════════════════════════════════ */
+        .pulse-glow {
+            animation: pulseGlowEffect 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulseGlowEffect {
+            0%, 100% {
+                box-shadow: 0 0 5px rgba(251, 191, 36, 0.3),
+                            0 0 10px rgba(251, 191, 36, 0.2);
+            }
+            50% {
+                box-shadow: 0 0 15px rgba(251, 191, 36, 0.5),
+                            0 0 30px rgba(251, 191, 36, 0.3),
+                            0 0 45px rgba(251, 191, 36, 0.1);
+            }
+        }
+        
+        .active-glow {
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.4),
+                        0 0 40px rgba(34, 197, 94, 0.2);
+            animation: activeGlowPulse 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes activeGlowPulse {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(34, 197, 94, 0.4),
+                            0 0 40px rgba(34, 197, 94, 0.2);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(34, 197, 94, 0.6),
+                            0 0 60px rgba(34, 197, 94, 0.3);
+            }
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           SPIRITUAL JOURNEY BADGES
+        ═══════════════════════════════════════════════════════════════ */
+        .journey-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            position: relative;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(251, 191, 36, 0.3));
+            border: 2px solid rgba(251, 191, 36, 0.5);
+        }
+        
+        .journey-badge::before {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, #fbbf24, #a78bfa, #22c55e, #fbbf24);
+            opacity: 0.5;
+            z-index: -1;
+            animation: badgeRotate 4s linear infinite;
+        }
+        
+        @keyframes badgeRotate {
+            100% { transform: rotate(360deg); }
+        }
+        
+        .journey-badge.awakening { border-color: #6b7280; }
+        .journey-badge.seeker { border-color: #22c55e; }
+        .journey-badge.initiate { border-color: #3b82f6; }
+        .journey-badge.practitioner { border-color: #a78bfa; }
+        .journey-badge.adept { border-color: #f59e0b; }
+        .journey-badge.master { border-color: #fbbf24; }
+        .journey-badge.genesis-master { 
+            border-color: #fbbf24;
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.4), rgba(139, 92, 246, 0.4));
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           STREAK FLAME VISUALIZATION
+        ═══════════════════════════════════════════════════════════════ */
+        .streak-flame {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: linear-gradient(135deg, rgba(251, 146, 60, 0.2), rgba(239, 68, 68, 0.2));
+            border-radius: 20px;
+            border: 1px solid rgba(251, 146, 60, 0.4);
+        }
+        
+        .streak-flame .flame-icon {
+            color: #f97316;
+            animation: flameFlicker 0.5s ease-in-out infinite alternate;
+        }
+        
+        @keyframes flameFlicker {
+            0% { transform: scale(1) rotate(-3deg); opacity: 0.9; }
+            100% { transform: scale(1.1) rotate(3deg); opacity: 1; }
+        }
+        
+        .streak-count {
+            font-weight: 700;
+            font-size: 18px;
+            color: #fbbf24;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           TIER PRICING CARDS
+        ═══════════════════════════════════════════════════════════════ */
+        .tier-card {
+            position: relative;
+            padding: 24px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .tier-card.premium {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(167, 139, 250, 0.1));
+            border: 2px solid rgba(139, 92, 246, 0.5);
+        }
+        
+        .tier-card.ultimate {
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(245, 158, 11, 0.1));
+            border: 2px solid rgba(251, 191, 36, 0.6);
+        }
+        
+        .tier-card.ultimate::before {
+            content: 'BEST VALUE';
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: linear-gradient(90deg, #fbbf24, #f59e0b);
+            color: #1a0033;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+        
+        .tier-price {
+            font-size: 36px;
+            font-weight: 800;
+            color: #fbbf24;
+        }
+        
+        .tier-price span {
+            font-size: 16px;
+            font-weight: 400;
+            color: #9ca3af;
+        }
     </style>
 <script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
 </head>
 <body>
+    <!-- Floating Particles Container -->
+    <div id="particles-container"></div>
+    
     <!-- Safari Early Welcome Flow Initialization - runs before DOM fully loads -->
     <script>
     (function() {
@@ -2890,37 +3206,77 @@
 
     <!-- Upgrade Modal -->
     <div id="upgradeModal" class="upgrade-modal">
-        <div class="upgrade-modal-content">
+        <div class="upgrade-modal-content" style="max-width: 700px;">
             <button class="upgrade-close" onclick="closeUpgradeModal()">×</button>
-            <div class="upgrade-modal-header" data-translate="upgradeToPremium">🚀 Upgrade to Premium</div>
+            <div class="upgrade-modal-header" data-translate="upgradeToPremium">
+                <i data-lucide="rocket" class="lucide-icon lucide-icon-lg icon-gold"></i> Upgrade Your Journey
+            </div>
             <div class="upgrade-modal-body">
-                <p style="margin-bottom: 20px; font-size: 18px;" data-translate="unlockFullPower">
+                <p style="margin-bottom: 25px; font-size: 18px; text-align: center;" data-translate="unlockFullPower">
                     Unlock the full power of sacred frequencies with lifetime access!
                 </p>
 
-                <div class="upgrade-features">
-                    <h3 data-translate="premiumFeatures">✨ Premium Features Include:</h3>
-                    <ul>
-                        <li><strong data-translate="silentMode">Silent Mode Bypass</strong> - <span data-translate="silentModeDesc">Play frequencies even when phone is silenced</span></li>
-                        <li><strong data-translate="volumeControls">Individual Volume Controls</strong> - <span data-translate="volumeControlsDesc">Adjust each of the 3 frequencies separately</span></li>
-                        <li><strong data-translate="customDurations">Custom Durations</strong> - <span data-translate="customDurationsDesc">Set any length from seconds to hours</span></li>
-                        <li><strong data-translate="wavExport">WAV Export</strong> - <span data-translate="wavExportDesc">Save tracks for offline use anywhere</span></li>
-                        <li><strong data-translate="backgroundPlayback">Background Playback</strong> - <span data-translate="backgroundPlaybackDesc">Frequencies play when app is minimized</span></li>
-                        <li><strong data-translate="allAchievements">All Achievements</strong> - <span data-translate="allAchievementsDesc">Unlock the complete achievement system</span></li>
-                        <li><strong data-translate="unlimitedListening">Unlimited Listening</strong> - <span data-translate="unlimitedListeningDesc">No time restrictions on your sessions</span></li>
-                        <li><strong data-translate="premiumSupport">Premium Support</strong> - <span data-translate="premiumSupportDesc">Direct access to updates and new features</span></li>
-                    </ul>
+                <!-- Two Tier Pricing Cards -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 25px;">
+                    <!-- Premium Tier -->
+                    <div class="tier-card premium holographic-card">
+                        <h3 style="color: #a78bfa; font-size: 22px; margin-bottom: 10px;">
+                            <i data-lucide="star" class="lucide-icon icon-purple"></i> Premium
+                        </h3>
+                        <div class="tier-price">$9.99 <span>/ lifetime</span></div>
+                        <ul style="list-style: none; padding: 0; margin: 20px 0; text-align: left; font-size: 14px; color: #e5e7eb;">
+                            <li style="margin-bottom: 10px;"><i data-lucide="check" class="lucide-icon icon-green" style="width:16px;height:16px;"></i> All 20+ frequency tracks</li>
+                            <li style="margin-bottom: 10px;"><i data-lucide="check" class="lucide-icon icon-green" style="width:16px;height:16px;"></i> Unlimited listening</li>
+                            <li style="margin-bottom: 10px;"><i data-lucide="check" class="lucide-icon icon-green" style="width:16px;height:16px;"></i> Individual volume controls</li>
+                            <li style="margin-bottom: 10px;"><i data-lucide="check" class="lucide-icon icon-green" style="width:16px;height:16px;"></i> Save favorites</li>
+                            <li style="margin-bottom: 10px;"><i data-lucide="check" class="lucide-icon icon-green" style="width:16px;height:16px;"></i> Background playback</li>
+                            <li style="margin-bottom: 10px;"><i data-lucide="check" class="lucide-icon icon-green" style="width:16px;height:16px;"></i> Silent mode bypass</li>
+                            <li style="color: #6b7280;"><i data-lucide="x" class="lucide-icon" style="width:16px;height:16px;color:#6b7280;"></i> WAV export</li>
+                            <li style="color: #6b7280;"><i data-lucide="x" class="lucide-icon" style="width:16px;height:16px;color:#6b7280;"></i> Custom frequency builder</li>
+                        </ul>
+                        <a href="https://etsy.com/your-premium-link" class="upgrade-btn" target="_blank" style="background: linear-gradient(90deg, #8b5cf6, #a78bfa); font-size: 16px; padding: 12px 24px;">
+                            Get Premium
+                        </a>
+                    </div>
+
+                    <!-- Ultimate Tier -->
+                    <div class="tier-card ultimate holographic-card">
+                        <h3 style="color: #fbbf24; font-size: 22px; margin-bottom: 10px;">
+                            <i data-lucide="crown" class="lucide-icon icon-gold"></i> Ultimate
+                        </h3>
+                        <div class="tier-price">$19.99 <span>/ lifetime</span></div>
+                        <ul style="list-style: none; padding: 0; margin: 20px 0; text-align: left; font-size: 14px; color: #e5e7eb;">
+                            <li style="margin-bottom: 10px;"><i data-lucide="check" class="lucide-icon icon-green" style="width:16px;height:16px;"></i> <b>Everything in Premium</b></li>
+                            <li style="margin-bottom: 10px;"><i data-lucide="check" class="lucide-icon icon-green" style="width:16px;height:16px;"></i> All 20+ frequency tracks</li>
+                            <li style="margin-bottom: 10px;"><i data-lucide="check" class="lucide-icon icon-green" style="width:16px;height:16px;"></i> Unlimited listening</li>
+                            <li style="margin-bottom: 10px;"><i data-lucide="check" class="lucide-icon icon-green" style="width:16px;height:16px;"></i> Individual volume controls</li>
+                            <li style="margin-bottom: 10px;"><i data-lucide="sparkles" class="lucide-icon icon-gold" style="width:16px;height:16px;"></i> <b style="color:#fbbf24;">WAV export</b> - Save offline</li>
+                            <li style="margin-bottom: 10px;"><i data-lucide="sparkles" class="lucide-icon icon-gold" style="width:16px;height:16px;"></i> <b style="color:#fbbf24;">Custom frequency builder</b></li>
+                            <li style="margin-bottom: 10px;"><i data-lucide="sparkles" class="lucide-icon icon-gold" style="width:16px;height:16px;"></i> <b style="color:#fbbf24;">Priority support</b></li>
+                            <li style="margin-bottom: 10px;"><i data-lucide="sparkles" class="lucide-icon icon-gold" style="width:16px;height:16px;"></i> <b style="color:#fbbf24;">Future features included</b></li>
+                        </ul>
+                        <a href="https://etsy.com/your-ultimate-link" class="upgrade-btn" target="_blank" style="background: linear-gradient(90deg, #fbbf24, #f59e0b); color: #1a0033; font-size: 16px; padding: 12px 24px;">
+                            Get Ultimate
+                        </a>
+                    </div>
                 </div>
 
-                <p style="margin: 20px 0; color: #fbbf24; font-weight: 600;" data-translate="noDataCollected">
-                    💎 One-time payment • Lifetime access • No subscriptions • No data collected
+                <!-- Mobile stacking -->
+                <style>
+                    @media (max-width: 600px) {
+                        .tier-card { margin-bottom: 15px; }
+                        .upgrade-modal-content div[style*="grid-template-columns: 1fr 1fr"] {
+                            display: block !important;
+                        }
+                    }
+                </style>
+
+                <p style="margin: 15px 0; color: #fbbf24; font-weight: 600; text-align: center;">
+                    <i data-lucide="diamond" class="lucide-icon icon-gold" style="width:18px;height:18px;"></i> 
+                    One-time payment • Lifetime access • No subscriptions • No data collected
                 </p>
 
-                <a href="https://etsy.com/your-listing-link" class="upgrade-btn" target="_blank" data-translate="getLifetimeAccess">
-                    🚀 Get Lifetime Access - $XX.XX
-                </a>
-
-                <p style="margin-top: 15px; font-size: 14px; color: #9ca3af;" data-translate="questionsContact">
+                <p style="margin-top: 15px; font-size: 14px; color: #9ca3af; text-align: center;" data-translate="questionsContact">
                     Questions? Contact us through Etsy
                 </p>
             </div>
@@ -8236,26 +8592,47 @@
         }
 
         // ============================================
-        // LEVELING SYSTEM
+        // LEVELING SYSTEM - 7 Spiritual Journey Stages
         // ============================================
 
-        const LEVEL_TITLES = {
-            1: 'Initiate',
-            3: 'Apprentice',
-            7: 'Seeker',
-            12: 'Student',
-            21: 'Awakened',
-            30: 'Practitioner',
-            37: 'Mirror of Form',
-            40: 'Devoted',
-            50: 'Adept',
-            60: 'Master Practitioner',
-            73: 'Mirror of Spirit',
-            80: 'Sage',
-            90: 'High Priest/Priestess',
-            100: 'Enlightened',
-            108: 'Ascended Master'
+        // The 7 Stages of the Spiritual Journey
+        const SPIRITUAL_STAGES = {
+            1: { name: 'Awakening', icon: 'sunrise', color: '#6b7280', minLevel: 1 },
+            2: { name: 'Seeker', icon: 'compass', color: '#22c55e', minLevel: 7 },
+            3: { name: 'Initiate', icon: 'flame', color: '#3b82f6', minLevel: 21 },
+            4: { name: 'Practitioner', icon: 'target', color: '#a78bfa', minLevel: 37 },
+            5: { name: 'Adept', icon: 'zap', color: '#f59e0b', minLevel: 50 },
+            6: { name: 'Master', icon: 'crown', color: '#fbbf24', minLevel: 73 },
+            7: { name: 'Genesis Master', icon: 'sparkles', color: '#fbbf24', minLevel: 108 }
         };
+
+        const LEVEL_TITLES = {
+            1: 'Awakening',
+            3: 'Awakening II',
+            7: 'Seeker',
+            12: 'Seeker II',
+            21: 'Initiate',
+            30: 'Initiate II',
+            37: 'Practitioner',
+            40: 'Practitioner II',
+            50: 'Adept',
+            60: 'Adept II',
+            73: 'Master',
+            80: 'Master II',
+            90: 'Master III',
+            100: 'Genesis Master',
+            108: 'Genesis Master ✨'
+        };
+
+        function getSpiritualStage(level) {
+            if (level >= 108) return SPIRITUAL_STAGES[7];
+            if (level >= 73) return SPIRITUAL_STAGES[6];
+            if (level >= 50) return SPIRITUAL_STAGES[5];
+            if (level >= 37) return SPIRITUAL_STAGES[4];
+            if (level >= 21) return SPIRITUAL_STAGES[3];
+            if (level >= 7) return SPIRITUAL_STAGES[2];
+            return SPIRITUAL_STAGES[1];
+        }
 
         function calculateLevel(totalXP) {
             let level = 1;
@@ -9277,6 +9654,73 @@
         }
 
         // ============================================
+        // ACHIEVEMENT BADGE ICONS (Lucide-based)
+        // ============================================
+        
+        const ACHIEVEMENT_ICONS = {
+            // Awakening category
+            trinityThreshold: 'triangle',
+            sevenFoldBlessing: 'sparkles',
+            tenthGate: 'star',
+            
+            // Sessions category
+            quarterCentury: 'infinity',
+            mirrorOfForm: 'gem',
+            fiftySteps: 'trending-up',
+            mirrorOfSpirit: 'sparkles',
+            centuryGuardian: 'crown',
+            sacredGateway108: 'door-open',
+            
+            // Time category
+            fiveMinuteMark: 'timer',
+            halfHourDevotee: 'clock',
+            hourMaster: 'clock',
+            fiveHourPilgrim: 'clock',
+            tenHourSage: 'clock',
+            
+            // Streaks category
+            threeDayInitiate: 'flame',
+            sevenDaySeeker: 'star',
+            twoWeekChampion: 'trophy',
+            twentyOneDayTransformer: 'refresh-cw',
+            monthMaster: 'crown',
+            fortyDayPilgrim: 'bird',
+            seventyThreeDayMystic: 'gem',
+            oneHundredEightDaySage: 'flower-2',
+            
+            // Exploration category
+            trinityMaster: 'triangle',
+            solfeggioExplorer: 'heart',
+            angelWhisperer: 'bird',
+            cosmicTraveler: 'orbit',
+            frequencyScholar: 'graduation-cap',
+            
+            // Special category
+            waterAlchemist: 'droplet',
+            intentionSetter: 'target',
+            genesisEvangelist: 'megaphone',
+            journalKeeper: 'book-open',
+            
+            // Synchronicity category
+            morningRitualist: 'sunrise',
+            eveningContemplator: 'moon',
+            perfectTiming: 'clock',
+            
+            // Mastery category
+            levelApprentice: 'star',
+            levelSeeker: 'star',
+            levelAwakened: 'sparkles',
+            levelPractitioner: 'gem',
+            levelMirrorOfForm: 'flip-horizontal',
+            levelMirrorOfSpirit: 'star'
+        };
+        
+        function getAchievementIcon(achievementId, size = 48) {
+            const iconName = ACHIEVEMENT_ICONS[achievementId] || 'award';
+            return `<i data-lucide="${iconName}" style="width:${size}px;height:${size}px;color:#fbbf24;"></i>`;
+        }
+
+        // ============================================
         // LOCKED ACHIEVEMENT TEASER SYSTEM
         // ============================================
 
@@ -9349,16 +9793,15 @@
                         right: 10px;
                         font-size: 24px;
                         animation: sparkle 1.5s ease-in-out infinite;
-                    ">✨</div>
+                    "><i data-lucide="sparkles" class="lucide-icon icon-gold"></i></div>
                     
                     <!-- Achievement Icon -->
                     <div style="
-                        font-size: 64px;
                         text-align: center;
                         margin-bottom: 15px;
                         filter: drop-shadow(0 0 10px rgba(34,197,94,0.5));
                     ">
-                        ${achievement.name.split(' ')[0]}
+                        ${getAchievementIcon(achievementId, 64)}
                     </div>
                     
                     <!-- Achievement Name -->
@@ -9461,18 +9904,17 @@
                         box-shadow: 0 4px 15px rgba(251,191,36,0.6);
                         animation: shake 0.5s ease-in-out infinite;
                     ">
-                        🔥 SO CLOSE!
+                        <i data-lucide="flame" style="width:14px;height:14px;display:inline;vertical-align:middle;"></i> SO CLOSE!
                     </div>
                     
                     <!-- Partially revealed icon -->
                     <div style="
-                        font-size: 64px;
                         text-align: center;
                         margin-bottom: 15px;
                         position: relative;
                         filter: brightness(1.5) drop-shadow(0 0 15px rgba(251,191,36,0.8));
                     ">
-                        ${achievement.name.split(' ')[0]}
+                        ${getAchievementIcon(achievementId, 64)}
                         
                         <!-- Shine effect overlay -->
                         <div style="
@@ -9646,13 +10088,12 @@
                     
                     <!-- Icon (Slightly dimmed) -->
                     <div style="
-                        font-size: 64px;
                         text-align: center;
                         margin-bottom: 15px;
                         opacity: 0.8;
                         filter: grayscale(20%);
                     ">
-                        ${achievement.name.split(' ')[0]}
+                        ${getAchievementIcon(achievementId, 64)}
                     </div>
                     
                     <!-- Achievement Name -->
@@ -9793,20 +10234,18 @@
                         position: absolute;
                         top: 10px;
                         right: 10px;
-                        font-size: 24px;
                         opacity: 0.5;
-                    ">🔒</div>
+                    "><i data-lucide="lock" style="width:24px;height:24px;color:#6b7280;"></i></div>
                     
                     ${isMysteryBox ? `
                         <!-- MYSTERY BOX MODE -->
                         <div style="text-align: center;">
                             <div style="
-                                font-size: 80px;
                                 margin-bottom: 15px;
                                 opacity: 0.6;
                                 filter: blur(2px);
                                 user-select: none;
-                            ">🎁</div>
+                            "><i data-lucide="gift" style="width:80px;height:80px;color:#6b7280;"></i></div>
                             
                             <h4 style="
                                 color: #6b7280;
@@ -9855,12 +10294,11 @@
                         <!-- VISIBLE BUT LOCKED MODE -->
                         <div style="text-align: center;">
                             <div style="
-                                font-size: 64px;
                                 margin-bottom: 15px;
                                 opacity: 0.3;
                                 filter: grayscale(100%);
                             ">
-                                ${achievement.name.split(' ')[0]}
+                                ${getAchievementIcon(achievementId, 64)}
                             </div>
                             
                             <h4 style="
@@ -9870,6 +10308,7 @@
                                 margin-bottom: 10px;
                             ">
                                 ${achievement.name}
+                            </h4>
                             </h4>
                             
                             <p style="
@@ -12987,6 +13426,158 @@ document.addEventListener('DOMContentLoaded', function() {
 
 console.log('🔒 Achievement Teaser System Loaded!');
 console.log('✨ Locked, In Progress, Almost There, and Unlocked states active!');
+
+// ═══════════════════════════════════════════════════════════════
+// FLOATING PARTICLES SYSTEM - 50 particles
+// ═══════════════════════════════════════════════════════════════
+function initFloatingParticles() {
+    const container = document.getElementById('particles-container');
+    if (!container) return;
+    
+    const particleCount = 50;
+    const colors = ['particle-gold', 'particle-purple', 'particle-white'];
+    
+    for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = `floating-particle ${colors[Math.floor(Math.random() * colors.length)]}`;
+        
+        // Random positioning
+        particle.style.left = `${Math.random() * 100}%`;
+        
+        // Random size (2-6px)
+        const size = 2 + Math.random() * 4;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        
+        // Random animation duration (15-30s)
+        const duration = 15 + Math.random() * 15;
+        particle.style.animationDuration = `${duration}s`;
+        
+        // Random delay
+        particle.style.animationDelay = `${Math.random() * duration}s`;
+        
+        container.appendChild(particle);
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════
+// LUCIDE ICONS INITIALIZATION
+// ═══════════════════════════════════════════════════════════════
+function initLucideIcons() {
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+        console.log('✨ Lucide icons initialized');
+    }
+}
+
+// Icon mapping for replacing emojis in dynamic content
+const iconMap = {
+    '🎵': '<i data-lucide="music" class="lucide-icon icon-gold"></i>',
+    '🔊': '<i data-lucide="volume-2" class="lucide-icon icon-gold"></i>',
+    '⏱️': '<i data-lucide="timer" class="lucide-icon icon-purple"></i>',
+    '🎯': '<i data-lucide="target" class="lucide-icon icon-gold"></i>',
+    '✨': '<i data-lucide="sparkles" class="lucide-icon icon-gold"></i>',
+    '🌟': '<i data-lucide="star" class="lucide-icon icon-gold"></i>',
+    '⭐': '<i data-lucide="star" class="lucide-icon icon-gold"></i>',
+    '🔮': '<i data-lucide="gem" class="lucide-icon icon-purple"></i>',
+    '💎': '<i data-lucide="diamond" class="lucide-icon icon-purple"></i>',
+    '🎨': '<i data-lucide="palette" class="lucide-icon icon-pink"></i>',
+    '🧘': '<i data-lucide="heart" class="lucide-icon icon-purple"></i>',
+    '🌸': '<i data-lucide="flower-2" class="lucide-icon icon-pink"></i>',
+    '🌿': '<i data-lucide="leaf" class="lucide-icon icon-green"></i>',
+    '💧': '<i data-lucide="droplet" class="lucide-icon icon-blue"></i>',
+    '🔥': '<i data-lucide="flame" class="lucide-icon" style="color:#f97316"></i>',
+    '⚡': '<i data-lucide="zap" class="lucide-icon icon-gold"></i>',
+    '🌙': '<i data-lucide="moon" class="lucide-icon icon-purple"></i>',
+    '☀️': '<i data-lucide="sun" class="lucide-icon icon-gold"></i>',
+    '🌅': '<i data-lucide="sunrise" class="lucide-icon icon-gold"></i>',
+    '📖': '<i data-lucide="book-open" class="lucide-icon icon-gold"></i>',
+    '📊': '<i data-lucide="bar-chart-3" class="lucide-icon icon-purple"></i>',
+    '🏆': '<i data-lucide="trophy" class="lucide-icon icon-gold"></i>',
+    '👑': '<i data-lucide="crown" class="lucide-icon icon-gold"></i>',
+    '🎖️': '<i data-lucide="award" class="lucide-icon icon-gold"></i>',
+    '🏅': '<i data-lucide="medal" class="lucide-icon icon-gold"></i>',
+    '🔒': '<i data-lucide="lock" class="lucide-icon"></i>',
+    '🔓': '<i data-lucide="unlock" class="lucide-icon icon-green"></i>',
+    '📅': '<i data-lucide="calendar" class="lucide-icon icon-purple"></i>',
+    '⏰': '<i data-lucide="clock" class="lucide-icon icon-gold"></i>',
+    '🕐': '<i data-lucide="clock-1" class="lucide-icon icon-purple"></i>',
+    '🕛': '<i data-lucide="clock-12" class="lucide-icon icon-gold"></i>',
+    '💡': '<i data-lucide="lightbulb" class="lucide-icon icon-gold"></i>',
+    '💚': '<i data-lucide="heart" class="lucide-icon icon-green"></i>',
+    '💜': '<i data-lucide="heart" class="lucide-icon icon-purple"></i>',
+    '🚀': '<i data-lucide="rocket" class="lucide-icon icon-gold"></i>',
+    '🎁': '<i data-lucide="gift" class="lucide-icon icon-purple"></i>',
+    '📣': '<i data-lucide="megaphone" class="lucide-icon icon-gold"></i>',
+    '🌌': '<i data-lucide="orbit" class="lucide-icon icon-purple"></i>',
+    '👼': '<i data-lucide="bird" class="lucide-icon icon-gold"></i>',
+    '🔺': '<i data-lucide="triangle" class="lucide-icon icon-gold"></i>',
+    '📿': '<i data-lucide="infinity" class="lucide-icon icon-purple"></i>',
+    '🪜': '<i data-lucide="trending-up" class="lucide-icon icon-gold"></i>',
+    '🚪': '<i data-lucide="door-open" class="lucide-icon icon-purple"></i>',
+    '🕊️': '<i data-lucide="bird" class="lucide-icon"></i>',
+    '🔄': '<i data-lucide="refresh-cw" class="lucide-icon icon-gold"></i>',
+    '🎓': '<i data-lucide="graduation-cap" class="lucide-icon icon-purple"></i>',
+    '🪞': '<i data-lucide="flip-horizontal" class="lucide-icon icon-gold"></i>',
+    '❓': '<i data-lucide="help-circle" class="lucide-icon icon-purple"></i>',
+    '💬': '<i data-lucide="message-circle" class="lucide-icon icon-gold"></i>',
+    '🎉': '<i data-lucide="party-popper" class="lucide-icon icon-gold"></i>',
+    '🙏': '<i data-lucide="hand" class="lucide-icon icon-gold"></i>',
+    '✅': '<i data-lucide="check-circle" class="lucide-icon icon-green"></i>',
+    '❌': '<i data-lucide="x-circle" class="lucide-icon" style="color:#ef4444"></i>',
+    '➡️': '<i data-lucide="arrow-right" class="lucide-icon icon-gold"></i>',
+    '⬅️': '<i data-lucide="arrow-left" class="lucide-icon icon-gold"></i>',
+    '▶️': '<i data-lucide="play" class="lucide-icon icon-gold"></i>',
+    '⏸️': '<i data-lucide="pause" class="lucide-icon icon-gold"></i>',
+    '⏹️': '<i data-lucide="square" class="lucide-icon icon-gold"></i>',
+    '🔁': '<i data-lucide="repeat" class="lucide-icon icon-purple"></i>',
+    '↗️': '<i data-lucide="external-link" class="lucide-icon icon-gold"></i>',
+    '📱': '<i data-lucide="smartphone" class="lucide-icon icon-purple"></i>',
+    '💻': '<i data-lucide="laptop" class="lucide-icon icon-purple"></i>',
+    '🎧': '<i data-lucide="headphones" class="lucide-icon icon-gold"></i>',
+    '🔔': '<i data-lucide="bell" class="lucide-icon icon-gold"></i>',
+    '⚙️': '<i data-lucide="settings" class="lucide-icon icon-purple"></i>',
+    '🌐': '<i data-lucide="globe" class="lucide-icon icon-blue"></i>',
+    '💾': '<i data-lucide="save" class="lucide-icon icon-gold"></i>',
+    '📥': '<i data-lucide="download" class="lucide-icon icon-green"></i>',
+    '📤': '<i data-lucide="upload" class="lucide-icon icon-purple"></i>',
+    '🗑️': '<i data-lucide="trash-2" class="lucide-icon" style="color:#ef4444"></i>',
+    '✏️': '<i data-lucide="pencil" class="lucide-icon icon-gold"></i>',
+    '🔍': '<i data-lucide="search" class="lucide-icon icon-purple"></i>',
+    '💰': '<i data-lucide="coins" class="lucide-icon icon-gold"></i>',
+    '🌱': '<i data-lucide="sprout" class="lucide-icon icon-green"></i>',
+    '💫': '<i data-lucide="sparkle" class="lucide-icon icon-gold"></i>'
+};
+
+// Initialize everything when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize floating particles
+    initFloatingParticles();
+    
+    // Initialize Lucide icons with a small delay to ensure library is loaded
+    setTimeout(initLucideIcons, 100);
+    
+    // Re-initialize icons when dynamic content is added
+    const observer = new MutationObserver(function(mutations) {
+        let needsUpdate = false;
+        mutations.forEach(function(mutation) {
+            if (mutation.addedNodes.length > 0) {
+                needsUpdate = true;
+            }
+        });
+        if (needsUpdate) {
+            setTimeout(initLucideIcons, 50);
+        }
+    });
+    
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
+    
+    console.log('🎨 Genesis Visual Effects System Initialized');
+    console.log('✨ 50 Floating Particles Active');
+});
 
 </script>
 </body>

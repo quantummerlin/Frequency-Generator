@@ -69,6 +69,16 @@ def init_db():
         )
     ''')
     
+    # Affiliate interest signups
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS affiliate_interests (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            email TEXT UNIQUE NOT NULL,
+            ip_address TEXT,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    ''')
+    
     conn.commit()
     conn.close()
 
@@ -83,6 +93,64 @@ def home():
         'service': 'Genesis Frequency Generator License API',
         'version': '1.0.0'
     })
+
+@app.route('/api/affiliate-interest', methods=['POST'])
+def affiliate_interest():
+    """Collect email for affiliate program interest"""
+    try:
+        data = request.get_json()
+        email = data.get('email', '').strip().lower()
+        ip_address = request.remote_addr
+        
+        if not email or '@' not in email:
+            return jsonify({'error': 'Invalid email'}), 400
+        
+        conn = get_db()
+        cursor = conn.cursor()
+        
+        try:
+            cursor.execute('''
+                INSERT INTO affiliate_interests (email, ip_address)
+                VALUES (?, ?)
+            ''', (email, ip_address))
+            conn.commit()
+        except sqlite3.IntegrityError:
+            # Email already exists
+            pass
+        
+        conn.close()
+        
+        return jsonify({'success': True, 'message': 'Thanks for your interest!'})
+        
+    except Exception as e:
+        return jsonify({'error': 'Server error'}), 500
+
+@app.route('/admin/list-affiliates', methods=['POST'])
+def list_affiliates():
+    """List all affiliate interest signups (admin only)"""
+    try:
+        data = request.get_json()
+        admin_key = data.get('admin_key', '')
+        
+        if admin_key != 'QuantumMerlin119':
+            return jsonify({'error': 'Unauthorized'}), 401
+        
+        conn = get_db()
+        cursor = conn.cursor()
+        cursor.execute('SELECT * FROM affiliate_interests ORDER BY created_at DESC')
+        
+        affiliates = []
+        for row in cursor.fetchall():
+            affiliates.append({
+                'email': row['email'],
+                'created_at': row['created_at']
+            })
+        
+        conn.close()
+        return jsonify({'affiliates': affiliates, 'count': len(affiliates)})
+        
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 @app.route('/api/validate', methods=['POST'])
 def validate_license():

@@ -11635,5 +11635,183 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 </script>
+
+<!-- Share & Earn Floating Button -->
+<div id="shareEarnBtn" onclick="showAffiliateModal()" style="
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    padding: 12px 18px;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+    z-index: 9998;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.2s, box-shadow 0.2s;
+" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+    🤝 Share & Earn 30%
+</div>
+
+<!-- Affiliate Interest Modal -->
+<div id="affiliateModal" style="
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.9);
+    z-index: 12000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+">
+    <div style="
+        background: linear-gradient(135deg, rgba(26,0,51,0.98), rgba(16,185,129,0.15));
+        border-radius: 20px;
+        padding: 30px;
+        max-width: 420px;
+        width: 90%;
+        text-align: center;
+        border: 2px solid rgba(16,185,129,0.5);
+        box-shadow: 0 0 30px rgba(16,185,129,0.3);
+    ">
+        <button onclick="closeAffiliateModal()" style="
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #9ca3af;
+            font-size: 28px;
+            cursor: pointer;
+        ">×</button>
+        
+        <div style="font-size: 48px; margin-bottom: 15px;">🤝</div>
+        <h2 style="color: #10b981; font-size: 24px; margin-bottom: 10px;">Share & Earn Commission</h2>
+        
+        <div id="affiliateFormSection">
+            <p style="color: #c4b5fd; font-size: 15px; line-height: 1.6; margin-bottom: 20px;">
+                Love Genesis Frequencies?<br><br>
+                We're launching an <strong style="color: #10b981;">affiliate program</strong> where you can earn 
+                <strong style="color: #fbbf24;">30% commission</strong> for every sale you refer!
+            </p>
+            
+            <div style="background: rgba(16,185,129,0.1); border-radius: 12px; padding: 15px; margin-bottom: 20px;">
+                <div style="color: #10b981; font-weight: 700; margin-bottom: 8px;">💰 Earn Per Referral:</div>
+                <div style="color: #fff; font-size: 14px;">
+                    Premium: <strong style="color: #fbbf24;">$3.00</strong> per sale<br>
+                    Ultimate: <strong style="color: #fbbf24;">$6.00</strong> per sale
+                </div>
+            </div>
+            
+            <p style="color: #9ca3af; font-size: 14px; margin-bottom: 15px;">
+                Interested? Leave your email and we'll notify you when it's ready!
+            </p>
+            
+            <input type="email" id="affiliateEmail" placeholder="your@email.com" style="
+                width: 100%;
+                padding: 14px;
+                border-radius: 10px;
+                border: 2px solid rgba(16,185,129,0.4);
+                background: rgba(16,185,129,0.1);
+                color: #fff;
+                font-size: 16px;
+                margin-bottom: 15px;
+                box-sizing: border-box;
+            ">
+            
+            <button onclick="submitAffiliateInterest()" style="
+                width: 100%;
+                background: linear-gradient(90deg, #10b981, #059669);
+                color: white;
+                border: none;
+                border-radius: 25px;
+                padding: 14px;
+                font-size: 16px;
+                font-weight: 700;
+                cursor: pointer;
+                box-shadow: 0 4px 15px rgba(16,185,129,0.3);
+            ">
+                🔔 Notify Me When Ready
+            </button>
+            
+            <p style="color: #6b7280; font-size: 12px; margin-top: 15px;">
+                ✨ No spam, just one email when the program launches
+            </p>
+        </div>
+        
+        <div id="affiliateSuccessSection" style="display: none;">
+            <div style="font-size: 60px; margin-bottom: 15px;">✅</div>
+            <h3 style="color: #10b981; font-size: 20px; margin-bottom: 10px;">You're on the list!</h3>
+            <p style="color: #c4b5fd; font-size: 15px; line-height: 1.6;">
+                Thanks for your interest!<br><br>
+                We'll email you when the affiliate program is ready.<br><br>
+                <span style="color: #9ca3af; font-size: 13px;">Expected launch: January 2025</span>
+            </p>
+            <button onclick="closeAffiliateModal()" style="
+                margin-top: 20px;
+                background: rgba(16,185,129,0.2);
+                color: #10b981;
+                border: 1px solid rgba(16,185,129,0.5);
+                border-radius: 20px;
+                padding: 12px 30px;
+                font-size: 14px;
+                font-weight: 600;
+                cursor: pointer;
+            ">Close</button>
+        </div>
+    </div>
+</div>
+
+<script>
+// Affiliate Modal Functions
+function showAffiliateModal() {
+    document.getElementById('affiliateModal').style.display = 'flex';
+    document.getElementById('affiliateFormSection').style.display = 'block';
+    document.getElementById('affiliateSuccessSection').style.display = 'none';
+    document.getElementById('affiliateEmail').value = '';
+}
+
+function closeAffiliateModal() {
+    document.getElementById('affiliateModal').style.display = 'none';
+}
+
+async function submitAffiliateInterest() {
+    const email = document.getElementById('affiliateEmail').value.trim();
+    
+    if (!email || !email.includes('@')) {
+        alert('Please enter a valid email address');
+        return;
+    }
+    
+    // Save to localStorage as backup
+    const affiliates = JSON.parse(localStorage.getItem('affiliate_interests') || '[]');
+    affiliates.push({ email, date: new Date().toISOString() });
+    localStorage.setItem('affiliate_interests', JSON.stringify(affiliates));
+    
+    // Try to send to backend
+    try {
+        await fetch('https://majesticmerlin.pythonanywhere.com/api/affiliate-interest', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email })
+        });
+    } catch (e) {
+        console.log('Affiliate interest saved locally');
+    }
+    
+    // Show success
+    document.getElementById('affiliateFormSection').style.display = 'none';
+    document.getElementById('affiliateSuccessSection').style.display = 'block';
+}
+
+window.showAffiliateModal = showAffiliateModal;
+window.closeAffiliateModal = closeAffiliateModal;
+</script>
+
 </body>
 </html>

@@ -2660,11 +2660,7 @@
         .holographic-card {
             position: relative;
             overflow: hidden;
-            background: linear-gradient(135deg, 
-                rgba(139, 92, 246, 0.15) 0%, 
-                rgba(251, 191, 36, 0.1) 50%,
-                rgba(139, 92, 246, 0.15) 100%);
-            border: 1px solid rgba(251, 191, 36, 0.2);
+            /* No additional background - let tier-card background show through */
             border-radius: 16px;
         }
         
@@ -2677,16 +2673,16 @@
             height: 200%;
             background: linear-gradient(
                 45deg,
-                transparent 30%,
-                rgba(251, 191, 36, 0.03) 40%,
-                rgba(139, 92, 246, 0.05) 50%,
-                rgba(251, 191, 36, 0.03) 60%,
-                transparent 70%
+                transparent 40%,
+                rgba(251, 191, 36, 0.015) 48%,
+                rgba(139, 92, 246, 0.02) 50%,
+                rgba(251, 191, 36, 0.015) 52%,
+                transparent 60%
             );
-            animation: holographicShimmer 8s linear infinite;
+            animation: holographicShimmer 10s linear infinite;
             pointer-events: none;
-            z-index: -1;
-            opacity: 0.6;
+            z-index: 0;
+            opacity: 0.3;
         }
         
         @keyframes holographicShimmer {
@@ -2700,14 +2696,14 @@
             inset: 0;
             background: linear-gradient(
                 135deg,
-                rgba(255, 255, 255, 0.03) 0%,
+                rgba(255, 255, 255, 0.01) 0%,
                 transparent 50%,
-                rgba(255, 255, 255, 0.02) 100%
+                rgba(255, 255, 255, 0.005) 100%
             );
             pointer-events: none;
             border-radius: inherit;
-            z-index: -1;
-            opacity: 0.5;
+            z-index: 0;
+            opacity: 0.2;
         }
 
         /* Card Shimmer on Hover */
@@ -2914,8 +2910,8 @@
         }
         
         .tier-card.ultimate {
-            background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(245, 158, 11, 0.1));
-            border: 2px solid rgba(251, 191, 36, 0.6);
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.08), rgba(245, 158, 11, 0.04));
+            border: 2px solid rgba(251, 191, 36, 0.4);
         }
         
         .tier-card.ultimate::before {

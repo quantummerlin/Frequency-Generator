@@ -3653,6 +3653,27 @@
         </div>
     </div>
 
+    <!-- Share & Earn Footer Section -->
+    <div style="background: linear-gradient(135deg, rgba(16,185,129,0.1), rgba(16,185,129,0.05)); border-top: 1px solid rgba(16,185,129,0.3); padding: 30px 20px; text-align: center; margin-top: 40px;">
+        <div style="max-width: 500px; margin: 0 auto;">
+            <h3 style="color: #10b981; font-size: 20px; margin-bottom: 10px;">🤝 Share & Earn 30% Commission</h3>
+            <p style="color: #c4b5fd; font-size: 14px; line-height: 1.6; margin-bottom: 15px;">
+                Love Genesis Frequencies? Earn <strong style="color: #fbbf24;">$3-$6 per sale</strong> by sharing with friends!
+            </p>
+            <button onclick="showAffiliateModal()" style="
+                background: linear-gradient(135deg, #10b981, #059669);
+                color: white;
+                border: none;
+                padding: 12px 28px;
+                border-radius: 25px;
+                font-size: 15px;
+                font-weight: 600;
+                cursor: pointer;
+                box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+            ">Join Affiliate Program</button>
+        </div>
+    </div>
+
     <!-- Now Playing Sticky Footer Bar -->
     <div class="now-playing-bar" id="nowPlayingBar">
         <div class="now-playing-info">
@@ -11115,12 +11136,26 @@ async function activateLicense() {
                 localStorage.setItem('ultimateAccessGranted', 'true');
             }
             
-            // Show success message
+            // Show success message with Share & Earn option
             successEl.innerHTML = `
                 ✅ ${data.message}<br>
                 <span style="font-size: 12px; color: #9ca3af;">
                     Tier: ${data.tier.toUpperCase()} | Devices: ${data.devices_used}/${data.devices_max}
                 </span>
+                <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(16,185,129,0.3);">
+                    <span style="color: #10b981; font-size: 13px;">🤝 Love it? Earn 30% by sharing!</span><br>
+                    <button onclick="closeLicenseModal(); setTimeout(showAffiliateModal, 300);" style="
+                        margin-top: 8px;
+                        background: linear-gradient(135deg, #10b981, #059669);
+                        color: white;
+                        border: none;
+                        padding: 8px 18px;
+                        border-radius: 15px;
+                        font-size: 12px;
+                        font-weight: 600;
+                        cursor: pointer;
+                    ">Join Affiliate Program</button>
+                </div>
             `;
             successEl.style.display = 'block';
             
@@ -11635,28 +11670,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 </script>
-
-<!-- Share & Earn Floating Button -->
-<div id="shareEarnBtn" onclick="showAffiliateModal()" style="
-    position: fixed;
-    bottom: 80px;
-    right: 20px;
-    background: linear-gradient(135deg, #10b981, #059669);
-    color: white;
-    padding: 12px 18px;
-    border-radius: 25px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
-    z-index: 9998;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: transform 0.2s, box-shadow 0.2s;
-" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-    🤝 Share & Earn 30%
-</div>
 
 <!-- Affiliate Interest Modal -->
 <div id="affiliateModal" style="

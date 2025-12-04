@@ -3457,8 +3457,8 @@
         </div>
 
         <!-- Premium Upgrade CTA -->
-        <div class="section premium-cta-section" style="text-align: center; margin: 30px 0; padding: 25px; background: linear-gradient(135deg, rgba(26,0,51,0.8), rgba(139,92,246,0.6)); border-radius: 15px; border: 2px solid rgba(251,191,36,0.3); position: relative; z-index: 1100;">
-            <h3 style="color: #fbbf24; font-size: 22px; font-weight: 700; margin-bottom: 15px;" data-translate="readyToUnlock">🚀 Ready to Unlock Premium Features?</h3>
+        <div id="premiumCtaTop" class="section premium-cta-section" style="text-align: center; margin: 30px 0; padding: 25px; background: linear-gradient(135deg, rgba(26,0,51,0.8), rgba(139,92,246,0.6)); border-radius: 15px; border: 2px solid rgba(251,191,36,0.3); position: relative; z-index: 1100;">
+            <h3 id="premiumCtaTopTitle" style="color: #fbbf24; font-size: 22px; font-weight: 700; margin-bottom: 15px;" data-translate="readyToUnlock">🚀 Ready to Unlock Premium Features?</h3>
             <p style="color: #c4b5fd; font-size: 16px; margin-bottom: 20px; line-height: 1.5;" data-translate="premiumCtaDesc">
                 Get lifetime access to individual volume controls, custom durations, WAV export, background playback, silent mode bypass, and the achievement system.
             </p>
@@ -3639,8 +3639,8 @@
         </div>
 
         <!-- Bottom Upgrade CTA -->
-        <div style="text-align: center; margin: 40px 0; padding: 30px; background: linear-gradient(135deg, rgba(26,0,51,0.8), rgba(139,92,246,0.6)); border-radius: 20px; border: 2px solid rgba(251,191,36,0.3); position: relative; z-index: 1100;">
-            <h3 style="color: #fbbf24; font-size: 24px; margin-bottom: 15px;" data-translate="readyToUnlock">🚀 Ready to Unlock Premium Features?</h3>
+        <div id="premiumCtaBottom" style="text-align: center; margin: 40px 0; padding: 30px; background: linear-gradient(135deg, rgba(26,0,51,0.8), rgba(139,92,246,0.6)); border-radius: 20px; border: 2px solid rgba(251,191,36,0.3); position: relative; z-index: 1100;">
+            <h3 id="premiumCtaBottomTitle" style="color: #fbbf24; font-size: 24px; margin-bottom: 15px;" data-translate="readyToUnlock">🚀 Ready to Unlock Premium Features?</h3>
             <p style="color: #c4b5fd; font-size: 16px; margin-bottom: 20px; line-height: 1.6;" data-translate="premiumCtaDesc">
                 Get lifetime access to individual volume controls, custom durations, WAV export, background playback, and the achievement system.
             </p>
@@ -6252,6 +6252,29 @@
                 legendary: true,
                 hidden: true,
                 checkUnlock: () => userProgress.currentStreak >= 365
+            },
+            
+            // LICENSE ACHIEVEMENTS - Unlocking premium tiers
+            premiumUnlock: {
+                id: 'premiumUnlock',
+                name: '⭐ Premium Ascension',
+                description: 'Unlock Premium and ascend to a new level of frequency mastery',
+                category: 'special',
+                xpReward: 500,
+                checkUnlock: () => {
+                    try { return localStorage.getItem('gfgn_license_tier') === 'premium' || localStorage.getItem('gfgn_license_tier') === 'ultimate'; } catch(e) { return false; }
+                }
+            },
+            ultimateUnlock: {
+                id: 'ultimateUnlock',
+                name: '💎 Ultimate Enlightenment',
+                description: 'Achieve Ultimate status and unlock the full power of Genesis Frequencies',
+                category: 'special',
+                xpReward: 1000,
+                legendary: true,
+                checkUnlock: () => {
+                    try { return localStorage.getItem('gfgn_license_tier') === 'ultimate'; } catch(e) { return false; }
+                }
             }
         };
 
@@ -11220,37 +11243,49 @@ async function activateLicense() {
 function updateUIForLicenseTier() {
     const tier = getCurrentTier();
     
-    // Update all upgrade buttons
-    const upgradeButtons = document.querySelectorAll('.premium-lock, [onclick*="showUpgradeModal"]');
+    // Get CTA sections
+    const ctaTop = document.getElementById('premiumCtaTop');
+    const ctaBottom = document.getElementById('premiumCtaBottom');
+    const ctaTopTitle = document.getElementById('premiumCtaTopTitle');
+    const ctaBottomTitle = document.getElementById('premiumCtaBottomTitle');
     
     if (tier === 'ultimate') {
         // Hide all upgrade prompts for Ultimate users
-        upgradeButtons.forEach(btn => {
-            btn.style.display = 'none';
-        });
+        if (ctaTop) ctaTop.style.display = 'none';
+        if (ctaBottom) ctaBottom.style.display = 'none';
         
-        // Show "Enter Code" as "✅ Ultimate" badge
-        const enterCodeBtns = document.querySelectorAll('[onclick*="showLicenseModal"]');
-        enterCodeBtns.forEach(btn => {
-            btn.innerHTML = '💎 Ultimate';
-            btn.style.background = 'linear-gradient(90deg, #fbbf24, #f59e0b)';
-            btn.style.color = '#1a0033';
-            btn.onclick = null;
-        });
+        // Hide all premium locks
+        document.querySelectorAll('.premium-lock').forEach(el => el.style.display = 'none');
         
     } else if (tier === 'premium') {
-        // Update prompts for Premium users
-        upgradeButtons.forEach(btn => {
-            if (btn.textContent.includes('Upgrade') && !btn.textContent.includes('Ultimate')) {
-                btn.style.display = 'none';
-            }
+        // For Premium users - change CTAs to upgrade to Ultimate
+        if (ctaTopTitle) {
+            ctaTopTitle.innerHTML = '💎 Upgrade to Ultimate?';
+        }
+        if (ctaBottomTitle) {
+            ctaBottomTitle.innerHTML = '💎 Upgrade to Ultimate?';
+        }
+        
+        // Change CTA descriptions
+        const ctaDescs = document.querySelectorAll('[data-translate="premiumCtaDesc"]');
+        ctaDescs.forEach(desc => {
+            desc.innerHTML = 'Unlock binaural beats, advanced frequency blending, and exclusive sound profiles with Ultimate!';
         });
+        
+        // Change upgrade buttons
+        const upgradeButtons = document.querySelectorAll('[data-translate="upgradeToPremium"]');
+        upgradeButtons.forEach(btn => {
+            btn.innerHTML = 'Upgrade to Ultimate';
+            btn.style.background = 'linear-gradient(90deg, #fbbf24, #f59e0b)';
+        });
+        
+        // Hide premium locks (they have premium now)
+        document.querySelectorAll('.premium-lock').forEach(el => el.style.display = 'none');
     }
     
-    // Add license status to header if licensed
+    // Add license status badge if licensed
     if (tier !== 'free') {
-        const header = document.querySelector('.header');
-        if (header && !document.getElementById('licenseBadge')) {
+        if (!document.getElementById('licenseBadge')) {
             const badge = document.createElement('div');
             badge.id = 'licenseBadge';
             badge.style.cssText = `
@@ -11268,6 +11303,13 @@ function updateUIForLicenseTier() {
             `;
             badge.innerHTML = tier === 'ultimate' ? '💎 Ultimate' : '⭐ Premium';
             document.body.appendChild(badge);
+        }
+        
+        // Trigger achievement for unlocking tier
+        if (tier === 'premium' && typeof window.awardAchievement === 'function') {
+            window.awardAchievement('premium_unlock');
+        } else if (tier === 'ultimate' && typeof window.awardAchievement === 'function') {
+            window.awardAchievement('ultimate_unlock');
         }
     }
 }
